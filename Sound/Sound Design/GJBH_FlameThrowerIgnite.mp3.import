@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2cwe3n37jnwl"
+path="res://.godot/imported/GJBH_FlameThrowerIgnite.mp3-38c67fbb5fe6a1779f559414abe3faea.mp3str"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_FlameThrowerIgnite.mp3"
+dest_files=["res://.godot/imported/GJBH_FlameThrowerIgnite.mp3-38c67fbb5fe6a1779f559414abe3faea.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

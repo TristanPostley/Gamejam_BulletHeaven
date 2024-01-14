@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bbk3cd7n7bc8m"]
 
 [ext_resource type="Texture2D" uid="uid://gnjsb0k6h3gh" path="res://Assets/Tileset Grass.png" id="1"]
-[ext_resource type="PackedScene" path="res://Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://eevdtev2ysts" path="res://Player.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://lwv5jrr4ngw2" path="res://Assets/Titlescreen.png" id="3"]
-[ext_resource type="PackedScene" path="res://Enemy.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://3dr7a4boq8jx" path="res://Enemy.tscn" id="4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ar5n"]
 texture = ExtResource("1")
@@ -4118,6 +4118,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color(1, 1, 1, 0)

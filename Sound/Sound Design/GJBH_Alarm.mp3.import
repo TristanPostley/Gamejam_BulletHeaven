@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://s5wgofd5pe04"
+path="res://.godot/imported/GJBH_Alarm.mp3-f17dc9809e2b7350469f7ba70a3eded2.mp3str"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_Alarm.mp3"
+dest_files=["res://.godot/imported/GJBH_Alarm.mp3-f17dc9809e2b7350469f7ba70a3eded2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
