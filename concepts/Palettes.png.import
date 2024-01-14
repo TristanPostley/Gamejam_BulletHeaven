@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0g4g0cg0at4f"
-path="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"
+uid="uid://vb4mltt2v3ml"
+path="res://.godot/imported/Palettes.png-78d6abfeaba8bf64bc973ef3fe907f14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex"]
+source_file="res://concepts/Palettes.png"
+dest_files=["res://.godot/imported/Palettes.png-78d6abfeaba8bf64bc973ef3fe907f14.ctex"]
 
 [params]
 
