@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://der6880gqxg7t"
+path="res://.godot/imported/GJBH_Beam.mp3-d5f09e6aa7fd0ff2cad2e60325aa4962.mp3str"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_Beam.mp3"
+dest_files=["res://.godot/imported/GJBH_Beam.mp3-d5f09e6aa7fd0ff2cad2e60325aa4962.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
