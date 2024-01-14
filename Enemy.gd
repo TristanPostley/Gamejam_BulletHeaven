@@ -11,6 +11,7 @@ extends CharacterBody2D
 
 var speed: float = 200  # Adjust the speed as needed
 var player: Node2D
+var dead = false
 
 func _ready():
 	animated_sprite_2d.play("default")
@@ -20,6 +21,10 @@ func _ready():
 	position = player.position + Vector2(700, 0).rotated(randf_range(0, 2*PI))
 
 func _process(delta: float):
+	# The enemy is dying, so don't let it move itself
+	if dead:
+		return
+	
 	# Move the enemy towards the player
 	var direction = (player.global_position - global_position).normalized()
 	velocity = direction * speed
