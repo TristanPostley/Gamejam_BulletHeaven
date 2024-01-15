@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://duea22s0cdla3"
+path="res://.godot/imported/GJBH_17bPCFootstepSprintLoop.wav-7343f950af841817a4255e435786711b.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_17bPCFootstepSprintLoop.wav"
+dest_files=["res://.godot/imported/GJBH_17bPCFootstepSprintLoop.wav-7343f950af841817a4255e435786711b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

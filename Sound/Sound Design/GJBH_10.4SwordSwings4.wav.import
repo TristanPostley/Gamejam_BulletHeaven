@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5nxyguco7uo2"
+path="res://.godot/imported/GJBH_10.4SwordSwings4.wav-49c071aa89da1a62183220577a859345.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_10.4SwordSwings4.wav"
+dest_files=["res://.godot/imported/GJBH_10.4SwordSwings4.wav-49c071aa89da1a62183220577a859345.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

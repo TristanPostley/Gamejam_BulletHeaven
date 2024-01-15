@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgokpsqmjwjs6"
-path="res://.godot/imported/Skeleton_death0.png-8ce10e479cb58c7d6f7a5df1fded3150.ctex"
+path="res://.godot/imported/Skeleton_death0.png-f4b9d022b27a007ed940d10253a803e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Skeleton3D/Skeleton_death0.png"
-dest_files=["res://.godot/imported/Skeleton_death0.png-8ce10e479cb58c7d6f7a5df1fded3150.ctex"]
+source_file="res://Assets/Example Project Assets/Skeleton3D/Skeleton_death0.png"
+dest_files=["res://.godot/imported/Skeleton_death0.png-f4b9d022b27a007ed940d10253a803e5.ctex"]
 
 [params]
 
