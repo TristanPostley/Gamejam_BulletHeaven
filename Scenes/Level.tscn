@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=2 format=3 uid="uid://cgr6njwev5ht"]
+
+[ext_resource type="PackedScene" uid="uid://cnucja3l8air7" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
 
 [node name="Level" type="Node2D"]
+
+[node name="LandingZone" parent="." instance=ExtResource("1_772jo")]
