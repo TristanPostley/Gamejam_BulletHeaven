@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci2ybbgdjj5li"]
+
+[ext_resource type="Texture2D" uid="uid://c3fr47gtftpuj" path="res://Assets/sprites/Fire.png" id="1_cdqxy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1hux"]
+size = Vector2(66, 66)
+
+[node name="GroundFlames" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_l1hux")
+debug_color = Color(0.992157, 0, 0.239216, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Fire" type="Sprite2D" parent="."]
+position = Vector2(56, 0)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_cdqxy")
+
+[node name="Fire2" type="Sprite2D" parent="."]
+position = Vector2(8, 56)
+scale = Vector2(0.109375, 0.125)
+texture = ExtResource("1_cdqxy")
+
+[node name="Fire3" type="Sprite2D" parent="."]
+position = Vector2(48, 48)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_cdqxy")
+
+[node name="Fire4" type="Sprite2D" parent="."]
+position = Vector2(32, 16)
+scale = Vector2(0.4375, 0.40625)
+texture = ExtResource("1_cdqxy")
