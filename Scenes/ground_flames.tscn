@@ -14,32 +14,32 @@ debug_color = Color(0.992157, 0, 0.239216, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="Fire" type="Sprite2D" parent="."]
+[node name="Fire" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(120, 0)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("1_cdqxy")
 
-[node name="Fire2" type="Sprite2D" parent="."]
+[node name="Fire2" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(8, 72)
 scale = Vector2(0.109375, 0.125)
 texture = ExtResource("1_cdqxy")
 
-[node name="Fire3" type="Sprite2D" parent="."]
+[node name="Fire3" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(80, 0)
 scale = Vector2(0.320313, 0.296875)
 texture = ExtResource("1_cdqxy")
 
-[node name="Fire3" type="Sprite2D" parent="Fire3"]
-position = Vector2(74.9268, 296.421)
-scale = Vector2(0.940644, 0.990543)
+[node name="Fire4" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(104, 88)
+scale = Vector2(0.3013, 0.294067)
 texture = ExtResource("1_cdqxy")
 
-[node name="Fire3" type="Sprite2D" parent="Fire3/Fire3"]
-position = Vector2(-275.473, 64.611)
-scale = Vector2(0.940644, 0.990543)
+[node name="Fire5" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(21, 107)
+scale = Vector2(0.283416, 0.291286)
 texture = ExtResource("1_cdqxy")
 
-[node name="Fire4" type="Sprite2D" parent="."]
+[node name="Fire6" type="Sprite2D" parent="Sprite2D"]
 position = Vector2(56, 40)
 scale = Vector2(0.71875, 0.703125)
 texture = ExtResource("1_cdqxy")
