@@ -3,33 +3,43 @@
 [ext_resource type="Texture2D" uid="uid://c3fr47gtftpuj" path="res://Assets/sprites/Fire.png" id="1_cdqxy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1hux"]
-size = Vector2(66, 66)
+size = Vector2(128.25, 128.5)
 
 [node name="GroundFlames" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(32, 32)
+position = Vector2(64, 64)
 shape = SubResource("RectangleShape2D_l1hux")
 debug_color = Color(0.992157, 0, 0.239216, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Fire" type="Sprite2D" parent="."]
-position = Vector2(56, 0)
+position = Vector2(120, 0)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("1_cdqxy")
 
 [node name="Fire2" type="Sprite2D" parent="."]
-position = Vector2(8, 56)
+position = Vector2(8, 72)
 scale = Vector2(0.109375, 0.125)
 texture = ExtResource("1_cdqxy")
 
 [node name="Fire3" type="Sprite2D" parent="."]
-position = Vector2(48, 48)
-scale = Vector2(0.125, 0.125)
+position = Vector2(80, 0)
+scale = Vector2(0.320313, 0.296875)
+texture = ExtResource("1_cdqxy")
+
+[node name="Fire3" type="Sprite2D" parent="Fire3"]
+position = Vector2(74.9268, 296.421)
+scale = Vector2(0.940644, 0.990543)
+texture = ExtResource("1_cdqxy")
+
+[node name="Fire3" type="Sprite2D" parent="Fire3/Fire3"]
+position = Vector2(-275.473, 64.611)
+scale = Vector2(0.940644, 0.990543)
 texture = ExtResource("1_cdqxy")
 
 [node name="Fire4" type="Sprite2D" parent="."]
-position = Vector2(32, 16)
-scale = Vector2(0.4375, 0.40625)
+position = Vector2(56, 40)
+scale = Vector2(0.71875, 0.703125)
 texture = ExtResource("1_cdqxy")
