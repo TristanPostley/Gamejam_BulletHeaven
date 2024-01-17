@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/Level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[dotnet]
+
+project/assembly_name="Mycological Madness"
+
 [input]
 
 right={
