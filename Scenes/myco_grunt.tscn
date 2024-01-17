@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc625875nq7ru"]
+
+[ext_resource type="Script" path="res://Scripts/MycoGrunt.gd" id="1_vtdms"]
+[ext_resource type="Texture2D" uid="uid://bi0l4h3spr4qy" path="res://Assets/sprites/Grunt_Static.png" id="2_pet63"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjedd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pet63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skx5y"]
+
+[node name="MycoGrunt" type="CharacterBody2D"]
+script = ExtResource("1_vtdms")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fjedd")
+frame_progress = 0.999871
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_skx5y")
