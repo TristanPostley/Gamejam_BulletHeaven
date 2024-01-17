@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci2ybbgdjj5li"]
+[gd_scene load_steps=4 format=3 uid="uid://ci2ybbgdjj5li"]
 
 [ext_resource type="Texture2D" uid="uid://c3fr47gtftpuj" path="res://Assets/sprites/Fire.png" id="1_cdqxy"]
+[ext_resource type="Script" path="res://Scenes/ground_flames.gd" id="1_f18lc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1hux"]
 size = Vector2(128.25, 128.5)
 
 [node name="GroundFlames" type="StaticBody2D"]
+script = ExtResource("1_f18lc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(64, 64)
@@ -43,3 +45,9 @@ texture = ExtResource("1_cdqxy")
 position = Vector2(56, 40)
 scale = Vector2(0.71875, 0.703125)
 texture = ExtResource("1_cdqxy")
+
+[node name="flame_die_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="flame_die_timer" to="." method="_on_flame_die_timer_timeout"]
