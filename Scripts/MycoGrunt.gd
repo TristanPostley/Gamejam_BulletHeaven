@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 150
+const speed = 100
 
 func _ready():
 	pass
@@ -26,15 +26,21 @@ func _physics_process(delta):
 	var xdirection = round((playerx - position.x) / abs(playerx - position.x))
 	# print("MycoGrunt X: ", xdirection)
 	if xdirection:
-		velocity.x = xdirection * SPEED
+		velocity.x = xdirection * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	var ydirection = round((playery - position.y) / abs(playery - position.y))
 	# print("MycoGrunt Y: ", ydirection)
 	if ydirection:
-		velocity.y = ydirection * SPEED
+		velocity.y = ydirection * speed
 	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-
+		velocity.y = move_toward(velocity.y, 0, speed)
+	
+	if xdirection or ydirection:  # If moving and not already playing, start footstep audio.
+		if !$AudioStreamPlayer2D.playing: 
+			$AudioStreamPlayer2D.play()
+	else:
+		$AudioStreamPlayer2D.stop()
 	move_and_slide()
+
