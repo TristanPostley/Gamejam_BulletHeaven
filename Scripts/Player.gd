@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.2
 
+var flamethrowing = false
+
 func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('right'):
@@ -21,13 +23,18 @@ func get_input():
 	return input
 
 func _physics_process(delta):
+	print($FlamethrowerHurtbox/CollisionPolygon2D.scale)
 	if Input.is_action_pressed('primary'):
-		#if $FlamethrowerHurtbox.scale.x <= 1:
-			#$FlamethrowerHurtbox.scale += Vector2(.05,.05)
-		$AnimationPlayer.play("flamethrow")
-	if($FlamethrowerHurtbox/CollisionPolygon2D.scale.x > 0 && !Input.is_action_pressed('primary')):
-			#$FlamethrowerHurtbox.scale -= Vector2(.05,.05)		
-		$AnimationPlayer.play("unflamethrow")
+		if !flamethrowing:
+			$AnimationPlayer.play("flamethrow")
+			$FlamethrowerHurtbox/GPUParticles2D.emitting = true
+		flamethrowing = true
+		
+	if(flamethrowing && !Input.is_action_pressed('primary')):
+		flamethrowing = false
+		$FlamethrowerHurtbox/GPUParticles2D.emitting = false
+		$FlamethrowerHurtbox/CollisionPolygon2D.scale = Vector2.ZERO
+
 #Facing (For aiming weapons)
 	look_at(get_global_mouse_position())
 	
