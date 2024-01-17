@@ -1,0 +1,207 @@
+[gd_scene load_steps=16 format=3 uid="uid://t4ev1rrmiidy"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
+[ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
+[ext_resource type="AudioStream" uid="uid://biict0lr0ptvh" path="res://Sound/Sound Design/GJBH_17aPCFootstepWalkLoop.wav" id="2_wcnhs"]
+[ext_resource type="Texture2D" uid="uid://c3fr47gtftpuj" path="res://Assets/sprites/Fire.png" id="4_1vrpi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
+size = Vector2(66, 182)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yuyj4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d1koi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_fe1jy"]
+resource_name = "right"
+
+[sub_resource type="Animation" id="Animation_dh6f2"]
+resource_name = "left"
+
+[sub_resource type="Animation" id="Animation_xcmac"]
+resource_name = "up"
+
+[sub_resource type="Animation" id="Animation_ghjtd"]
+resource_name = "down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.174533, 0.0, 0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_kxodt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_16v2t"]
+resource_name = "flamethrow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(63.0569, 0, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74), PackedVector2Array(182.057, -1, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74), PackedVector2Array(263.057, 0, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.17143, 0.273438), Vector2(1.21831, 0.273438), Vector2(0.288618, 0.273438)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(200.028, -6), Vector2(261.028, -6), Vector2(320.528, -6)]
+}
+
+[sub_resource type="Animation" id="Animation_l2rk1"]
+resource_name = "flamethrow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(63.0569, 0, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(207.557, -5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.13281, 0.265625)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.5, 0.996), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1870h"]
+_data = {
+"RESET": SubResource("Animation_kxodt"),
+"down": SubResource("Animation_ghjtd"),
+"flamethrow": SubResource("Animation_l2rk1"),
+"left": SubResource("Animation_dh6f2"),
+"right": SubResource("Animation_fe1jy"),
+"unflamethrow": SubResource("Animation_16v2t"),
+"up": SubResource("Animation_xcmac")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wdvr"]
+lifetime_randomness = 0.35
+particle_flag_disable_z = true
+angle_min = -407.0
+angle_max = 453.9
+initial_velocity_min = 304.35
+initial_velocity_max = 304.35
+gravity = Vector3(0, 98, 0)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_rh0g5")
+friction = 0.9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_f7n5g")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_wcnhs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_yuyj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1870h")
+}
+
+[node name="FlamethrowerHurtbox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlamethrowerHurtbox"]
+position = Vector2(-23.2298, 0)
+scale = Vector2(1e-05, 1e-05)
+polygon = PackedVector2Array(263.057, 0, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)
+
+[node name="Sprite2D" type="Sprite2D" parent="FlamethrowerHurtbox/CollisionPolygon2D"]
+position = Vector2(320.528, -6)
+scale = Vector2(0.288618, 0.273438)
+texture = ExtResource("4_1vrpi")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="FlamethrowerHurtbox"]
+position = Vector2(195, -67)
+process_material = SubResource("ParticleProcessMaterial_2wdvr")
+texture = ExtResource("4_1vrpi")
+lifetime = 6.88
