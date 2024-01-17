@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://w5ig0f0sykc8"]
+[gd_scene load_steps=11 format=3 uid="uid://w5ig0f0sykc8"]
 
 [ext_resource type="Texture2D" uid="uid://de38tjp6qyx1y" path="res://Assets/sprites/GroundTile_Charred.png" id="1_5x1vf"]
 [ext_resource type="Texture2D" uid="uid://cdffxefhjfded" path="res://Assets/sprites/GroundTile_Default.png" id="2_nw0jk"]
 [ext_resource type="Texture2D" uid="uid://qatxlencwcra" path="res://Assets/sprites/GroundTile_Mycelium.png" id="3_4qaea"]
 [ext_resource type="PackedScene" uid="uid://ci2ybbgdjj5li" path="res://Scenes/ground_flames.tscn" id="4_l84o1"]
 [ext_resource type="PackedScene" uid="uid://nvb84iw8ykw2" path="res://Scenes/ship.tscn" id="5_3dt2u"]
+[ext_resource type="PackedScene" uid="uid://527cus0v5urk" path="res://Scenes/Pickups/ItemPickup.tscn" id="6_p5ryg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdfj3"]
 texture = ExtResource("2_nw0jk")
@@ -57,3 +58,6 @@ position = Vector2(896, 256)
 
 [node name="Ship" parent="." instance=ExtResource("5_3dt2u")]
 position = Vector2(6296, 6632)
+
+[node name="ItemPickup" parent="." instance=ExtResource("6_p5ryg")]
+position = Vector2(960, 576)

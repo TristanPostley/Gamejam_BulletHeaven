@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bubmqkv0q67vn"]
+
+[ext_resource type="Texture2D" uid="uid://dujuj3a5xx04p" path="res://Assets/icons/machete.png" id="1_5bj2c"]
+
+[node name="PickupMachete" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5bj2c")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://doj7sv3n5hj4g"]
+
+[ext_resource type="Texture2D" uid="uid://c3bay2uoq5ht3" path="res://Assets/icons/health.png" id="1_4ljs7"]
+
+[node name="PickupHealth" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4ljs7")
