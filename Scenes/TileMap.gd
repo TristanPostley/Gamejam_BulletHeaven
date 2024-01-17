@@ -25,19 +25,24 @@ func get_random_tile():
 	var rand_y = randi_range(y_from, y_to)
 	
 	return Vector2i(rand_x, rand_y)
-
-# Converts a specific tile on the ground layer of a TileMap to mycelium
-func convert_tile_to_mycelium(tile_map_coords: Vector2i):
+	
+func convert_cell(tile_id: int, tile_map_coords: Vector2i):
 	# Ground layer
 	var tile_map_layer = 0
 	
-	# todo - Get Mycelium tile_id programmatically
-	var tile_id = 3
-	
-	# todo - If -1, -1 (default), will delete the cell.
+	# todo - If -1, -1 (default), will delete the cell. Get programmatically?
 	var tile_map_atlas_coords = Vector2i(0,0)
 	
 	set_cell(tile_map_layer, tile_map_coords, tile_id, tile_map_atlas_coords)
+
+# Converts a specific tile on the ground layer of a TileMap to mycelium
+func convert_tile_to_mycelium(tile_map_coords: Vector2i):
+	convert_cell(3, tile_map_coords)
+
+# Converts a specific tile on the ground layer of a TileMap to mycelium
+func convert_tile_to_charred(tile_map_coords: Vector2i):
+	# todo - Get charred tile_id programmatically
+	convert_cell(4, tile_map_coords)
 
 # Converts a 2D vector representing a position in world space to tile coordinates.
 func get_tile_from_vector(vector: Vector2):
