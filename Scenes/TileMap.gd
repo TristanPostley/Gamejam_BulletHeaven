@@ -1,16 +1,13 @@
 extends TileMap
 
+const GROUND_FLAMES = preload("res://Scenes/ground_flames.tscn")
+
 var tile_size: Vector2i
 
-# Called when the node enters the scene tree for the first time.
+var active_flames : Dictionary = {}
+
 func _ready():
 	tile_size = tile_set.tile_size
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 
 # Generates random tile coordinates within the bounds of the currently used area of the TileMap.
 func get_random_tile():
@@ -26,24 +23,55 @@ func get_random_tile():
 	
 	return Vector2i(rand_x, rand_y)
 	
-func convert_cell(tile_id: int, tile_map_coords: Vector2i):
+func convert_cell(tile_id: int, coords: Vector2i):
 	# Ground layer
 	var tile_map_layer = 0
 	
 	# todo - If -1, -1 (default), will delete the cell. Get programmatically?
 	var tile_map_atlas_coords = Vector2i(0,0)
 	
-	set_cell(tile_map_layer, tile_map_coords, tile_id, tile_map_atlas_coords)
+	set_cell(tile_map_layer, coords, tile_id, tile_map_atlas_coords)
 
 # Converts a specific tile on the ground layer of a TileMap to mycelium
-func convert_tile_to_mycelium(tile_map_coords: Vector2i):
-	convert_cell(3, tile_map_coords)
+func convert_tile_to_mycelium(coords: Vector2i):
+	convert_cell(3, coords)
 
 # Converts a specific tile on the ground layer of a TileMap to mycelium
-func convert_tile_to_charred(tile_map_coords: Vector2i):
+func convert_tile_to_charred(coords: Vector2i):
 	# todo - Get charred tile_id programmatically
-	convert_cell(4, tile_map_coords)
+	convert_cell(4, coords)
+	
+func is_burnable_tile(coords: Vector2i):
+	return get_ground_type(coords) == "mycelium" && is_tile_burning(coords) == false
+
+func get_ground_type(coords: Vector2i):
+	var data = get_cell_tile_data(0, coords)
+	if data:
+		return data.get_custom_data("ground_type")
+	else:
+		return ""
+
+func is_tile_burning(coords: Vector2i):
+	if active_flames.has(coords):
+		return active_flames[coords]
+	
+	return false
+
+func start_flame(coords: Vector2i):
+	print(coords)
+	active_flames[coords] = true
+	var new_flame = GROUND_FLAMES.instantiate()
+	new_flame.position = get_vector_from_tile(coords)
+	get_parent().add_child(new_flame)
+
+func extinguish_flame(coords: Vector2i):
+	active_flames[coords] = false
+	convert_tile_to_charred(coords)
 
 # Converts a 2D vector representing a position in world space to tile coordinates.
 func get_tile_from_vector(vector: Vector2):
 	return Vector2i(vector.x / tile_size.x, vector.y / tile_size.y)
+
+# Converts a 2D vector representing a position in world space to tile coordinates.
+func get_vector_from_tile(vector2i: Vector2i):
+	return Vector2i(vector2i.x * tile_size.x, vector2i.y * tile_size.y)
