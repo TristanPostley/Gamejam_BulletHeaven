@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="TilemapResource" load_steps=2 format=3 uid="uid://bujtrc4xc8e4x"]
+
+[ext_resource type="Script" path="res://Scenes/tilemap_resource.gd" id="1_4aw4d"]
+
+[resource]
+script = ExtResource("1_4aw4d")
