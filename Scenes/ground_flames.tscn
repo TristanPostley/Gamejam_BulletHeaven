@@ -49,5 +49,30 @@ texture = ExtResource("1_cdqxy")
 [node name="flame_die_timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+autostart = true
+
+[node name="spread_above_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="spread_below_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="spread_left_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="spread_right_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="flame_die_timer" to="." method="_on_flame_die_timer_timeout"]
+[connection signal="timeout" from="spread_above_timer" to="." method="_on_spread_above_timer_timeout"]
+[connection signal="timeout" from="spread_below_timer" to="." method="_on_spread_below_timer_timeout"]
+[connection signal="timeout" from="spread_left_timer" to="." method="_on_spread_left_timer_timeout"]
+[connection signal="timeout" from="spread_right_timer" to="." method="_on_spread_right_timer_timeout"]

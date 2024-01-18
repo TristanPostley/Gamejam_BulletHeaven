@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=17 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
 [ext_resource type="AudioStream" uid="uid://biict0lr0ptvh" path="res://Sound/Sound Design/GJBH_17aPCFootstepWalkLoop.wav" id="2_wcnhs"]
 [ext_resource type="Texture2D" uid="uid://ct02lb7j6acws" path="res://Assets/sprites/FireParticle.png" id="2_youic"]
+[ext_resource type="Script" path="res://Scripts/FlamethrowerHurtbox.gd" id="4_xwfxg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
 size = Vector2(66, 182)
@@ -128,6 +129,7 @@ libraries = {
 }
 
 [node name="FlamethrowerHurtbox" type="Area2D" parent="."]
+script = ExtResource("4_xwfxg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlamethrowerHurtbox"]
 position = Vector2(-23.2298, 0)
@@ -141,3 +143,6 @@ amount = 1045
 process_material = SubResource("ParticleProcessMaterial_2wdvr")
 texture = ExtResource("2_youic")
 lifetime = 2.0
+
+[connection signal="body_entered" from="FlamethrowerHurtbox" to="FlamethrowerHurtbox" method="_on_body_entered"]
+[connection signal="body_exited" from="FlamethrowerHurtbox" to="FlamethrowerHurtbox" method="_on_body_exited"]

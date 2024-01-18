@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const speed = 100
+var alive = true
 
 func _ready():
 	pass
@@ -37,10 +38,18 @@ func _physics_process(delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	
-	if xdirection or ydirection:  # If moving and not already playing, start footstep audio.
-		if !$AudioStreamPlayer2D.playing: 
-			$AudioStreamPlayer2D.play()
+	if (xdirection or ydirection) and alive:  # If moving and not already playing, start footstep audio.
+		if !$Audio_Move.playing: 
+			$Audio_Move.play()
 	else:
-		$AudioStreamPlayer2D.stop()
-	move_and_slide()
+		$Audio_Move.stop()
 
+	if alive == true:  # If dead, stop moving and let animation/sound play.
+		$AnimatedSprite2D.play("move")
+		move_and_slide()
+
+func Burn():
+	alive = false
+	$Audio_Die.play()
+	await get_tree().create_timer(1.5).timeout
+	queue_free()
