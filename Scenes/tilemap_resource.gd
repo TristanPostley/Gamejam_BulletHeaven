@@ -1,11 +1,7 @@
 extends TileMap
 class_name TileMapResource
 
-const GROUND_FLAMES = preload("res://Scenes/Flames/ground_flames.tscn")
-
 var tile_size: Vector2i
-
-var active_flames : Dictionary = {}
 
 func _ready():
 	tile_size = tile_set.tile_size
@@ -41,9 +37,6 @@ func convert_tile_to_mycelium(coords: Vector2i):
 func convert_tile_to_charred(coords: Vector2i):
 	# todo - Get charred tile_id programmatically
 	convert_cell(4, coords)
-	
-func is_burnable_tile(coords: Vector2i):
-	return get_ground_type(coords) == "mycelium" && is_tile_burning(coords) == false
 
 func get_ground_type(coords: Vector2i):
 	var data = get_cell_tile_data(0, coords)
@@ -51,23 +44,6 @@ func get_ground_type(coords: Vector2i):
 		return data.get_custom_data("ground_type")
 	else:
 		return ""
-
-func is_tile_burning(coords: Vector2i):
-	if active_flames.has(coords):
-		return active_flames[coords]
-	
-	return false
-
-func start_flame(coords: Vector2i):
-	print(coords)
-	active_flames[coords] = true
-	var new_flame = GROUND_FLAMES.instantiate()
-	new_flame.position = get_vector_from_tile(coords)
-	get_parent().add_child(new_flame)
-
-func extinguish_flame(coords: Vector2i):
-	active_flames[coords] = false
-	convert_tile_to_charred(coords)
 
 # Converts a 2D vector representing a position in world space to tile coordinates.
 func get_tile_from_vector(vector: Vector2):
