@@ -3,6 +3,8 @@ extends Node2D
 @onready var landing_zone = %LandingZone
 var tile_map: TileMapResource
 
+@export var random_spread_delay = .75
+
 const GROUND_FLAMES = preload("res://Scenes/Flames/ground_flames.tscn")
 
 var active_flames : Dictionary = {}
@@ -15,8 +17,12 @@ func _ready():
 	start_flame(Vector2i(1, 1))
 
 func start_flame(coords: Vector2i):
+	if is_burnable_tile(coords) != true:
+		return
+	
 	active_flames[coords] = true
 	var new_flame = GROUND_FLAMES.instantiate()
+	new_flame.set_variables(coords)
 	new_flame.position = tile_map.get_vector_from_tile(coords)
 	
 	# Connect signals
@@ -39,8 +45,14 @@ func extinguish_flame(coords: Vector2i):
 	tile_map.convert_tile_to_charred(coords)
 
 func _on_flame_spread_attempted(tile: Vector2i):
-	if is_burnable_tile(tile):
-		start_flame(tile)
+	var surrounding_tiles = tile_map.get_surrounding_cells(tile)
+	
+	for surrounding_tile in surrounding_tiles:
+		# Callback after the timer completes
+		var spread_to_tile = func(): start_flame(surrounding_tile)
+		
+		# Async timer that will emit a signal on callback
+		get_tree().create_timer(randf_range(0, random_spread_delay)).timeout.connect(spread_to_tile)
 
 func _on_flame_extinguished(tile: Vector2i):
 	extinguish_flame(tile)
