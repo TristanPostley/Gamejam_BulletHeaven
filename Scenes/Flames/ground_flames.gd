@@ -3,7 +3,12 @@ extends StaticBody2D
 signal flame_spread_attempted(tile: Vector2i)
 signal flame_extinguished(tile: Vector2i)
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 var tile_coords: Vector2i
+
+func _ready():
+	animated_sprite_2d.play()
 
 func set_variables(coords):
 	tile_coords = coords
