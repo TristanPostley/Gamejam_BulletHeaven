@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
 [ext_resource type="PackedScene" uid="uid://t4ev1rrmiidy" path="res://Scenes/player.tscn" id="2_h4chg"]
 [ext_resource type="PackedScene" uid="uid://dc625875nq7ru" path="res://Scenes/myco_grunt.tscn" id="3_7hffj"]
-[ext_resource type="PackedScene" uid="uid://10imhxxue82b" path="res://Scenes/myco_spreader.tscn" id="4_qt4jg"]
+[ext_resource type="PackedScene" path="res://Scenes/myco_spreader.tscn" id="4_qt4jg"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="5_3o1nj"]
-[ext_resource type="PackedScene" uid="uid://d3gefffg8cxtt" path="res://Scenes/oxygen_plant.tscn" id="5_d7b7q"]
+[ext_resource type="PackedScene" path="res://Scenes/oxygen_plant.tscn" id="5_d7b7q"]
 [ext_resource type="PackedScene" uid="uid://dnr4ofynrpno" path="res://Scenes/Flames/flame_controller.tscn" id="5_dgh06"]
 
 [node name="Level" type="Node2D"]
@@ -14,7 +14,7 @@
 unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_h4chg")]
-position = Vector2(6360, 7016)
+position = Vector2(6376, 7088)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -32,6 +32,6 @@ position = Vector2(5500, 7000)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(6360, 7016)
+position = Vector2(6376, 7088)
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("5_3o1nj")
