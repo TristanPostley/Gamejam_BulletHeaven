@@ -16,7 +16,9 @@ func _on_body_entered(body):
 	if body.name == "MycoGrunt":
 		body.Burn()
 	elif body.name == "MycoSpreader":
-		body.Burn() 
+		body.Burn()
+	elif body.name == "OxygenPlant":
+		body.Burn()
 	else:
 		pass
 
@@ -26,6 +28,8 @@ func _on_body_exited(body):
 	if body.name == "MycoGrunt":
 		body.Burn()
 	elif body.name == "MycoSpreader":
-		body.Burn() 
+		body.Burn()
+	elif body.name == "OxygenPlant":
+		body.Burn()
 	else:
 		pass

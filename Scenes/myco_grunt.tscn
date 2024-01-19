@@ -34,6 +34,7 @@ animation = &"move"
 
 [node name="Audio_Move" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1fgru")
+volume_db = -5.0
 max_distance = 750.0
 
 [node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]

@@ -13,13 +13,12 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if alive and !$Audio_Idle.playing: 
-		$Audio_Idle.play()
+	if alive:  # If dead, stop moving and let animation/sound play.
+		$AnimatedSprite2D.play("idle")
+		if !$Audio_Idle.playing: 
+			$Audio_Idle.play()
 	else:
 		$Audio_Idle.stop()
-
-	if alive == true:  # If dead, stop moving and let animation/sound play.
-		$AnimatedSprite2D.play("idle")
 
 
 func Burn():

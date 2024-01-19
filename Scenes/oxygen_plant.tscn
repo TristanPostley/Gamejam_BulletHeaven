@@ -29,11 +29,12 @@ animation = &"idle"
 
 [node name="Audio_Idle" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_m88bk")
+volume_db = -25.0
 
 [node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_c5x63")
 volume_db = -20.0
-pitch_scale = 1.2
+pitch_scale = 1.4
 max_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
