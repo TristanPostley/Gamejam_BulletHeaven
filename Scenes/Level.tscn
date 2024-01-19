@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=8 format=3 uid="uid://cgr6njwev5ht"]
 
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
 [ext_resource type="PackedScene" uid="uid://t4ev1rrmiidy" path="res://Scenes/player.tscn" id="2_h4chg"]
 [ext_resource type="PackedScene" uid="uid://dc625875nq7ru" path="res://Scenes/myco_grunt.tscn" id="3_7hffj"]
 [ext_resource type="PackedScene" uid="uid://10imhxxue82b" path="res://Scenes/myco_spreader.tscn" id="4_qt4jg"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="5_3o1nj"]
+[ext_resource type="PackedScene" uid="uid://d3gefffg8cxtt" path="res://Scenes/oxygen_plant.tscn" id="5_d7b7q"]
 [ext_resource type="PackedScene" uid="uid://dnr4ofynrpno" path="res://Scenes/Flames/flame_controller.tscn" id="5_dgh06"]
 
 [node name="Level" type="Node2D"]
@@ -23,6 +24,9 @@ position = Vector2(6856, 6696)
 
 [node name="MycoSpreader" parent="." instance=ExtResource("4_qt4jg")]
 position = Vector2(6720, 7248)
+
+[node name="OxygenPlant" parent="." instance=ExtResource("5_d7b7q")]
+position = Vector2(5500, 7000)
 
 [node name="FlameController" parent="." instance=ExtResource("5_dgh06")]
 
