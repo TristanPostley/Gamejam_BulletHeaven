@@ -47,6 +47,7 @@ func _physics_process(delta):
 
 func Burn():
 	alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
 
 	if !$Audio_Die.playing:
