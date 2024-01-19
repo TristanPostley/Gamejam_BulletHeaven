@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc625875nq7ru"]
+[gd_scene load_steps=8 format=3 uid="uid://7aby15w87025"]
 
 [ext_resource type="Script" path="res://Scripts/MycoGrunt.gd" id="1_vtdms"]
 [ext_resource type="Texture2D" uid="uid://cud8memy17qd0" path="res://Assets/sprites/Grunt_01.png" id="2_mhjgw"]
