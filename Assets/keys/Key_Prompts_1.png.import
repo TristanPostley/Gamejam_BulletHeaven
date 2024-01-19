@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvlc0nulyokao"
-path="res://.godot/imported/Derbis01.png-1478c7a84f9ddcfdd0214377d5878a61.ctex"
+uid="uid://cdvgbatnup8bw"
+path="res://.godot/imported/Key_Prompts_1.png-a2079cf48563c9b11a2cc459b058c6d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/Derbis01.png"
-dest_files=["res://.godot/imported/Derbis01.png-1478c7a84f9ddcfdd0214377d5878a61.ctex"]
+source_file="res://Assets/keys/Key_Prompts_1.png"
+dest_files=["res://.godot/imported/Key_Prompts_1.png-a2079cf48563c9b11a2cc459b058c6d1.ctex"]
 
 [params]
 
