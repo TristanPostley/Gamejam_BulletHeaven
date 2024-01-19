@@ -15,6 +15,8 @@ func _on_body_entered(body):
 	#print(body.name, "Enter")
 	if body.name == "MycoGrunt":
 		body.Burn()
+	elif body.name == "MycoSpreader":
+		body.Burn() 
 	else:
 		pass
 
@@ -23,5 +25,7 @@ func _on_body_exited(body):
 	#print(body.name, "Exit")
 	if body.name == "MycoGrunt":
 		body.Burn()
+	elif body.name == "MycoSpreader":
+		body.Burn() 
 	else:
 		pass

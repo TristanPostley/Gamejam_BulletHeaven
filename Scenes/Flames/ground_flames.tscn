@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci2ybbgdjj5li"]
+
+[ext_resource type="Script" path="res://Scenes/Flames/ground_flames.gd" id="1_4mr1t"]
+[ext_resource type="Texture2D" uid="uid://bhspw3ishwmh6" path="res://Assets/sprites/Fire_01.png" id="3_jgdvn"]
+[ext_resource type="Texture2D" uid="uid://xyq4jhpbujm3" path="res://Assets/sprites/Fire_02.png" id="4_sg0fb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1hux"]
+size = Vector2(128.25, 128.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oaivx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jgdvn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sg0fb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="GroundFlames" type="StaticBody2D"]
+collision_layer = 0
+script = ExtResource("1_4mr1t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
+shape = SubResource("RectangleShape2D_l1hux")
+debug_color = Color(0.992157, 0, 0.239216, 0.419608)
+
+[node name="flame_die_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="spread_timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 64)
+sprite_frames = SubResource("SpriteFrames_oaivx")
+frame_progress = 0.585429
+
+[connection signal="timeout" from="flame_die_timer" to="." method="_on_flame_die_timer_timeout"]
+[connection signal="timeout" from="spread_timer" to="." method="_on_spread_timer_timeout"]
