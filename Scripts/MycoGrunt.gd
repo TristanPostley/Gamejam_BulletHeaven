@@ -22,7 +22,7 @@ func _physics_process(delta):
 	# Fetch player position.
 	var playerx = get_parent().get_node("Player").position.x
 	var playery = get_parent().get_node("Player").position.y
-	
+
 	# Determine relative direction to player and move.
 	var xdirection = round((playerx - position.x) / abs(playerx - position.x))
 	# print("MycoGrunt X: ", xdirection)
@@ -37,7 +37,7 @@ func _physics_process(delta):
 		velocity.y = ydirection * speed
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
-	
+
 	if (xdirection or ydirection) and alive:  # If moving and not already playing, start footstep audio.
 		if !$Audio_Move.playing: 
 			$Audio_Move.play()
@@ -50,6 +50,7 @@ func _physics_process(delta):
 
 func Burn():
 	alive = false
-	$Audio_Die.play()
+	if !$Audio_Die.playing:
+		$Audio_Die.play()
 	await get_tree().create_timer(1.5).timeout
 	queue_free()

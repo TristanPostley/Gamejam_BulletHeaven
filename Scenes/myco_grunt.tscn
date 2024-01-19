@@ -21,9 +21,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skx5y"]
-size = Vector2(40, 40)
+size = Vector2(40, 50)
 
 [node name="MycoGrunt" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_vtdms")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -35,10 +36,11 @@ animation = &"move"
 stream = ExtResource("3_1fgru")
 max_distance = 750.0
 
-[node name="Audio_Die" type="AudioStreamPlayer" parent="."]
+[node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_01rtc")
 volume_db = -20.0
 pitch_scale = 0.9
+max_distance = 750.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_skx5y")
