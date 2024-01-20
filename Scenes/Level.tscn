@@ -1,12 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=13 format=3 uid="uid://cgr6njwev5ht"]
 
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
 [ext_resource type="PackedScene" uid="uid://t4ev1rrmiidy" path="res://Scenes/player.tscn" id="2_h4chg"]
-[ext_resource type="PackedScene" uid="uid://dc625875nq7ru" path="res://Scenes/myco_grunt.tscn" id="3_7hffj"]
+[ext_resource type="PackedScene" uid="uid://7aby15w87025" path="res://Scenes/myco_grunt.tscn" id="3_7hffj"]
 [ext_resource type="PackedScene" path="res://Scenes/myco_spreader.tscn" id="4_qt4jg"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="5_3o1nj"]
 [ext_resource type="PackedScene" path="res://Scenes/oxygen_plant.tscn" id="5_d7b7q"]
 [ext_resource type="PackedScene" uid="uid://dnr4ofynrpno" path="res://Scenes/Flames/flame_controller.tscn" id="5_dgh06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exvv3"]
+size = Vector2(218, 425.25)
+
+[sub_resource type="SystemFont" id="SystemFont_8bhrq"]
+
+[sub_resource type="Theme" id="Theme_1ka72"]
+default_font = SubResource("SystemFont_8bhrq")
+default_font_size = 64
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2kbb"]
+size = Vector2(776, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk8bw"]
+size = Vector2(234.707, 421.386)
 
 [node name="Level" type="Node2D"]
 
@@ -18,6 +33,9 @@ position = Vector2(6376, 7088)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
+
+[node name="PromptMarker2D" type="Marker2D" parent="Player" groups=["Prompts"]]
+position = Vector2(-8, -140)
 
 [node name="MycoGrunt" parent="." instance=ExtResource("3_7hffj")]
 position = Vector2(6856, 6696)
@@ -33,5 +51,45 @@ position = Vector2(5500, 7000)
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(6376, 7088)
-zoom = Vector2(0.5, 0.5)
 script = ExtResource("5_3o1nj")
+
+[node name="StartArea" type="Area2D" parent="."]
+position = Vector2(6064, 7032)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartArea"]
+position = Vector2(40, 171.375)
+shape = SubResource("RectangleShape2D_exvv3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StartArea/CollisionShape2D"]
+offset_left = -96.0
+offset_top = -144.0
+offset_right = 96.0
+offset_bottom = -56.0
+theme = SubResource("Theme_1ka72")
+text = "START"
+fit_content = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StartArea"]
+position = Vector2(316, 440)
+shape = SubResource("RectangleShape2D_j2kbb")
+
+[node name="IntroArea1" type="Area2D" parent="."]
+position = Vector2(6630.33, 7114.63)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IntroArea1"]
+position = Vector2(81.6733, 90.6743)
+shape = SubResource("RectangleShape2D_xk8bw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="IntroArea1/CollisionShape2D"]
+offset_left = -94.6465
+offset_top = -144.0
+offset_right = 103.354
+offset_bottom = 32.0
+theme = SubResource("Theme_1ka72")
+text = "INTRO"
+fit_content = true
+
+[connection signal="body_entered" from="StartArea" to="Player" method="_on_start_area_body_entered"]
+[connection signal="body_entered" from="IntroArea1" to="Player" method="_on_intro_area_1_body_entered"]

@@ -9,6 +9,21 @@ var flamethrowerSelected = true
 var flamethrowing = false
 @export var flameSpeed = 2
 
+# Intro signals
+@onready var start_area = $"../StartArea"
+@onready var intro_area_1 = $"../IntroArea1"
+
+# Key Prompts
+@onready var prompt_marker_2d = $PromptMarker2D
+
+const INTRO_PROMPTS = preload("res://Scenes/Key Prompts/intro_prompts.tscn")
+var prompt
+
+func _ready():
+	prompt = INTRO_PROMPTS.instantiate()
+	prompt.position = prompt_marker_2d.position
+	add_child(prompt)
+
 func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('right'):
@@ -66,3 +81,21 @@ func _physics_process(delta):
 		$AudioStreamPlayer2D.stop()
 	move_and_slide()
 
+#Intro signals
+func _on_start_area_body_entered(body):
+	if body.name != "Player":
+		return
+	
+	start_area.queue_free()
+	intro_area_1.queue_free()
+	if prompt != null: remove_child(prompt)
+	%Camera2D.zoom(%Camera2D.zoom_levels[3])
+
+func _on_intro_area_1_body_entered(body):
+	if body.name != "Player":
+		return
+	
+	start_area.queue_free()
+	intro_area_1.queue_free()
+	if prompt != null: remove_child(prompt)
+	%Camera2D.zoom(%Camera2D.zoom_levels[1])
