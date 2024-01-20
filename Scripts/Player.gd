@@ -16,6 +16,9 @@ var flamethrowing = false
 # Key Prompts
 var overhead_marker
 
+# Inventory
+var inventory : Dictionary = { "beam": false, "flamethrower": false, "leafblower": false, "machete": false }
+
 const INTRO_PROMPTS = preload("res://Scenes/Key Prompts/intro_prompts.tscn")
 var prompt
 
@@ -99,3 +102,25 @@ func _on_intro_area_1_body_entered(body):
 	intro_area_1.queue_free()
 	if prompt != null: remove_child(prompt)
 	%Camera2D.zoom(%Camera2D.zoom_levels[1])
+
+#Inventory
+func _on_item_pickup_body_entered(body: Node2D, pickup_name: String):
+	if body.name != "Player":
+		return
+		
+	print("Picked up item: " + pickup_name + "!")
+	
+	if pickup_name == "beam":
+		inventory["beam"] = true
+	elif pickup_name == "flamethrower":
+		inventory["flamethrower"] = true
+	elif pickup_name == "leafblower":
+		inventory["leafblower"] = true
+	elif pickup_name == "machete":
+		inventory["machete"] = true
+	elif pickup_name == "health":
+		pass
+	elif pickup_name == "oxygen":
+		pass
+		
+	#print(inventory)
