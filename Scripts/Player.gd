@@ -54,16 +54,18 @@ func _physics_process(delta):
 		if !flamethrowing && flamethrowerSelected:
 			$Weapons/Hurtbox/FlamethrowerCone.disabled = false
 			$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
+			$FlamethrowerIgnitionAudio.play()
 			flamethrowing = true
 		elif !blowing && leafblowerSelected:
 			$Weapons/Hurtbox/LeafBlowerCone.disabled = false
-			#$Weapons/Hurtbox/LeafBlowerParticles.emitting = true
 			$Weapons/Hurtbox/LeafBlowerParticles.restart()
 			blowing = true
 			
 	if(flamethrowing):
 		$Weapons/Hurtbox/FlamethrowerCone.scale = $Weapons/Hurtbox/FlamethrowerCone.scale.lerp(Vector2(1,1), delta * flameSpeed)
-		
+		if !$FlamethrowerAudio.playing:
+			$FlamethrowerAudio.play()
+			
 	if(blowing):
 		$Weapons/Hurtbox/LeafBlowerCone.scale = $Weapons/Hurtbox/LeafBlowerCone.scale.lerp(Vector2(1, 1), delta * blowerSpeed)
 		handleLeafblower()
@@ -71,6 +73,7 @@ func _physics_process(delta):
 		
 	if(!flamethrowerSelected || flamethrowing && !Input.is_action_pressed('primary')):
 		flamethrowing = false
+		$FlamethrowerAudio.stop()
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
 		$Weapons/Hurtbox/FlamethrowerCone.scale = Vector2.ZERO
 		$Weapons/Hurtbox/FlamethrowerCone.disabled = true
@@ -102,7 +105,6 @@ func _physics_process(delta):
 func handleLeafblower():
 	if !blowerInProgress:
 		await get_tree().create_timer(.7).timeout
-		#$Weapons/Hurtbox/LeafBlowerParticles.emitting = false
 		$Weapons/Hurtbox/LeafBlowerCone.scale = Vector2.ZERO
 		$Weapons/Hurtbox/LeafBlowerCone.disabled = true
 		blowing = false
