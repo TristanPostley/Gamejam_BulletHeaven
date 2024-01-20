@@ -14,14 +14,15 @@ var flamethrowing = false
 @onready var intro_area_1 = $"../IntroArea1"
 
 # Key Prompts
-@onready var prompt_marker_2d = $PromptMarker2D
+var overhead_marker
 
 const INTRO_PROMPTS = preload("res://Scenes/Key Prompts/intro_prompts.tscn")
 var prompt
 
 func _ready():
+	overhead_marker = $OverheadMarker
 	prompt = INTRO_PROMPTS.instantiate()
-	prompt.position = prompt_marker_2d.position
+	prompt.position = overhead_marker.position
 	add_child(prompt)
 
 func get_input():
@@ -86,9 +87,8 @@ func _on_start_area_body_entered(body):
 	if body.name != "Player":
 		return
 	
-	start_area.queue_free()
-	intro_area_1.queue_free()
-	if prompt != null: remove_child(prompt)
+	for node in get_tree().get_nodes_in_group("Intro"):
+		node.queue_free()
 	%Camera2D.zoom(%Camera2D.zoom_levels[3])
 
 func _on_intro_area_1_body_entered(body):

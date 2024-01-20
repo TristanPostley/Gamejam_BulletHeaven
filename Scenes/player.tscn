@@ -156,5 +156,8 @@ position = Vector2(76, 4.5)
 shape = SubResource("RectangleShape2D_51d33")
 disabled = true
 
+[node name="OverheadMarker" type="Marker2D" parent="."]
+position = Vector2(0, -136)
+
 [connection signal="body_entered" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_exited"]
