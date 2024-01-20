@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=20 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Weapons.gd" id="4_avuct"]
 [ext_resource type="Texture2D" uid="uid://chiadfyc282o0" path="res://Assets/sprites/Fire_Projectile_Particle_V2.png" id="5_7e8l4"]
 [ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="5_jvdss"]
+[ext_resource type="Texture2D" uid="uid://8d1xpppv51vw" path="res://Assets/Example Project Assets/Circle_blurred.png" id="7_75m7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
 size = Vector2(66, 182)
@@ -102,11 +103,10 @@ _data = {
 }
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wdvr"]
-lifetime_randomness = 0.35
 particle_flag_disable_z = true
-spread = 15.0
-initial_velocity_min = 300.0
-initial_velocity_max = 350.0
+spread = 30.0
+initial_velocity_min = 800.0
+initial_velocity_max = 1000.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51d33"]
@@ -156,6 +156,21 @@ lifetime = 2.0
 position = Vector2(76, 4.5)
 shape = SubResource("RectangleShape2D_51d33")
 disabled = true
+
+[node name="LeafBlowerCone" type="CollisionPolygon2D" parent="Weapons/Hurtbox"]
+position = Vector2(-23.2298, 0)
+scale = Vector2(1e-05, 1e-05)
+polygon = PackedVector2Array(66.2225, -1.4045, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)
+disabled = true
+
+[node name="LeafBlowerParticles" type="GPUParticles2D" parent="Weapons/Hurtbox"]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_2wdvr")
+texture = ExtResource("7_75m7j")
+lifetime = 0.65
+one_shot = true
+explosiveness = 1.0
 
 [node name="OverheadMarker" type="Marker2D" parent="."]
 position = Vector2(0, -136)

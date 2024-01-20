@@ -21,6 +21,8 @@ func _on_body_entered(body):
 		activeWeapon = "flamethrower"
 	elif(get_children()[2].disabled == false):
 		activeWeapon = "machete"
+	elif(get_children()[3].disabled == false):
+		activeWeapon = "leafblower"
 			
 	print("Weapon ", activeWeapon)
 
