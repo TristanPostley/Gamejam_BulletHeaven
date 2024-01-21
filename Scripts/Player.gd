@@ -15,7 +15,6 @@ var blowerInProgress = false
 
 # Intro signals
 @onready var start_area = $"../StartArea"
-@onready var intro_area_1 = $"../IntroArea1"
 
 # Key Prompts
 var overhead_marker
@@ -30,6 +29,7 @@ func _ready():
 	overhead_marker = $OverheadMarker
 	prompt = INTRO_PROMPTS.instantiate()
 	prompt.position = overhead_marker.position
+	prompt.wasd_prompts_completed.connect(_on_wasd_prompts_completed)
 	add_child(prompt)
 
 func get_input():
@@ -111,6 +111,10 @@ func handleLeafblower():
 		blowerInProgress = false
 
 #Intro signals
+func  _on_wasd_prompts_completed(): 
+		%Camera2D.zoom(%Camera2D.zoom_levels[1])
+		print("wasdpromptscompleted")
+
 func _on_start_area_body_entered(body):
 	if body.name != "Player":
 		return
@@ -119,20 +123,8 @@ func _on_start_area_body_entered(body):
 		node.queue_free()
 	%Camera2D.zoom(%Camera2D.zoom_levels[3])
 
-func _on_intro_area_1_body_entered(body):
-	if body.name != "Player":
-		return
-	
-	start_area.queue_free()
-	intro_area_1.queue_free()
-	if prompt != null: remove_child(prompt)
-	%Camera2D.zoom(%Camera2D.zoom_levels[1])
-
 #Inventory
 func _on_item_pickup_body_entered(body: Node2D, pickup_name: String):
-	if body.name != "Player":
-		return
-		
 	print("Picked up item: " + pickup_name + "!")
 	
 	if pickup_name == "beam":

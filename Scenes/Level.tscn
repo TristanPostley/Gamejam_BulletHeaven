@@ -73,3 +73,4 @@ position = Vector2(6376, 7088)
 script = ExtResource("5_3o1nj")
 
 [connection signal="body_entered" from="LandingZone/StartArea" to="Player" method="_on_start_area_body_entered"]
+[connection signal="item_pickup_body_entered" from="LandingZone/ItemPickup" to="Player" method="_on_item_pickup_body_entered"]
