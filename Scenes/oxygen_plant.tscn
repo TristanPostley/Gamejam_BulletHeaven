@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3gefffg8cxtt"]
+[gd_scene load_steps=7 format=3 uid="uid://ce4gk7xnjo2dp"]
 
 [ext_resource type="Script" path="res://Scripts/OxygenPlant.gd" id="1_juftn"]
 [ext_resource type="Texture2D" uid="uid://jgwt52anioho" path="res://Assets/sprites/OxygenPlant.png" id="2_kpfhb"]

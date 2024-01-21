@@ -143,7 +143,7 @@ _data = {
 "w_press": SubResource("Animation_qerfi")
 }
 
-[node name="IntroPrompts" type="Node2D" groups=["Intro"]]
+[node name="IntroPrompts" type="Node2D" groups=["Intro_Prompts"]]
 script = ExtResource("1_8q322")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -111,33 +111,31 @@ func handleLeafblower():
 		blowerInProgress = false
 
 #Intro signals
-func  _on_wasd_prompts_completed(): 
-		%Camera2D.zoom(%Camera2D.zoom_levels[1])
-		print("wasdpromptscompleted")
-
-func _on_start_area_body_entered(body):
-	if body.name != "Player":
-		return
-	
-	for node in get_tree().get_nodes_in_group("Intro"):
+func remove_intro_prompts():
+	for node in get_tree().get_nodes_in_group("Intro_Prompts"):
 		node.queue_free()
-	%Camera2D.zoom(%Camera2D.zoom_levels[3])
+
+func _on_wasd_prompts_completed():
+	%Camera2D.zoom(%Camera2D.zoom_levels[1])
 
 #Inventory
 func _on_item_pickup_body_entered(body: Node2D, pickup_name: String):
 	print("Picked up item: " + pickup_name + "!")
 	
-	if pickup_name == "beam":
-		inventory["beam"] = true
+	if pickup_name == "machete":
+		inventory["machete"] = true
+		remove_intro_prompts()
+		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
 	elif pickup_name == "flamethrower":
 		inventory["flamethrower"] = true
-	elif pickup_name == "leafblower":
-		inventory["leafblower"] = true
-	elif pickup_name == "machete":
-		inventory["machete"] = true
-	elif pickup_name == "health":
-		pass
-	elif pickup_name == "oxygen":
-		pass
-		
-	#print(inventory)
+		remove_intro_prompts()
+		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
+	#elif pickup_name == "leafblower":
+		#inventory["leafblower"] = true
+
+func _on_barrel_body_entered(body):
+	_on_item_pickup_body_entered(body, "flamethrower")
+
+func _on_tutorial_exited():
+	remove_intro_prompts()
+	%Camera2D.zoom(%Camera2D.zoom_levels[3])

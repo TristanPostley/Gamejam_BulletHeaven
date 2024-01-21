@@ -19,8 +19,6 @@ func _ready():
 	item = item_scene.instantiate()
 	add_child(item)
 	
-	body_entered.connect(_emit_item_pickup_body_entered)
-	
 func get_random_item() -> PackedScene:
 	var item_scenes = [PICKUP_BEAM, PICKUP_FLAMETHROWER, PICKUP_HEALTH, PICKUP_LEAFBLOWER, PICKUP_MACHETE, PICKUP_OXYGEN]
 	item_scenes.shuffle()
@@ -31,7 +29,7 @@ func get_random_item() -> PackedScene:
 func _process(delta):
 	pass
 
-func _emit_item_pickup_body_entered(body: Node2D):
+func _on_body_entered(body):
 	if body.name != "Player":
 		return
 	item_pickup_body_entered.emit(body, item.pickup_name)
