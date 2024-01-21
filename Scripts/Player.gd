@@ -119,7 +119,7 @@ func _on_wasd_prompts_completed():
 	%Camera2D.zoom(%Camera2D.zoom_levels[1])
 
 #Inventory
-func _on_item_pickup_body_entered(body: Node2D, pickup_name: String):
+func _on_item_pickup_body_entered(pickup_name: String):
 	print("Picked up item: " + pickup_name + "!")
 	
 	if pickup_name == "machete":
@@ -133,8 +133,8 @@ func _on_item_pickup_body_entered(body: Node2D, pickup_name: String):
 	#elif pickup_name == "leafblower":
 		#inventory["leafblower"] = true
 
-func _on_barrel_body_entered(body):
-	_on_item_pickup_body_entered(body, "flamethrower")
+func _on_barrel_body_entered():
+	_on_item_pickup_body_entered("flamethrower")
 
 func _on_tutorial_exited():
 	remove_intro_prompts()

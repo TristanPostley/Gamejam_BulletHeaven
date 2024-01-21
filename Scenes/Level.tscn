@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=15 format=3 uid="uid://cgr6njwev5ht"]
 
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
 [ext_resource type="PackedScene" uid="uid://t4ev1rrmiidy" path="res://Scenes/player.tscn" id="2_h4chg"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://Scenes/TutorialArea.gd" id="7_21l4d"]
 [ext_resource type="PackedScene" uid="uid://bubmqkv0q67vn" path="res://Scenes/Pickups/pickup_machete.tscn" id="9_bm8uh"]
 [ext_resource type="PackedScene" uid="uid://cfnpna6gscfpo" path="res://Scenes/Terrain/Barrel.tscn" id="10_5jt5n"]
+[ext_resource type="PackedScene" uid="uid://bbbn6inbpbnab" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
+[ext_resource type="PackedScene" uid="uid://cqdmp7bb1k3bh" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgym"]
 size = Vector2(3416, 1016)
@@ -21,13 +23,11 @@ size = Vector2(3416, 1016)
 unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_h4chg")]
+unique_name_in_owner = true
 position = Vector2(6376, 7088)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
-
-[node name="MycoGrunt" parent="." instance=ExtResource("3_7hffj")]
-position = Vector2(8001.26, 7105.02)
 
 [node name="MycoSpreader" parent="." instance=ExtResource("4_qt4jg")]
 position = Vector2(6720, 7248)
@@ -54,10 +54,19 @@ debug_color = Color(0, 0.643137, 0.270588, 0.419608)
 position = Vector2(7064, 7093)
 item_scene = ExtResource("9_bm8uh")
 
+[node name="MycoGrunt" parent="TutorialArea" instance=ExtResource("3_7hffj")]
+position = Vector2(8001.26, 7105.02)
+
+[node name="GruntPrompt" parent="TutorialArea/MycoGrunt" instance=ExtResource("11_3esom")]
+position = Vector2(0, -72)
+
 [node name="OxygenPlant" parent="TutorialArea" instance=ExtResource("5_d7b7q")]
 position = Vector2(8513.88, 7101.85)
 
+[node name="PlantPrompt" parent="TutorialArea/OxygenPlant" instance=ExtResource("13_5s8f2")]
+position = Vector2(0, -91)
+
 [connection signal="body_exited" from="TutorialArea" to="TutorialArea" method="_on_body_exited"]
 [connection signal="on_tutorial_exited" from="TutorialArea" to="Player" method="_on_tutorial_exited"]
-[connection signal="body_entered" from="TutorialArea/Barrel" to="Player" method="_on_barrel_body_entered"]
+[connection signal="barrel_body_entered" from="TutorialArea/Barrel" to="Player" method="_on_barrel_body_entered"]
 [connection signal="item_pickup_body_entered" from="TutorialArea/ItemPickup" to="Player" method="_on_item_pickup_body_entered"]

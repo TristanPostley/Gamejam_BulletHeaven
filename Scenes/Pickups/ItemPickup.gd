@@ -7,7 +7,7 @@ const PICKUP_LEAFBLOWER: PackedScene = preload("res://Scenes/Pickups/pickup_leaf
 const PICKUP_MACHETE: PackedScene = preload("res://Scenes/Pickups/pickup_machete.tscn")
 const PICKUP_OXYGEN: PackedScene = preload("res://Scenes/Pickups/pickup_oxygen.tscn")
 
-signal item_pickup_body_entered(body: Node2D, pickup_name: String)
+signal item_pickup_body_entered(pickup_name: String)
 
 @export var item_scene: PackedScene
 var item: BasePickup
@@ -32,5 +32,5 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.name != "Player":
 		return
-	item_pickup_body_entered.emit(body, item.pickup_name)
+	item_pickup_body_entered.emit(item.pickup_name)
 	queue_free()

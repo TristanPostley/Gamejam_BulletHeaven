@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://7aby15w87025"]
 
 [ext_resource type="Script" path="res://Scripts/MycoGrunt.gd" id="1_vtdms"]
-[ext_resource type="Texture2D" uid="uid://cud8memy17qd0" path="res://Assets/sprites/Grunt_01.png" id="2_mhjgw"]
+[ext_resource type="Texture2D" uid="uid://d0al474t41lgo" path="res://Assets/sprites/Grunt_01.png" id="2_mhjgw"]
 [ext_resource type="AudioStream" uid="uid://duea22s0cdla3" path="res://Sound/Sound Design/GJBH_17bPCFootstepSprintLoop.wav" id="3_1fgru"]
-[ext_resource type="Texture2D" uid="uid://dkih8x73opn7j" path="res://Assets/sprites/Grunt_02.png" id="3_dqjpt"]
+[ext_resource type="Texture2D" uid="uid://c4cc44cucsfra" path="res://Assets/sprites/Grunt_02.png" id="3_dqjpt"]
 [ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="5_hqlhr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fjedd"]
