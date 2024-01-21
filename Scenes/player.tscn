@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=23 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
 [ext_resource type="AudioStream" uid="uid://biict0lr0ptvh" path="res://Sound/Sound Design/GJBH_17aPCFootstepWalkLoop.wav" id="2_wcnhs"]
-[ext_resource type="Texture2D" uid="uid://ct02lb7j6acws" path="res://Assets/sprites/FireParticle.png" id="2_youic"]
-[ext_resource type="Script" path="res://Scripts/FlamethrowerHurtbox.gd" id="4_xwfxg"]
+[ext_resource type="AudioStream" uid="uid://2cwe3n37jnwl" path="res://Sound/Sound Design/GJBH_FlameThrowerIgnite.mp3" id="3_iidfu"]
+[ext_resource type="Script" path="res://Scenes/Weapons.gd" id="4_avuct"]
+[ext_resource type="AudioStream" uid="uid://du6soeb8ax3yr" path="res://Sound/Sound Design/GJBH_FlameThrowerThrowing.mp3" id="4_k8tc8"]
+[ext_resource type="Texture2D" uid="uid://chiadfyc282o0" path="res://Assets/sprites/Fire_Projectile_Particle_V2.png" id="5_7e8l4"]
+[ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="5_jvdss"]
+[ext_resource type="Texture2D" uid="uid://8d1xpppv51vw" path="res://Assets/Example Project Assets/Circle_blurred.png" id="7_75m7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
 size = Vector2(66, 182)
@@ -22,40 +26,16 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_kxodt"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_ghjtd"]
 resource_name = "down"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, -0.174533, 0.0, 0.174533]
-}
 
 [sub_resource type="Animation" id="Animation_l2rk1"]
 resource_name = "flamethrow"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D:scale")
+tracks/0/path = NodePath("Weapons/Hurtbox/FlamethrowerCone:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,7 +56,7 @@ resource_name = "flamethrow"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FlamethrowerHurtbox/CollisionPolygon2D:polygon")
+tracks/0/path = NodePath("Weapons/Hurtbox/FlamethrowerCone:polygon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,16 +81,28 @@ _data = {
 }
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wdvr"]
-lifetime_randomness = 0.35
 particle_flag_disable_z = true
-spread = 15.0
+spread = 20.0
 initial_velocity_min = 200.0
-initial_velocity_max = 225.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51d33"]
+size = Vector2(72, 103)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o8cg6"]
+particle_flag_disable_z = true
+spread = 30.0
+initial_velocity_min = 800.0
+initial_velocity_max = 1000.0
 gravity = Vector3(0, 0, 0)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rh0g5")
+speed = 400
 friction = 0.9
+flamethrowerSelected = true
+leafblowerSelected = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8, 0)
@@ -118,6 +110,12 @@ shape = SubResource("RectangleShape2D_f7n5g")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_wcnhs")
+
+[node name="FlamethrowerIgnitionAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_iidfu")
+
+[node name="FlamethrowerAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_k8tc8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
@@ -128,21 +126,47 @@ libraries = {
 "": SubResource("AnimationLibrary_1870h")
 }
 
-[node name="FlamethrowerHurtbox" type="Area2D" parent="."]
-script = ExtResource("4_xwfxg")
+[node name="Weapons" type="Node2D" parent="."]
+script = ExtResource("4_avuct")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlamethrowerHurtbox"]
+[node name="Hurtbox" type="Area2D" parent="Weapons"]
+script = ExtResource("5_jvdss")
+
+[node name="FlamethrowerCone" type="CollisionPolygon2D" parent="Weapons/Hurtbox"]
 position = Vector2(-23.2298, 0)
-rotation = 0.0061079
 scale = Vector2(1e-05, 1e-05)
-polygon = PackedVector2Array(66.2225, -1.4045, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)
+polygon = PackedVector2Array(63.0569, 0, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)
+disabled = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="FlamethrowerHurtbox"]
+[node name="FlamethrowerParticles" type="GPUParticles2D" parent="Weapons/Hurtbox"]
 emitting = false
-amount = 1045
+amount = 500
 process_material = SubResource("ParticleProcessMaterial_2wdvr")
-texture = ExtResource("2_youic")
+texture = ExtResource("5_7e8l4")
 lifetime = 2.0
 
-[connection signal="body_entered" from="FlamethrowerHurtbox" to="FlamethrowerHurtbox" method="_on_body_entered"]
-[connection signal="body_exited" from="FlamethrowerHurtbox" to="FlamethrowerHurtbox" method="_on_body_exited"]
+[node name="MacheteBox" type="CollisionShape2D" parent="Weapons/Hurtbox"]
+position = Vector2(76, 4.5)
+shape = SubResource("RectangleShape2D_51d33")
+disabled = true
+
+[node name="LeafBlowerCone" type="CollisionPolygon2D" parent="Weapons/Hurtbox"]
+position = Vector2(-23.2298, 0)
+scale = Vector2(1e-05, 1e-05)
+polygon = PackedVector2Array(66.2225, -1.4045, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)
+disabled = true
+
+[node name="LeafBlowerParticles" type="GPUParticles2D" parent="Weapons/Hurtbox"]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_o8cg6")
+texture = ExtResource("7_75m7j")
+lifetime = 0.65
+one_shot = true
+explosiveness = 1.0
+
+[node name="OverheadMarker" type="Marker2D" parent="."]
+position = Vector2(0, -136)
+
+[connection signal="body_entered" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_entered"]
+[connection signal="body_exited" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_exited"]

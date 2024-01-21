@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://djow7y4h6haup"]
+[gd_scene load_steps=3 format=3 uid="uid://djow7y4h6haup"]
 
+[ext_resource type="Script" path="res://Scenes/Pickups/pickup_leafblower.gd" id="1_8226g"]
 [ext_resource type="Texture2D" uid="uid://xcr2vx4d7mwk" path="res://Assets/icons/leafblower.png" id="1_o2m81"]
 
 [node name="PickupLeafblower" type="Node2D"]
+script = ExtResource("1_8226g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o2m81")

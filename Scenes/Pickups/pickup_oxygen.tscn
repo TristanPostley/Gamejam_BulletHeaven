@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://jsymwigc4qls"]
+[gd_scene load_steps=3 format=3 uid="uid://jsymwigc4qls"]
 
+[ext_resource type="Script" path="res://Scenes/Pickups/pickup_oxygen.gd" id="1_35p7n"]
 [ext_resource type="Texture2D" uid="uid://cpkrdd7abrvc8" path="res://Assets/icons/oxygen.png" id="1_b3sn0"]
 
 [node name="PickupOxygen" type="Node2D"]
+script = ExtResource("1_35p7n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_b3sn0")

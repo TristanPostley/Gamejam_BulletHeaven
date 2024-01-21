@@ -40,7 +40,7 @@ func _physics_process(delta):
 	else:
 		$Audio_Move.stop()
 
-	if alive == true:  # If dead, stop moving and let animation/sound play.
+	if alive:  # If dead, stop moving and let animation/sound play.
 		$AnimatedSprite2D.play("move")
 		move_and_slide()
 

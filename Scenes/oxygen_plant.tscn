@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce4gk7xnjo2dp"]
+
+[ext_resource type="Script" path="res://Scripts/OxygenPlant.gd" id="1_juftn"]
+[ext_resource type="Texture2D" uid="uid://jgwt52anioho" path="res://Assets/sprites/OxygenPlant.png" id="2_kpfhb"]
+[ext_resource type="AudioStream" uid="uid://dtfy7mlk5c7hy" path="res://Sound/Placeholders/OxygenPlant_Temp-skyrim_nirnroot.wav" id="3_m88bk"]
+[ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="4_c5x63"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1bgim"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kpfhb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocn7v"]
+size = Vector2(90, 100)
+
+[node name="OxygenPlant" type="CharacterBody2D"]
+script = ExtResource("1_juftn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_1bgim")
+animation = &"idle"
+
+[node name="Audio_Idle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_m88bk")
+volume_db = -25.0
+
+[node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_c5x63")
+volume_db = -20.0
+pitch_scale = 1.4
+max_distance = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ocn7v")

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/MycoSpreader.gd" id="1_wsadi"]
 [ext_resource type="Texture2D" uid="uid://dfvvoxr7ptwou" path="res://Assets/sprites/Spreader_02.png" id="2_l8d64"]
 [ext_resource type="AudioStream" uid="uid://mbmy4bppgsm8" path="res://Sound/Sound Design/GJBH_17PCFootstep1.wav" id="3_dyo50"]
-[ext_resource type="AudioStream" uid="uid://e07wql028pr0" path="res://Sound/Placeholders/MycoSpreader_Death.wav" id="4_jh4k8"]
+[ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="5_ymerv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2pxcs"]
 animations = [{
@@ -34,10 +34,11 @@ animation = &"move"
 
 [node name="Audio_Move" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_dyo50")
+volume_db = -5.0
 max_distance = 1000.0
 
 [node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_jh4k8")
+stream = ExtResource("5_ymerv")
 volume_db = -20.0
 pitch_scale = 0.6
 max_distance = 1000.0

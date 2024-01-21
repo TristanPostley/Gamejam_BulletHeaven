@@ -4,7 +4,33 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.2
 
+@export var flamethrowerSelected = false
+@export var leafblowerSelected = true
+
 var flamethrowing = false
+var blowing = false
+var blowerInProgress = false
+@export var flameSpeed = 2
+@export var blowerSpeed = 4
+
+# Intro signals
+@onready var start_area = $"../StartArea"
+
+# Key Prompts
+var overhead_marker
+
+# Inventory
+var inventory : Dictionary = { "beam": false, "flamethrower": false, "leafblower": false, "machete": false }
+
+const INTRO_PROMPTS = preload("res://Scenes/Key Prompts/intro_prompts.tscn")
+var prompt
+
+func _ready():
+	overhead_marker = $OverheadMarker
+	prompt = INTRO_PROMPTS.instantiate()
+	prompt.position = overhead_marker.position
+	prompt.wasd_prompts_completed.connect(_on_wasd_prompts_completed)
+	add_child(prompt)
 
 func get_input():
 	var input = Vector2()
@@ -23,20 +49,46 @@ func get_input():
 	return input
 
 func _physics_process(delta):
-	print($FlamethrowerHurtbox/CollisionPolygon2D.scale)
-	if Input.is_action_pressed('primary'):
-		if !flamethrowing:
-			$AnimationPlayer.play("flamethrow")
-			$FlamethrowerHurtbox/GPUParticles2D.emitting = true
-		flamethrowing = true
+#Actions
+	if Input.is_action_just_pressed('primary'):
+		if !flamethrowing && flamethrowerSelected:
+			$Weapons/Hurtbox/FlamethrowerCone.disabled = false
+			$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
+			$FlamethrowerIgnitionAudio.play()
+			flamethrowing = true
+		elif !blowing && leafblowerSelected:
+			$Weapons/Hurtbox/LeafBlowerCone.disabled = false
+			$Weapons/Hurtbox/LeafBlowerParticles.restart()
+			blowing = true
+			
+	if(flamethrowing):
+		$Weapons/Hurtbox/FlamethrowerCone.scale = $Weapons/Hurtbox/FlamethrowerCone.scale.lerp(Vector2(1,1), delta * flameSpeed)
+		if !$FlamethrowerAudio.playing:
+			$FlamethrowerAudio.play()
+			
+	if(blowing):
+		$Weapons/Hurtbox/LeafBlowerCone.scale = $Weapons/Hurtbox/LeafBlowerCone.scale.lerp(Vector2(1, 1), delta * blowerSpeed)
+		handleLeafblower()
+		blowerInProgress = true
 		
-	if(flamethrowing && !Input.is_action_pressed('primary')):
+	if(!flamethrowerSelected || flamethrowing && !Input.is_action_pressed('primary')):
 		flamethrowing = false
-		$FlamethrowerHurtbox/GPUParticles2D.emitting = false
-		$FlamethrowerHurtbox/CollisionPolygon2D.scale = Vector2.ZERO
+		$FlamethrowerAudio.stop()
+		$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
+		$Weapons/Hurtbox/FlamethrowerCone.scale = Vector2.ZERO
+		$Weapons/Hurtbox/FlamethrowerCone.disabled = true
+		
+	
+	if Input.is_action_just_pressed("secondary"):
+		$Weapons/Hurtbox/MacheteBox.disabled = false
+		await get_tree().create_timer(.5).timeout
+		$Weapons/Hurtbox/MacheteBox.disabled = true		
 
-#Facing (For aiming weapons)
-	look_at(get_global_mouse_position())
+#Facing (for sprite, weapon aiming handled in Weapons Node)
+	if(get_global_mouse_position().x < get_global_transform()[2].x):
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
 	
 #Movement
 	var direction = get_input()
@@ -49,3 +101,41 @@ func _physics_process(delta):
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 		$AudioStreamPlayer2D.stop()
 	move_and_slide()
+
+func handleLeafblower():
+	if !blowerInProgress:
+		await get_tree().create_timer(.7).timeout
+		$Weapons/Hurtbox/LeafBlowerCone.scale = Vector2.ZERO
+		$Weapons/Hurtbox/LeafBlowerCone.disabled = true
+		blowing = false
+		blowerInProgress = false
+
+#Intro signals
+func remove_intro_prompts():
+	for node in get_tree().get_nodes_in_group("Intro_Prompts"):
+		node.queue_free()
+
+func _on_wasd_prompts_completed():
+	%Camera2D.zoom(%Camera2D.zoom_levels[1])
+
+#Inventory
+func _on_item_pickup_body_entered(pickup_name: String):
+	print("Picked up item: " + pickup_name + "!")
+	
+	if pickup_name == "machete":
+		inventory["machete"] = true
+		remove_intro_prompts()
+		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
+	elif pickup_name == "flamethrower":
+		inventory["flamethrower"] = true
+		remove_intro_prompts()
+		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
+	#elif pickup_name == "leafblower":
+		#inventory["leafblower"] = true
+
+func _on_barrel_body_entered():
+	_on_item_pickup_body_entered("flamethrower")
+
+func _on_tutorial_exited():
+	remove_intro_prompts()
+	%Camera2D.zoom(%Camera2D.zoom_levels[3])
