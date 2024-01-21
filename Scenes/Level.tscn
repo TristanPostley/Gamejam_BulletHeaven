@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=13 format=3 uid="uid://cgr6njwev5ht"]
 
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
 [ext_resource type="PackedScene" uid="uid://t4ev1rrmiidy" path="res://Scenes/player.tscn" id="2_h4chg"]
@@ -21,9 +21,6 @@ default_font_size = 64
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2kbb"]
 size = Vector2(776, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk8bw"]
-size = Vector2(234.707, 421.386)
-
 [node name="Level" type="Node2D"]
 
 [node name="LandingZone" parent="." instance=ExtResource("1_772jo")]
@@ -34,7 +31,7 @@ position = Vector2(6064, 7032)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LandingZone/StartArea"]
-position = Vector2(40, 171.375)
+position = Vector2(-408, 160)
 shape = SubResource("RectangleShape2D_exvv3")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LandingZone/StartArea/CollisionShape2D"]
@@ -49,23 +46,6 @@ fit_content = true
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LandingZone/StartArea"]
 position = Vector2(316, 440)
 shape = SubResource("RectangleShape2D_j2kbb")
-
-[node name="IntroArea1" type="Area2D" parent="LandingZone" groups=["Intro"]]
-position = Vector2(6630.33, 7114.63)
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LandingZone/IntroArea1"]
-position = Vector2(81.6733, 90.6743)
-shape = SubResource("RectangleShape2D_xk8bw")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="LandingZone/IntroArea1/CollisionShape2D"]
-offset_left = -94.6465
-offset_top = -144.0
-offset_right = 103.354
-offset_bottom = 32.0
-theme = SubResource("Theme_1ka72")
-text = "INTRO"
-fit_content = true
 
 [node name="ItemPickup" parent="LandingZone" instance=ExtResource("2_wwa8o")]
 position = Vector2(5466.62, 7198.55)
@@ -93,4 +73,3 @@ position = Vector2(6376, 7088)
 script = ExtResource("5_3o1nj")
 
 [connection signal="body_entered" from="LandingZone/StartArea" to="Player" method="_on_start_area_body_entered"]
-[connection signal="body_entered" from="LandingZone/IntroArea1" to="Player" method="_on_intro_area_1_body_entered"]

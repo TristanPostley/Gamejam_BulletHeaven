@@ -2,6 +2,8 @@ extends KeyPromptResource
 
 @onready var animation_player = %AnimationPlayer
 
+signal wasd_prompts_completed()
+
 const directions = ['up', 'left', 'down', 'right']
 var next_key_press = directions[0]
 var keys_pressed : Dictionary = {}
@@ -37,4 +39,5 @@ func _process(delta):
 		return
 	
 	# All of the prompts have been pressed, so free up this resource
+	wasd_prompts_completed.emit()
 	queue_free()
