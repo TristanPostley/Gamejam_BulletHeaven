@@ -4,6 +4,7 @@ const speed = 100
 const acceleration = 0.15
 var alive = true
 
+signal touched_player
 
 func _ready():
 	pass
@@ -51,9 +52,25 @@ func _physics_process(delta):
 	if alive:  # If dead, stop moving and let animation/sound play.
 		$AnimatedSprite2D.play("move")
 		move_and_slide()
+		if get_last_slide_collision():
+			#print(get_slide_collision(0).get_collider_shape().get_parent().name)
+			if get_slide_collision(0).get_collider_shape().get_parent().name == "Player":
+				Attack()
 
 
 func Burn():
+	alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$AnimatedSprite2D.stop()
+
+	if !$Audio_Die.playing:
+		$Audio_Die.play()
+
+	await get_tree().create_timer(1.5).timeout
+	queue_free()
+	
+func Attack():
+	touched_player.emit()
 	alive = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
