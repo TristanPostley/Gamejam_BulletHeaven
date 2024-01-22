@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bx7fkj37xv6ie"
+path="res://.godot/imported/GJBH_18PlayerDamageB.wav-3823e3829b7a3b6d814f9f8ace781ceb.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_18PlayerDamageB.wav"
+dest_files=["res://.godot/imported/GJBH_18PlayerDamageB.wav-3823e3829b7a3b6d814f9f8ace781ceb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

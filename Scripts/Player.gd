@@ -4,8 +4,10 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.2
 
-@export var flamethrowerSelected = false
-@export var leafblowerSelected = true
+var shouldPlayFootsteps
+
+@export var flamethrowerAvailable = false
+@export var leafblowerAvailable = true
 
 var flamethrowing = false
 var blowing = false
@@ -50,39 +52,39 @@ func get_input():
 
 func _physics_process(delta):
 #Actions
-	if Input.is_action_just_pressed('primary'):
-		if !flamethrowing && flamethrowerSelected:
-			$Weapons/Hurtbox/FlamethrowerCone.disabled = false
-			$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
-			$FlamethrowerIgnitionAudio.play()
-			flamethrowing = true
-		elif !blowing && leafblowerSelected:
-			$Weapons/Hurtbox/LeafBlowerCone.disabled = false
-			$Weapons/Hurtbox/LeafBlowerParticles.restart()
-			blowing = true
+	if Input.is_action_just_pressed('flamethrower') && !flamethrowing && flamethrowerAvailable:
+		$Weapons/Hurtbox/FlamethrowerCone.disabled = false
+		$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
+		$FlamethrowerIgnitionAudio.play()
+		flamethrowing = true
 			
 	if(flamethrowing):
 		$Weapons/Hurtbox/FlamethrowerCone.scale = $Weapons/Hurtbox/FlamethrowerCone.scale.lerp(Vector2(1,1), delta * flameSpeed)
 		if !$FlamethrowerAudio.playing:
 			$FlamethrowerAudio.play()
 			
-	if(blowing):
-		$Weapons/Hurtbox/LeafBlowerCone.scale = $Weapons/Hurtbox/LeafBlowerCone.scale.lerp(Vector2(1, 1), delta * blowerSpeed)
-		handleLeafblower()
-		blowerInProgress = true
-		
-	if(!flamethrowerSelected || flamethrowing && !Input.is_action_pressed('primary')):
+	if(!flamethrowerAvailable || flamethrowing && !Input.is_action_pressed('flamethrower')):
 		flamethrowing = false
 		$FlamethrowerAudio.stop()
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
 		$Weapons/Hurtbox/FlamethrowerCone.scale = Vector2.ZERO
 		$Weapons/Hurtbox/FlamethrowerCone.disabled = true
 		
+	if Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
+		$Weapons/Hurtbox/LeafBlowerCone.disabled = false
+		$Weapons/Hurtbox/LeafBlowerParticles.restart()
+		blowing = true
+			
+	if(blowing):
+		$Weapons/Hurtbox/LeafBlowerCone.scale = $Weapons/Hurtbox/LeafBlowerCone.scale.lerp(Vector2(1, 1), delta * blowerSpeed)
+		handleLeafblower()
+		blowerInProgress = true
 	
-	if Input.is_action_just_pressed("secondary"):
+	if Input.is_action_just_pressed("machete"):
 		$Weapons/Hurtbox/MacheteBox.disabled = false
-		await get_tree().create_timer(.5).timeout
-		$Weapons/Hurtbox/MacheteBox.disabled = true		
+		$MacheteAudio.play()
+		await get_tree().create_timer(.25).timeout
+		$Weapons/Hurtbox/MacheteBox.disabled = true
 
 #Facing (for sprite, weapon aiming handled in Weapons Node)
 	if(get_global_mouse_position().x < get_global_transform()[2].x):
@@ -94,12 +96,13 @@ func _physics_process(delta):
 	var direction = get_input()
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
-		if !$AudioStreamPlayer2D.playing : 
-			#$AudioStreamPlayer2D.pitch_scale = randf_range(.8, 1.2) Not sure, might be more effective being applied to individual footsteps
-			$AudioStreamPlayer2D.play()
+		if !shouldPlayFootsteps:
+			shouldPlayFootsteps = true
+			handleFootsteps()
 	else:
+		shouldPlayFootsteps = false
 		velocity = velocity.lerp(Vector2.ZERO, friction)
-		$AudioStreamPlayer2D.stop()
+		#$FootstepsAudio.stop()
 	move_and_slide()
 
 func handleLeafblower():
@@ -109,6 +112,17 @@ func handleLeafblower():
 		$Weapons/Hurtbox/LeafBlowerCone.disabled = true
 		blowing = false
 		blowerInProgress = false
+
+func handleFootsteps():
+	if shouldPlayFootsteps:
+		$FootstepsAudio.pitch_scale = randf_range(.8, 1.2)
+		$FootstepsAudio.play()
+		await get_tree().create_timer(.3).timeout
+		$FootstepsAudio2.pitch_scale = randf_range(.8, 1.2)
+		$FootstepsAudio2.play()
+		await get_tree().create_timer(.3).timeout		
+		handleFootsteps()
+
 
 #Intro signals
 func remove_intro_prompts():
@@ -139,3 +153,8 @@ func _on_barrel_body_entered():
 func _on_tutorial_exited():
 	remove_intro_prompts()
 	%Camera2D.zoom(%Camera2D.zoom_levels[3])
+
+
+func _on_myco_grunt_touched_player():
+	#TODO OXYGEN DAMAGE
+	$DamageAudio.play()

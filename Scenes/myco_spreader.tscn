@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://10imhxxue82b"]
+[gd_scene load_steps=8 format=3 uid="uid://dedaeb772pmo5"]
 
 [ext_resource type="Texture2D" uid="uid://bnwe4wdgemnk4" path="res://Assets/sprites/Spreader_01.png" id="1_ovmct"]
 [ext_resource type="Script" path="res://Scripts/MycoSpreader.gd" id="1_wsadi"]
