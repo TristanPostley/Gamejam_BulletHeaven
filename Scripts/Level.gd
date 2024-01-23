@@ -1,0 +1,40 @@
+extends Node2D
+
+var grunt_scene = load("res://Scenes/myco_grunt.tscn")
+var spreader_scene = load("res://Scenes/myco_spreader.tscn")
+
+const num_spreaders = 4
+
+
+func _ready():
+	pass
+
+
+func _process(delta):
+	pass
+
+
+func StartGame():
+	# Assuming square area for spawning:
+	#print(%LandingZone.get_node("TileMap").tile_size.x)
+	#print(%LandingZone.get_node("TileMap").get_used_cells_by_id(0).size())
+	var tile_pixels = %LandingZone.get_node("TileMap").tile_size.x
+	var total_tiles = %LandingZone.get_node("TileMap").get_used_cells_by_id(0).size()
+	var axis_pixels = tile_pixels * sqrt(total_tiles)
+	var r_pixels = axis_pixels/2
+	
+	var xbase = randf_range(r_pixels*0.95, r_pixels)
+	var ybase = randf_range(r_pixels*0.95, r_pixels)
+	var degbase = randf_range(PI/6, PI/3)
+	#print(r_pixels, " ", xbase, " ", ybase, " ", degbase, " ", degbase*180/PI)
+	
+	var spreader_array = []
+	for i in range(num_spreaders):  # Spawn n spreaders when player starts game
+		spreader_array.append(spreader_scene.instantiate())
+		spreader_array[i].position.x = (xbase * cos(PI/4 + PI/2 * i)) + r_pixels
+		spreader_array[i].position.y = (ybase * sin(PI/4 + PI/2 * i)) + r_pixels
+		#print(i, " ", spreader_array[i].position.x, " ", spreader_array[i].position.y)
+		# Have to give unique name, or gets randomly assigned and then collision doesn't work.
+		spreader_array[i].set_name("MycoSpreader"+str(i))
+		#print(spreader_array[i].name)
+		add_child(spreader_array[i])

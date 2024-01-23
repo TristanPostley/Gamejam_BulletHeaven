@@ -60,6 +60,7 @@ func _physics_process(delta):
 			
 	if(flamethrowing):
 		$Weapons/Hurtbox/FlamethrowerCone.scale = $Weapons/Hurtbox/FlamethrowerCone.scale.lerp(Vector2(1,1), delta * flameSpeed)
+		#print($Weapons/Hurtbox/FlamethrowerCone.scale)
 		if !$FlamethrowerAudio.playing:
 			$FlamethrowerAudio.play()
 			
@@ -153,6 +154,7 @@ func _on_barrel_body_entered():
 func _on_tutorial_exited():
 	remove_intro_prompts()
 	%Camera2D.zoom(%Camera2D.zoom_levels[3])
+	get_tree().get_root().get_node("Level").StartGame()
 
 
 func _on_myco_grunt_touched_player():

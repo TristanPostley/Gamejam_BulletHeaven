@@ -1,23 +1,25 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=16 format=3 uid="uid://cgr6njwev5ht"]
 
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_3dpcc"]
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
 [ext_resource type="PackedScene" uid="uid://t4ev1rrmiidy" path="res://Scenes/player.tscn" id="2_h4chg"]
 [ext_resource type="PackedScene" uid="uid://527cus0v5urk" path="res://Scenes/Pickups/ItemPickup.tscn" id="2_wwa8o"]
 [ext_resource type="PackedScene" uid="uid://7aby15w87025" path="res://Scenes/myco_grunt.tscn" id="3_7hffj"]
 [ext_resource type="PackedScene" uid="uid://dedaeb772pmo5" path="res://Scenes/myco_spreader.tscn" id="4_qt4jg"]
 [ext_resource type="Script" path="res://Scenes/Camera2D.gd" id="5_3o1nj"]
-[ext_resource type="PackedScene" path="res://Scenes/oxygen_plant.tscn" id="5_d7b7q"]
+[ext_resource type="PackedScene" uid="uid://ce4gk7xnjo2dp" path="res://Scenes/oxygen_plant.tscn" id="5_d7b7q"]
 [ext_resource type="PackedScene" uid="uid://dnr4ofynrpno" path="res://Scenes/Flames/flame_controller.tscn" id="5_dgh06"]
 [ext_resource type="Script" path="res://Scenes/TutorialArea.gd" id="7_21l4d"]
 [ext_resource type="PackedScene" uid="uid://bubmqkv0q67vn" path="res://Scenes/Pickups/pickup_machete.tscn" id="9_bm8uh"]
 [ext_resource type="PackedScene" uid="uid://cfnpna6gscfpo" path="res://Scenes/Terrain/Barrel.tscn" id="10_5jt5n"]
-[ext_resource type="PackedScene" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
-[ext_resource type="PackedScene" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
+[ext_resource type="PackedScene" uid="uid://bbbn6inbpbnab" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
+[ext_resource type="PackedScene" uid="uid://cqdmp7bb1k3bh" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgym"]
 size = Vector2(3416, 1016)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_3dpcc")
 
 [node name="LandingZone" parent="." instance=ExtResource("1_772jo")]
 unique_name_in_owner = true
@@ -25,10 +27,6 @@ unique_name_in_owner = true
 [node name="Player" parent="." instance=ExtResource("2_h4chg")]
 unique_name_in_owner = true
 position = Vector2(6376, 7088)
-acceleration = 0.2
-leafblowerAvailable = true
-flameSpeed = 2
-blowerSpeed = 4
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -44,6 +42,7 @@ position = Vector2(6376, 7088)
 script = ExtResource("5_3o1nj")
 
 [node name="TutorialArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("7_21l4d")
 
 [node name="Barrel" parent="TutorialArea" instance=ExtResource("10_5jt5n")]

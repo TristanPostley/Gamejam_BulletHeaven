@@ -27,11 +27,12 @@ func _on_body_entered(body):
 	print("Weapon ", activeWeapon)
 
 #Damage touched enemy
-	if body.name == "MycoGrunt":
+	#print(body.name, "Entered")
+	if body.name.begins_with("MycoGrunt"):
 		body.Burn()
-	elif body.name == "MycoSpreader":
+	elif body.name.begins_with("MycoSpreader"):
 		body.Burn()
-	elif body.name == "OxygenPlant":
+	elif body.name.begins_with("OxygenPlant"):
 		body.Burn()
 	else:
 		pass
@@ -39,11 +40,11 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	#print(body.name, "Exit")
-	if body.name == "MycoGrunt":
+	if body.name.begins_with("MycoGrunt"):
 		body.Burn()
-	elif body.name == "MycoSpreader":
+	elif body.name.begins_with("MycoSpreader"):
 		body.Burn()
-	elif body.name == "OxygenPlant":
+	elif body.name.begins_with("OxygenPlant"):
 		body.Burn()
 	else:
 		pass

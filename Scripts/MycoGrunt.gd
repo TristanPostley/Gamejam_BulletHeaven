@@ -25,8 +25,9 @@ func _process(delta):
 
 func _physics_process(delta):
 	# Fetch player position.
-	var playerx = %Player.position.x
-	var playery = %Player.position.y
+	var Player = get_tree().get_root().get_node("Level").get_node("Player")
+	var playerx = Player.position.x
+	var playery = Player.position.y
 
 	# Determine relative direction to player and move.
 	var xdirection = round((playerx - position.x) / abs(playerx - position.x))

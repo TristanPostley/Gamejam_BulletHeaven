@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xcr2vx4d7mwk"
-path="res://.godot/imported/leafblower.png-6bc680c85a81a7ea807131a345841c83.ctex"
+uid="uid://rerqau6mqssi"
+path="res://.godot/imported/PlayButton.png-c578a53ab778724f63c9e5a1eee39a72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ui/leafblower.png"
-dest_files=["res://.godot/imported/leafblower.png-6bc680c85a81a7ea807131a345841c83.ctex"]
+source_file="res://Assets/menu/PlayButton.png"
+dest_files=["res://.godot/imported/PlayButton.png-c578a53ab778724f63c9e5a1eee39a72.ctex"]
 
 [params]
 

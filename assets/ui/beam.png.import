@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciprrk1pk6oju"
-path="res://.godot/imported/beam.png-adac4e04405d1350aa4023379a481f30.ctex"
+path="res://.godot/imported/beam.png-b79d0d7ed88fd7c11a2afa99c2ca55f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/icons/beam.png"
-dest_files=["res://.godot/imported/beam.png-adac4e04405d1350aa4023379a481f30.ctex"]
+source_file="res://Assets/ui/beam.png"
+dest_files=["res://.godot/imported/beam.png-b79d0d7ed88fd7c11a2afa99c2ca55f4.ctex"]
 
 [params]
 
