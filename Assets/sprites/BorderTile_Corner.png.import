@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xcr2vx4d7mwk"
-path="res://.godot/imported/leafblower.png-6bc680c85a81a7ea807131a345841c83.ctex"
+uid="uid://cbyjnynlr4q06"
+path="res://.godot/imported/BorderTile_Corner.png-e04f5fe655b269ae967d0fd01585ad63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ui/leafblower.png"
-dest_files=["res://.godot/imported/leafblower.png-6bc680c85a81a7ea807131a345841c83.ctex"]
+source_file="res://Assets/sprites/BorderTile_Corner.png"
+dest_files=["res://.godot/imported/BorderTile_Corner.png-e04f5fe655b269ae967d0fd01585ad63.ctex"]
 
 [params]
 

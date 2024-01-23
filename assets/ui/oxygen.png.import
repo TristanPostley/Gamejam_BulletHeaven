@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpkrdd7abrvc8"
-path="res://.godot/imported/oxygen.png-11b27014f126623f03f2441da51645e9.ctex"
+path="res://.godot/imported/oxygen.png-6f7f69905bf6a9766fb45b4e2f463da3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/icons/oxygen.png"
-dest_files=["res://.godot/imported/oxygen.png-11b27014f126623f03f2441da51645e9.ctex"]
+source_file="res://Assets/ui/oxygen.png"
+dest_files=["res://.godot/imported/oxygen.png-6f7f69905bf6a9766fb45b4e2f463da3.ctex"]
 
 [params]
 

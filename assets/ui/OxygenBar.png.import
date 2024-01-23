@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlxn781nrebjb"
-path="res://.godot/imported/OxygenBar.png-af36b1b0d22d26e269e30bcc679b06bd.ctex"
+path="res://.godot/imported/OxygenBar.png-edab15b096d65bd735d7082e16ccc12a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/icons/OxygenBar.png"
-dest_files=["res://.godot/imported/OxygenBar.png-af36b1b0d22d26e269e30bcc679b06bd.ctex"]
+source_file="res://Assets/ui/OxygenBar.png"
+dest_files=["res://.godot/imported/OxygenBar.png-edab15b096d65bd735d7082e16ccc12a.ctex"]
 
 [params]
 
