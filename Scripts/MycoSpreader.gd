@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const speed = 25
 const acceleration = 0.1
+const convert_radius = 2
+
 var alive = true
 
 
@@ -41,13 +43,20 @@ func _physics_process(_delta):
 	else:
 		$Audio_Move.stop()
 
-	if alive:  # If dead, stop moving and let animation/sound play.
+	if alive:  #Do stuff
 		$AnimatedSprite2D.play("move")
 		var tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
 		var tile: Vector2i = tile_map.get_tile_from_vector(position)
-		tile_map.convert_tile_to_mycelium(tile)
-		#print(tile)
+		for i in range(-convert_radius, convert_radius, 1):
+			for j in range(-convert_radius, convert_radius, 1):
+				var temptile = tile
+				temptile.x = tile.x + i
+				temptile.y = tile.y + j
+				tile_map.convert_tile_to_mycelium(temptile)
+		#print(tile, " ", tile.x, " ", tile.y)
 		move_and_slide()
+	else: # If dead, stop moving and let animation/sound play in Burn()
+		pass
 
 
 func Burn():
