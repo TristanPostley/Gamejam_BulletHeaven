@@ -43,6 +43,10 @@ func _physics_process(_delta):
 
 	if alive:  # If dead, stop moving and let animation/sound play.
 		$AnimatedSprite2D.play("move")
+		var tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
+		var tile: Vector2i = tile_map.get_tile_from_vector(position)
+		tile_map.convert_tile_to_mycelium(tile)
+		#print(tile)
 		move_and_slide()
 
 
