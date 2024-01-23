@@ -1,15 +1,42 @@
 extends TileMap
 class_name TileMapResource
 
+const tile_map_layer = 0  # Ground layer
+const spawn_factor = 0.000005  # % per tick for mycelium tile to spawn a grunt
+const spawn_rate = 1 - spawn_factor  # to avoid doing math each tick
+
 var tile_size: Vector2i
+var num_tiles: int
+
+var grunt_scene = load("res://Scenes/myco_grunt.tscn")
+var game_started = false
 
 func _ready():
 	tile_size = tile_set.tile_size
+	num_tiles = sqrt(self.get_used_cells_by_id(tile_map_layer).size())
+
+
+func _process(_delta):
+	if game_started:
+		for i in range(num_tiles):
+			for j in range(num_tiles):
+				var tile_pos = Vector2i(i, j)
+				var tile_id = self.get_cell_source_id(tile_map_layer, tile_pos)
+				if tile_id == 3:  # Nested, so random number not generated on every tile.
+					var spawn_chance = randf()
+					if spawn_chance > spawn_rate:
+						var new_grunt = grunt_scene.instantiate()
+						new_grunt.position = tile_pos * tile_size
+						get_tree().get_root().get_node("Level").add_child(new_grunt)
+						# print("New grunt spawned: ", tile_pos, " ", new_grunt.position)
+
+func start_game():
+	game_started = true
 
 # Generates random tile coordinates within the bounds of the currently used area of the TileMap.
 func get_random_tile():
 	var tile_map_rect: Rect2i = get_used_rect()
-	
+
 	var x_from = tile_map_rect.position.x
 	var x_to = tile_map_rect.position.x + tile_map_rect.size.x - 1
 	var rand_x = randi_range(x_from, x_to)
@@ -20,10 +47,7 @@ func get_random_tile():
 	
 	return Vector2i(rand_x, rand_y)
 	
-func convert_cell(tile_id: int, coords: Vector2i):
-	# Ground layer
-	var tile_map_layer = 0
-	
+func convert_cell(tile_id: int, coords: Vector2i):	
 	# todo - If -1, -1 (default), will delete the cell. Get programmatically?
 	var tile_map_atlas_coords = Vector2i(0,0)
 	
