@@ -9,7 +9,7 @@ var next_key_press = directions[0]
 var keys_pressed : Dictionary = {}
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# Track which keys have been pressed
 	if Input.is_action_pressed(directions[0]):
 		keys_pressed[directions[0]] = true

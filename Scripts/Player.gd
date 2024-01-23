@@ -38,16 +38,20 @@ func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('right'):
 		input.x += 1
-		$AnimationPlayer.play("right")
+		#$AnimationPlayer.play("right")
+		$AnimatedSprite2D.animation = "right"
+		$AnimatedSprite2D.flip_h = false
 	if Input.is_action_pressed('left'):
 		input.x -= 1
-		$AnimationPlayer.play("left")		
+		#$AnimationPlayer.play("left")
+		$AnimatedSprite2D.animation = "left"
+		$AnimatedSprite2D.flip_h = true
 	if Input.is_action_pressed('down'):
 		input.y += 1
-		$AnimationPlayer.play("down")		
+		#$AnimationPlayer.play("down")
 	if Input.is_action_pressed('up'):
 		input.y -= 1
-		$AnimationPlayer.play("up")		
+		#$AnimationPlayer.play("up")	
 	return input
 
 func _physics_process(delta):
@@ -97,12 +101,14 @@ func _physics_process(delta):
 	var direction = get_input()
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
+		$AnimatedSprite2D.play()
 		if !shouldPlayFootsteps:
 			shouldPlayFootsteps = true
 			handleFootsteps()
 	else:
 		shouldPlayFootsteps = false
 		velocity = velocity.lerp(Vector2.ZERO, friction)
+		$AnimatedSprite2D.stop()
 		#$FootstepsAudio.stop()
 	move_and_slide()
 

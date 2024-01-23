@@ -10,7 +10,7 @@ func _ready():
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	# Roll for a chance to spawn every tick.
 	# Mainly testing spawning new enemies here. Keep commented out as it causes issues.
 	"""
@@ -23,7 +23,7 @@ func _process(delta):
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Fetch player position.
 	var Player = get_tree().get_root().get_node("Level").get_node("Player")
 	var playerx = Player.position.x

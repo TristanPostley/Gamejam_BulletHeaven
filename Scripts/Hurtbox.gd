@@ -24,7 +24,7 @@ func _on_body_entered(body):
 	elif(get_children()[3].disabled == false):
 		activeWeapon = "leafblower"
 			
-	print("Weapon ", activeWeapon)
+	#print("Weapon ", activeWeapon)
 
 #Damage touched enemy
 	#print(body.name, "Entered")

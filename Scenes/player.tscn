@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=29 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="5_jvdss"]
 [ext_resource type="AudioStream" uid="uid://8fuj28tbdup" path="res://Sound/Sound Design/GJBH_10.3SwordSwings3.wav" id="5_mdqq5"]
 [ext_resource type="Texture2D" uid="uid://8d1xpppv51vw" path="res://Assets/Example Project Assets/Circle_blurred.png" id="7_75m7j"]
+[ext_resource type="Texture2D" uid="uid://np5qja0p0asp" path="res://Assets/sprites/PlayerCharacter_Walk2.png" id="9_anel0"]
+[ext_resource type="Texture2D" uid="uid://c6bo6vy6r6i5x" path="res://Assets/sprites/PlayerCharacter_Walk1.png" id="10_0p5pe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
 size = Vector2(66, 182)
@@ -25,6 +27,40 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_0p5pe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d1koi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_anel0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d1koi")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_0p5pe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d1koi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_anel0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d1koi")
+}],
+"loop": true,
+"name": &"right",
 "speed": 5.0
 }]
 
@@ -54,6 +90,7 @@ resource_name = "left"
 
 [sub_resource type="Animation" id="Animation_fe1jy"]
 resource_name = "right"
+step = 0.25
 
 [sub_resource type="Animation" id="Animation_16v2t"]
 resource_name = "flamethrow"
@@ -117,11 +154,9 @@ volume_db = -25.618
 
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_8n1pj")
-volume_db = -20.0
 
 [node name="FootstepsAudio2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_3ny1b")
-volume_db = -20.0
 
 [node name="DamageAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_tmqik")
@@ -138,6 +173,7 @@ stream = ExtResource("5_mdqq5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_yuyj4")
+autoplay = "default"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
