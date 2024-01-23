@@ -54,8 +54,7 @@ func _physics_process(_delta):
 		$AnimatedSprite2D.play("move")
 		move_and_slide()
 		if get_last_slide_collision():
-			#print(get_slide_collision(0).get_collider_shape().get_parent().name)
-			if get_slide_collision(0).get_collider_shape().get_parent().name == "Player":
+			if get_slide_collision(0).get_collider().name == "Player":
 				Attack()
 
 
