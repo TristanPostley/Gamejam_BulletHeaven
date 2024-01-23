@@ -37,6 +37,7 @@ func convert_tile_to_mycelium(coords: Vector2i):
 func convert_tile_to_charred(coords: Vector2i):
 	# todo - Get charred tile_id programmatically
 	convert_cell(4, coords)
+	print("charred ", coords)
 
 func get_ground_type(coords: Vector2i):
 	var data = get_cell_tile_data(0, coords)

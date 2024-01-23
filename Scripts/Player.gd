@@ -14,6 +14,7 @@ var blowing = false
 var blowerInProgress = false
 @export var flameSpeed = 2
 @export var blowerSpeed = 4
+@onready var flamepoints = [$Weapons/FlamePoint1, $Weapons/FlamePoint2, $Weapons/FlamePoint3, $Weapons/FlamePoint4]
 
 # Intro signals
 @onready var start_area = $"../StartArea"
@@ -27,12 +28,15 @@ var inventory : Dictionary = { "beam": false, "flamethrower": false, "leafblower
 const INTRO_PROMPTS = preload("res://Scenes/Key Prompts/intro_prompts.tscn")
 var prompt
 
+@onready var tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
+
 func _ready():
 	overhead_marker = $OverheadMarker
 	prompt = INTRO_PROMPTS.instantiate()
 	prompt.position = overhead_marker.position
 	prompt.wasd_prompts_completed.connect(_on_wasd_prompts_completed)
 	add_child(prompt)
+	
 
 func get_input():
 	var input = Vector2()
@@ -61,10 +65,15 @@ func _physics_process(delta):
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
 		$FlamethrowerIgnitionAudio.play()
 		flamethrowing = true
+		enableFlamePoints()
+		
 			
 	if(flamethrowing):
 		$Weapons/Hurtbox/FlamethrowerCone.scale = $Weapons/Hurtbox/FlamethrowerCone.scale.lerp(Vector2(1,1), delta * flameSpeed)
-		#print($Weapons/Hurtbox/FlamethrowerCone.scale)
+		for point in flamepoints:
+			if point.visible == true:
+				var tile: Vector2i = tile_map.get_tile_from_vector(point.global_position)
+				tile_map.convert_tile_to_charred(tile)
 		if !$FlamethrowerAudio.playing:
 			$FlamethrowerAudio.play()
 			
@@ -74,6 +83,10 @@ func _physics_process(delta):
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
 		$Weapons/Hurtbox/FlamethrowerCone.scale = Vector2.ZERO
 		$Weapons/Hurtbox/FlamethrowerCone.disabled = true
+		$Weapons/FlamePoint1.visible = false
+		$Weapons/FlamePoint2.visible = false
+		$Weapons/FlamePoint3.visible = false
+		$Weapons/FlamePoint4.visible = false
 		
 	if Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
 		$Weapons/Hurtbox/LeafBlowerCone.disabled = false
@@ -111,6 +124,16 @@ func _physics_process(delta):
 		$AnimatedSprite2D.stop()
 		#$FootstepsAudio.stop()
 	move_and_slide()
+
+func enableFlamePoints():
+	$Weapons/FlamePoint1.visible = true
+	await get_tree().create_timer(.35).timeout
+	$Weapons/FlamePoint2.visible = true
+	await get_tree().create_timer(.35).timeout		
+	$Weapons/FlamePoint3.visible = true
+	await get_tree().create_timer(.35).timeout		
+	$Weapons/FlamePoint4.visible = true
+		
 
 func handleLeafblower():
 	if !blowerInProgress:

@@ -183,7 +183,24 @@ libraries = {
 [node name="Weapons" type="Node2D" parent="."]
 script = ExtResource("4_avuct")
 
+[node name="FlamePoint1" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(70, 0)
+
+[node name="FlamePoint2" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(140, 0)
+
+[node name="FlamePoint3" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(210, 0)
+
+[node name="FlamePoint4" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(280, 0)
+
 [node name="Hurtbox" type="Area2D" parent="Weapons"]
+collision_mask = 3
 script = ExtResource("5_jvdss")
 
 [node name="FlamethrowerCone" type="CollisionPolygon2D" parent="Weapons/Hurtbox"]
