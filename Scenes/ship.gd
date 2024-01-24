@@ -39,5 +39,5 @@ func convert_starting_mycelium():
 		tile_map.convert_tile_to_mycelium(rand_tile)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

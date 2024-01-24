@@ -13,6 +13,7 @@ func _process(_delta):
 
 
 func _on_body_entered(body):
+	print("Name: ", body.name, " Position: ", body)
 	#print("Entered ", body.name, " Flame off: ", get_children()[0].disabled, " Machete off: ", get_children()[2].disabled)
 #Detect weapon being used
 	var activeWeapon
@@ -24,7 +25,7 @@ func _on_body_entered(body):
 	elif(get_children()[3].disabled == false):
 		activeWeapon = "leafblower"
 			
-	print("Weapon ", activeWeapon)
+	#print("Weapon ", activeWeapon)
 
 #Damage touched enemy
 	#print(body.name, "Entered")

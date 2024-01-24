@@ -10,11 +10,13 @@ func _ready():
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func StartGame():
+	print("Tutorial exited, game starting!")
+	$LandingZone.get_node("TileMap").start_game()  # Start grunt spawning.
 	# Assuming square area for spawning:
 	#print(%LandingZone.get_node("TileMap").tile_size.x)
 	#print(%LandingZone.get_node("TileMap").get_used_cells_by_id(0).size())
@@ -31,8 +33,8 @@ func StartGame():
 	var spreader_array = []
 	for i in range(num_spreaders):  # Spawn n spreaders when player starts game
 		spreader_array.append(spreader_scene.instantiate())
-		spreader_array[i].position.x = (xbase * cos(PI/4 + PI/2 * i)) + r_pixels
-		spreader_array[i].position.y = (ybase * sin(PI/4 + PI/2 * i)) + r_pixels
+		spreader_array[i].position.x = (xbase * cos(degbase + PI/2 * i)) + r_pixels
+		spreader_array[i].position.y = (ybase * sin(degbase + PI/2 * i)) + r_pixels
 		#print(i, " ", spreader_array[i].position.x, " ", spreader_array[i].position.y)
 		# Have to give unique name, or gets randomly assigned and then collision doesn't work.
 		spreader_array[i].set_name("MycoSpreader"+str(i))

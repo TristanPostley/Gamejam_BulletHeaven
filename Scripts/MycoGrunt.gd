@@ -10,7 +10,7 @@ func _ready():
 	pass
 
 
-func _process(delta):
+func _process(_delta):
 	# Roll for a chance to spawn every tick.
 	# Mainly testing spawning new enemies here. Keep commented out as it causes issues.
 	"""
@@ -23,7 +23,7 @@ func _process(delta):
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Fetch player position.
 	var Player = get_tree().get_root().get_node("Level").get_node("Player")
 	var playerx = Player.position.x
@@ -54,8 +54,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("move")
 		move_and_slide()
 		if get_last_slide_collision():
-			#print(get_slide_collision(0).get_collider_shape().get_parent().name)
-			if get_slide_collision(0).get_collider_shape().get_parent().name == "Player":
+			if get_slide_collision(0).get_collider().name == "Player":
 				Attack()
 
 

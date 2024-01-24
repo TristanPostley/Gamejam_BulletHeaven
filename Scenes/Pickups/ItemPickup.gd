@@ -26,7 +26,7 @@ func get_random_item() -> PackedScene:
 	return item_scenes[0]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_body_entered(body):
