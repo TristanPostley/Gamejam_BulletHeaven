@@ -7,6 +7,7 @@ var alive = true
 signal touched_player
 
 func _ready():
+	name = "MycoGrunt"
 	pass
 
 
@@ -60,13 +61,14 @@ func _physics_process(_delta):
 
 func Burn():
 	alive = false
+	$Burning.visible = true
+	$BurningAudio.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
 
+	await get_tree().create_timer(1.5).timeout
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
-
-	await get_tree().create_timer(1.5).timeout
 	queue_free()
 	
 func Attack():
@@ -75,8 +77,8 @@ func Attack():
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
 
+	#await get_tree().create_timer(1.5).timeout
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
 
-	await get_tree().create_timer(1.5).timeout
 	queue_free()

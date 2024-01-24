@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://7aby15w87025"]
+[gd_scene load_steps=12 format=3 uid="uid://7aby15w87025"]
 
 [ext_resource type="Script" path="res://Scripts/MycoGrunt.gd" id="1_vtdms"]
 [ext_resource type="Texture2D" uid="uid://cud8memy17qd0" path="res://Assets/sprites/Grunt_01.png" id="2_mhjgw"]
 [ext_resource type="AudioStream" uid="uid://duea22s0cdla3" path="res://Sound/Sound Design/GJBH_17bPCFootstepSprintLoop.wav" id="3_1fgru"]
 [ext_resource type="Texture2D" uid="uid://dkih8x73opn7j" path="res://Assets/sprites/Grunt_02.png" id="3_dqjpt"]
 [ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="5_hqlhr"]
+[ext_resource type="AudioStream" uid="uid://cmtkakvd1m4rh" path="res://Sound/Sound Design/GJBH_41FireBurning.wav" id="6_d2mb8"]
+[ext_resource type="Texture2D" uid="uid://bhspw3ishwmh6" path="res://Assets/sprites/Fire_01.png" id="6_u8oye"]
+[ext_resource type="Texture2D" uid="uid://xyq4jhpbujm3" path="res://Assets/sprites/Fire_02.png" id="7_2gq8r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fjedd"]
 animations = [{
@@ -22,6 +25,20 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skx5y"]
 size = Vector2(40, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i6dei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_u8oye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2gq8r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="MycoGrunt" type="CharacterBody2D"]
 motion_mode = 1
@@ -43,5 +60,17 @@ volume_db = -20.0
 pitch_scale = 0.9
 max_distance = 750.0
 
+[node name="BurningAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_d2mb8")
+volume_db = -20.0
+pitch_scale = 0.9
+max_distance = 750.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_skx5y")
+
+[node name="Burning" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_i6dei")
+autoplay = "default"
+frame_progress = 0.0896515

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcx3l5yl2y50s"
+path="res://.godot/imported/GJBH_26HealthPickup.wav-b6d24a01a33c7c4902c6ea84a76ec697.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_26HealthPickup.wav"
+dest_files=["res://.godot/imported/GJBH_26HealthPickup.wav-b6d24a01a33c7c4902c6ea84a76ec697.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -14,7 +14,7 @@ var blowing = false
 var blowerInProgress = false
 @export var flameSpeed = 2
 @export var blowerSpeed = 4
-@onready var flamepoints = [$Weapons/FlamePoint1, $Weapons/FlamePoint2, $Weapons/FlamePoint3, $Weapons/FlamePoint4]
+@onready var flamepoints = [$Weapons/FlamePoint1, $Weapons/FlamePoint2, $Weapons/FlamePoint3, $Weapons/FlamePoint4, $Weapons/FlamePoint9, $Weapons/FlamePoint5, $Weapons/FlamePoint6, $Weapons/FlamePoint7, $Weapons/FlamePoint8, $Weapons/FlamePoint10, $Weapons/FlamePoint11]
 
 # Intro signals
 @onready var start_area = $"../StartArea"
@@ -42,20 +42,22 @@ func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('right'):
 		input.x += 1
-		#$AnimationPlayer.play("right")
-		$AnimatedSprite2D.animation = "right"
+		if $AnimatedSprite2D.animation != "machete":
+			$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_h = false
 	if Input.is_action_pressed('left'):
 		input.x -= 1
-		#$AnimationPlayer.play("left")
-		$AnimatedSprite2D.animation = "left"
+		if $AnimatedSprite2D.animation != "machete":
+			$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_h = true
 	if Input.is_action_pressed('down'):
 		input.y += 1
-		#$AnimationPlayer.play("down")
+		if $AnimatedSprite2D.animation != "machete":
+			$AnimatedSprite2D.animation = "walk"
 	if Input.is_action_pressed('up'):
 		input.y -= 1
-		#$AnimationPlayer.play("up")	
+		if $AnimatedSprite2D.animation != "machete":
+			$AnimatedSprite2D.animation = "walk"
 	return input
 
 func _physics_process(delta):
@@ -72,8 +74,9 @@ func _physics_process(delta):
 		$Weapons/Hurtbox/FlamethrowerCone.scale = $Weapons/Hurtbox/FlamethrowerCone.scale.lerp(Vector2(1,1), delta * flameSpeed)
 		for point in flamepoints:
 			if point.visible == true:
-				var tile: Vector2i = tile_map.get_tile_from_vector(point.global_position)
-				tile_map.convert_tile_to_charred(tile)
+				#var tile: Vector2i = tile_map.get_tile_from_vector(point.global_position)
+				#tile_map.convert_tile_to_charred(tile)
+				$"../FlameController".start_flame(point.global_position)
 		if !$FlamethrowerAudio.playing:
 			$FlamethrowerAudio.play()
 			
@@ -91,6 +94,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
 		$Weapons/Hurtbox/LeafBlowerCone.disabled = false
 		$Weapons/Hurtbox/LeafBlowerParticles.restart()
+		$LeafblowerAudio.play()
 		blowing = true
 			
 	if(blowing):
@@ -99,10 +103,13 @@ func _physics_process(delta):
 		blowerInProgress = true
 	
 	if Input.is_action_just_pressed("machete"):
+		$AnimatedSprite2D.animation = "machete"
+		$AnimatedSprite2D.play()
 		$Weapons/Hurtbox/MacheteBox.disabled = false
 		$MacheteAudio.play()
 		await get_tree().create_timer(.25).timeout
 		$Weapons/Hurtbox/MacheteBox.disabled = true
+		$AnimatedSprite2D.animation = "default"
 
 #Facing (for sprite, weapon aiming handled in Weapons Node)
 	if(get_global_mouse_position().x < get_global_transform()[2].x):
@@ -121,7 +128,9 @@ func _physics_process(delta):
 	else:
 		shouldPlayFootsteps = false
 		velocity = velocity.lerp(Vector2.ZERO, friction)
-		$AnimatedSprite2D.stop()
+		#$AnimatedSprite2D.stop()
+		if !$AnimatedSprite2D.animation == "machete":
+			$AnimatedSprite2D.animation = "default"		
 		#$FootstepsAudio.stop()
 	move_and_slide()
 
@@ -129,10 +138,17 @@ func enableFlamePoints():
 	$Weapons/FlamePoint1.visible = true
 	await get_tree().create_timer(.35).timeout
 	$Weapons/FlamePoint2.visible = true
-	await get_tree().create_timer(.35).timeout		
+	$Weapons/FlamePoint10.visible = true
+	$Weapons/FlamePoint11.visible = true
+	await get_tree().create_timer(.35).timeout
 	$Weapons/FlamePoint3.visible = true
-	await get_tree().create_timer(.35).timeout		
+	$Weapons/FlamePoint8.visible = true
+	$Weapons/FlamePoint7.visible = true
+	await get_tree().create_timer(.35).timeout
 	$Weapons/FlamePoint4.visible = true
+	$Weapons/FlamePoint5.visible = true
+	$Weapons/FlamePoint6.visible = true
+	$Weapons/FlamePoint9.visible = true
 		
 
 func handleLeafblower():

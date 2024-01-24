@@ -22,12 +22,21 @@ func _physics_process(delta):
 
 
 func Burn():
+	if !alive:
+		return
+	
 	alive = false
+	$OxygenBubble.visible = false
+	$Burning.visible = true
+	$BurningAudio.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
 
-	if !$Audio_Die.playing:
-		$Audio_Die.play()
-
 	await get_tree().create_timer(1.8).timeout
-	queue_free()
+	
+	if $Burning.visible == true:
+		$Audio_Die.play()
+		$Burning.visible = false
+		$AnimatedSprite2D.animation = "dead"
+	
+	#queue_free()

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0h5txwsuwf5"
+path="res://.godot/imported/GJBH_42PlayerStandingOnFire.wav-d373567206b0144b9d5818df731041fe.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_42PlayerStandingOnFire.wav"
+dest_files=["res://.godot/imported/GJBH_42PlayerStandingOnFire.wav-d373567206b0144b9d5818df731041fe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

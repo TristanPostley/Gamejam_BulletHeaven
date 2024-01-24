@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bltlu3qhcnx0w"
+path="res://.godot/imported/GJBH_37SpreaderSpread(Final).wav-940ea60ad3c067bafc3948f460fbfaa9.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_37SpreaderSpread(Final).wav"
+dest_files=["res://.godot/imported/GJBH_37SpreaderSpread(Final).wav-940ea60ad3c067bafc3948f460fbfaa9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://eosnmnsw781m"
+path="res://.godot/imported/GJBH_23cAirburst.wav-e72bb969cd764debb2d9af36baf8e163.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_23cAirburst.wav"
+dest_files=["res://.godot/imported/GJBH_23cAirburst.wav-e72bb969cd764debb2d9af36baf8e163.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

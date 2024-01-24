@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmtkakvd1m4rh"
+path="res://.godot/imported/GJBH_41FireBurning.wav-f088436b0937c2556db1a99c7e662e0f.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_41FireBurning.wav"
+dest_files=["res://.godot/imported/GJBH_41FireBurning.wav-f088436b0937c2556db1a99c7e662e0f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

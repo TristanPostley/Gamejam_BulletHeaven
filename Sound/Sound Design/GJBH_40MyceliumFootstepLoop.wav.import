@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bhbk88npl8a1t"
+path="res://.godot/imported/GJBH_40MyceliumFootstepLoop.wav-f6d604faa44e1d1ff403e0ab52bcf412.sample"
+
+[deps]
+
+source_file="res://Sound/Sound Design/GJBH_40MyceliumFootstepLoop.wav"
+dest_files=["res://.godot/imported/GJBH_40MyceliumFootstepLoop.wav-f6d604faa44e1d1ff403e0ab52bcf412.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,12 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce4gk7xnjo2dp"]
+[gd_scene load_steps=14 format=3 uid="uid://dpai1ikdrude4"]
 
 [ext_resource type="Script" path="res://Scripts/OxygenPlant.gd" id="1_juftn"]
 [ext_resource type="Texture2D" uid="uid://jgwt52anioho" path="res://Assets/sprites/OxygenPlant.png" id="2_kpfhb"]
+[ext_resource type="Texture2D" uid="uid://bfbudgvmxycmo" path="res://Assets/sprites/OxygenPlant_Dead.png" id="2_vrqd5"]
 [ext_resource type="AudioStream" uid="uid://dtfy7mlk5c7hy" path="res://Sound/Placeholders/OxygenPlant_Temp-skyrim_nirnroot.wav" id="3_m88bk"]
+[ext_resource type="Texture2D" uid="uid://bhspw3ishwmh6" path="res://Assets/sprites/Fire_01.png" id="3_xq2qo"]
+[ext_resource type="Texture2D" uid="uid://xyq4jhpbujm3" path="res://Assets/sprites/Fire_02.png" id="4_7flsd"]
 [ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="4_c5x63"]
+[ext_resource type="AudioStream" uid="uid://cmtkakvd1m4rh" path="res://Sound/Sound Design/GJBH_41FireBurning.wav" id="7_584ia"]
+[ext_resource type="Texture2D" uid="uid://pqxmhx6c6hoo" path="res://Assets/sprites/OxygenDome.png" id="8_mfe8t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1bgim"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vrqd5")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_kpfhb")
@@ -16,8 +29,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_esvnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xq2qo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7flsd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocn7v"]
 size = Vector2(90, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fpu8"]
 
 [node name="OxygenPlant" type="CharacterBody2D"]
 script = ExtResource("1_juftn")
@@ -25,7 +54,14 @@ script = ExtResource("1_juftn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_1bgim")
-animation = &"idle"
+animation = &"dead"
+
+[node name="Burning" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-0.5, 0)
+scale = Vector2(0.695313, 0.765625)
+sprite_frames = SubResource("SpriteFrames_esvnb")
+autoplay = "default"
 
 [node name="Audio_Idle" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_m88bk")
@@ -37,5 +73,23 @@ volume_db = -20.0
 pitch_scale = 1.4
 max_distance = 1000.0
 
+[node name="BurningAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_584ia")
+volume_db = -20.0
+pitch_scale = 1.4
+max_distance = 1000.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ocn7v")
+
+[node name="OxygenBubble" type="Sprite2D" parent="."]
+position = Vector2(0, -88)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_mfe8t")
+
+[node name="Area2D" type="Area2D" parent="OxygenBubble"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OxygenBubble/Area2D"]
+position = Vector2(1.33333, 46.6667)
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_5fpu8")

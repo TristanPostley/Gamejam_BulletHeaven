@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=33 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
@@ -13,8 +13,12 @@
 [ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="5_jvdss"]
 [ext_resource type="AudioStream" uid="uid://8fuj28tbdup" path="res://Sound/Sound Design/GJBH_10.3SwordSwings3.wav" id="5_mdqq5"]
 [ext_resource type="Texture2D" uid="uid://8d1xpppv51vw" path="res://Assets/Example Project Assets/Circle_blurred.png" id="7_75m7j"]
+[ext_resource type="AudioStream" uid="uid://eosnmnsw781m" path="res://Sound/Sound Design/GJBH_23cAirburst.wav" id="9_7l8lp"]
 [ext_resource type="Texture2D" uid="uid://np5qja0p0asp" path="res://Assets/sprites/PlayerCharacter_Walk2.png" id="9_anel0"]
 [ext_resource type="Texture2D" uid="uid://c6bo6vy6r6i5x" path="res://Assets/sprites/PlayerCharacter_Walk1.png" id="10_0p5pe"]
+[ext_resource type="Texture2D" uid="uid://draqsgkmf1nn5" path="res://Assets/sprites/PlayerCharacter_WalkMid.png" id="11_d0aoe"]
+[ext_resource type="Texture2D" uid="uid://dy2ec23n7fcu6" path="res://Assets/sprites/PlayerCharacter_Attack01.png" id="13_bs7sl"]
+[ext_resource type="Texture2D" uid="uid://dsork2pfksa8t" path="res://Assets/sprites/PlayerCharacter_Attack02.png" id="14_5ow1v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
 size = Vector2(66, 182)
@@ -31,37 +35,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_0p5pe")
+"texture": ExtResource("13_bs7sl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_d1koi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_anel0")
+"texture": ExtResource("14_5ow1v")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_d1koi")
 }],
-"loop": true,
-"name": &"left",
-"speed": 5.0
+"loop": false,
+"name": &"machete",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("10_0p5pe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_d1koi")
+"texture": ExtResource("11_d0aoe")
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_anel0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_d1koi")
+"texture": ExtResource("11_d0aoe")
 }],
 "loop": true,
-"name": &"right",
-"speed": 5.0
+"name": &"walk",
+"speed": 8.0
 }]
 
 [sub_resource type="Animation" id="Animation_kxodt"]
@@ -124,8 +125,8 @@ _data = {
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wdvr"]
 particle_flag_disable_z = true
 spread = 20.0
-initial_velocity_min = 200.0
-initial_velocity_max = 250.0
+initial_velocity_min = 500.0
+initial_velocity_max = 600.0
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51d33"]
@@ -140,7 +141,7 @@ gravity = Vector3(0, 0, 0)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rh0g5")
-speed = 400
+speed = 300
 friction = 0.9
 flamethrowerAvailable = true
 
@@ -151,6 +152,7 @@ shape = SubResource("RectangleShape2D_f7n5g")
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_ksfew")
 volume_db = -25.618
+autoplay = true
 
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_8n1pj")
@@ -170,6 +172,9 @@ stream = ExtResource("4_k8tc8")
 [node name="MacheteAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_mdqq5")
 
+[node name="LeafblowerAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_7l8lp")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_yuyj4")
@@ -185,36 +190,64 @@ script = ExtResource("4_avuct")
 
 [node name="FlamePoint1" type="Node2D" parent="Weapons"]
 visible = false
-position = Vector2(70, 0)
+position = Vector2(101, 21)
 
 [node name="FlamePoint2" type="Node2D" parent="Weapons"]
 visible = false
-position = Vector2(140, 0)
+position = Vector2(171, 21)
 
 [node name="FlamePoint3" type="Node2D" parent="Weapons"]
 visible = false
-position = Vector2(210, 0)
+position = Vector2(241, 21)
 
 [node name="FlamePoint4" type="Node2D" parent="Weapons"]
 visible = false
-position = Vector2(280, 0)
+position = Vector2(311, 21)
+
+[node name="FlamePoint9" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(368, 21)
+
+[node name="FlamePoint5" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(331, 106)
+
+[node name="FlamePoint6" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(331, -58)
+
+[node name="FlamePoint7" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(253, -34)
+
+[node name="FlamePoint8" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(253, 76)
+
+[node name="FlamePoint10" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(196, 60)
+
+[node name="FlamePoint11" type="Node2D" parent="Weapons"]
+visible = false
+position = Vector2(196, -18)
 
 [node name="Hurtbox" type="Area2D" parent="Weapons"]
 collision_mask = 3
 script = ExtResource("5_jvdss")
 
 [node name="FlamethrowerCone" type="CollisionPolygon2D" parent="Weapons/Hurtbox"]
-position = Vector2(-23.2298, 0)
-scale = Vector2(1e-05, 1e-05)
-polygon = PackedVector2Array(63.0569, 0, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)
+position = Vector2(13, 21)
+polygon = PackedVector2Array(63.0569, 0, 344, -108, 357, -77, 364, -30, 364, 21, 351, 75, 336, 107)
 disabled = true
 
 [node name="FlamethrowerParticles" type="GPUParticles2D" parent="Weapons/Hurtbox"]
+position = Vector2(76, 20)
 emitting = false
-amount = 500
+amount = 1000
 process_material = SubResource("ParticleProcessMaterial_2wdvr")
 texture = ExtResource("5_7e8l4")
-lifetime = 2.0
+lifetime = 0.6
 
 [node name="MacheteBox" type="CollisionShape2D" parent="Weapons/Hurtbox"]
 position = Vector2(76, 4.5)
@@ -222,7 +255,7 @@ shape = SubResource("RectangleShape2D_51d33")
 disabled = true
 
 [node name="LeafBlowerCone" type="CollisionPolygon2D" parent="Weapons/Hurtbox"]
-position = Vector2(-23.2298, 0)
+position = Vector2(11, 22)
 scale = Vector2(1e-05, 1e-05)
 polygon = PackedVector2Array(66.2225, -1.4045, 269, -82, 310, -51, 325, -18, 325, 13, 308, 42, 261, 74)
 disabled = true
