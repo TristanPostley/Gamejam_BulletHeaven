@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpai1ikdrude4"]
+[gd_scene load_steps=15 format=3 uid="uid://dpai1ikdrude4"]
 
 [ext_resource type="Script" path="res://Scripts/OxygenPlant.gd" id="1_juftn"]
 [ext_resource type="Texture2D" uid="uid://jgwt52anioho" path="res://Assets/sprites/OxygenPlant.png" id="2_kpfhb"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="4_c5x63"]
 [ext_resource type="AudioStream" uid="uid://cmtkakvd1m4rh" path="res://Sound/Sound Design/GJBH_41FireBurning.wav" id="7_584ia"]
 [ext_resource type="Texture2D" uid="uid://pqxmhx6c6hoo" path="res://Assets/sprites/OxygenDome.png" id="8_mfe8t"]
+[ext_resource type="PackedScene" uid="uid://cjy288x5x4lpw" path="res://Scenes/Pickups/ItemSpawner.tscn" id="10_1d8rs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1bgim"]
 animations = [{
@@ -93,3 +94,5 @@ texture = ExtResource("8_mfe8t")
 position = Vector2(1.33333, 46.6667)
 scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_5fpu8")
+
+[node name="ItemSpawner" parent="." instance=ExtResource("10_1d8rs")]

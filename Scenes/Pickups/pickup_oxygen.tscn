@@ -1,10 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://jsymwigc4qls"]
+[gd_scene load_steps=4 format=3 uid="uid://jsymwigc4qls"]
 
 [ext_resource type="Script" path="res://Scenes/Pickups/pickup_oxygen.gd" id="1_35p7n"]
-[ext_resource type="Texture2D" uid="uid://cpkrdd7abrvc8" path="res://Assets/icons/oxygen.png" id="1_b3sn0"]
+[ext_resource type="Texture2D" uid="uid://wi7ha5khvxpg" path="res://Assets/ui/bubble.png" id="2_jvc5d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gj74b"]
+radius = 40.7922
 
 [node name="PickupOxygen" type="Node2D"]
 script = ExtResource("1_35p7n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_b3sn0")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_jvc5d")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_gj74b")
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

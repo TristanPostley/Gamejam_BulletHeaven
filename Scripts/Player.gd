@@ -193,9 +193,6 @@ func _on_item_pickup_body_entered(pickup_name: String):
 	#elif pickup_name == "leafblower":
 		#inventory["leafblower"] = true
 
-func _on_barrel_body_entered():
-	_on_item_pickup_body_entered("flamethrower")
-
 func _on_tutorial_exited():
 	remove_intro_prompts()
 	%Camera2D.zoom(%Camera2D.zoom_levels[3])
