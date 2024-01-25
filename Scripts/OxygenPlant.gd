@@ -2,16 +2,6 @@ extends CharacterBody2D
 
 var alive = true
 
-
-func _ready():
-	# Function for spawning instances at game start goes here, unless handled as a signal.
-	pass
-
-
-func _process(delta):
-	pass
-
-
 func _physics_process(delta):
 	if alive:  # If dead, stop moving and let animation/sound play.
 		$AnimatedSprite2D.play("idle")
@@ -40,3 +30,7 @@ func Burn():
 		$AnimatedSprite2D.animation = "dead"
 	
 	#queue_free()
+
+func _on_oxygen_timer_timeout():
+	# Periodically spawn new items
+	%ItemSpawner.spawn_items()

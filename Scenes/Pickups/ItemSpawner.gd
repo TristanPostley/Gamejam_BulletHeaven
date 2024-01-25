@@ -1,33 +1,27 @@
 extends Node2D
 
-# todo don't hardcode the item drop
-const PICKUP_OXYGEN: PackedScene = preload("res://Scenes/Pickups/pickup_oxygen.tscn")
+@export var pickup: PackedScene
+@export var launch_speed: float = 200
+@export var launch_duration: float = 1
+@export var drop_count: int = 1
 
-# todo hardcoded to oxygen drops
-var launch_speed: float = 200
-var launch_duration: float = .5
-var drop_count: int = 20
-
-func _ready():
-	spawn_items()
-
-# Instantiate instances of the ItemPickup scene and spawn them
-func spawn_resource():
-	var pickup_instance: BasePickup = PICKUP_OXYGEN.instantiate()
-	add_child(pickup_instance)
+func spawn_resource(direction = null):
+	var pickup_instance: BasePickup = pickup.instantiate()
 	pickup_instance.position = position
+	add_child(pickup_instance)
 	
-	var direction: Vector2 = Vector2(
-		randf_range(-1.0, 1.0),
-		randf_range(-1.0, 1.0)
-	).normalized()
+	# The direction is random by default, but is overridden by param
+	var _direction: Vector2
+	if direction != null:
+		_direction = direction
+	else:
+		_direction = Vector2(
+			randf_range(-1.0, 1.0),
+			randf_range(-1.0, 1.0)
+		).normalized()
 	
-	pickup_instance.launch(direction * launch_speed, launch_duration)
-
-# Periodically spawn new items
-func _on_timer_timeout():
-	spawn_items()
+	pickup_instance.launch(_direction * launch_speed, launch_duration)
 
 func spawn_items():
 	for x in drop_count:
-		spawn_resource() 
+		spawn_resource()

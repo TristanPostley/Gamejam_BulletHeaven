@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpai1ikdrude4"]
+[gd_scene load_steps=16 format=3 uid="uid://dpai1ikdrude4"]
 
 [ext_resource type="Script" path="res://Scripts/OxygenPlant.gd" id="1_juftn"]
 [ext_resource type="Texture2D" uid="uid://jgwt52anioho" path="res://Assets/sprites/OxygenPlant.png" id="2_kpfhb"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cmtkakvd1m4rh" path="res://Sound/Sound Design/GJBH_41FireBurning.wav" id="7_584ia"]
 [ext_resource type="Texture2D" uid="uid://pqxmhx6c6hoo" path="res://Assets/sprites/OxygenDome.png" id="8_mfe8t"]
 [ext_resource type="PackedScene" uid="uid://cjy288x5x4lpw" path="res://Scenes/Pickups/ItemSpawner.tscn" id="10_1d8rs"]
+[ext_resource type="PackedScene" uid="uid://jsymwigc4qls" path="res://Scenes/Pickups/pickup_oxygen.tscn" id="11_32t4e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1bgim"]
 animations = [{
@@ -53,7 +54,7 @@ size = Vector2(90, 100)
 script = ExtResource("1_juftn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_1bgim")
 animation = &"dead"
 
@@ -81,6 +82,7 @@ pitch_scale = 1.4
 max_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_ocn7v")
 
 [node name="OxygenBubble" type="Sprite2D" parent="."]
@@ -96,3 +98,12 @@ scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_5fpu8")
 
 [node name="ItemSpawner" parent="." instance=ExtResource("10_1d8rs")]
+unique_name_in_owner = true
+pickup = ExtResource("11_32t4e")
+drop_count = 20
+
+[node name="OxygenTimer" type="Timer" parent="ItemSpawner"]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="ItemSpawner/OxygenTimer" to="." method="_on_oxygen_timer_timeout"]

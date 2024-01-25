@@ -1,11 +1,25 @@
-extends Area2D
+extends StaticBody2D
 
-signal barrel_body_entered()
+var destroyed = false
 
-func _on_body_entered(body):
-	# todo, barrel should be destroyed by machete
-	if body.name != "Player":
+func _on_barrel_hurt_box_area_entered(area):
+	if destroyed:
 		return
 	
-	barrel_body_entered.emit()
-	queue_free()
+	# todo Should use signals/classes instead of looking for the hitbox with get_node
+	var machete_box = area.get_node("MacheteBox")
+	if !machete_box:
+		return
+	
+	# The barrel was not hit by a machete, so exit early
+	if machete_box.disabled:
+		return
+	
+	destroyed = true
+
+	# Drop the flamethrower
+	%ItemSpawner.spawn_resource(Vector2(1, 0))
+	
+	# Change the look of the barrel
+	%BarrelPrompt.queue_free()
+	%Sprite2D.self_modulate = Color("323232")
