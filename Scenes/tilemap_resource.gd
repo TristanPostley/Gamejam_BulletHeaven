@@ -2,7 +2,7 @@ extends TileMap
 class_name TileMapResource
 
 const tile_map_layer = 0  # Ground layer
-const spawn_factor = 0.000005  # % per tick for mycelium tile to spawn a grunt
+const spawn_factor = 0.00001  # % per tick for mycelium tile to spawn a grunt
 const spawn_rate = 1 - spawn_factor  # to avoid doing math each tick
 
 var tile_size: Vector2i

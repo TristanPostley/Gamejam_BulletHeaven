@@ -44,3 +44,12 @@ func StartGame():
 		spreader_array[i].set_name("MycoSpreader"+str(i))
 		#print(spreader_array[i].name)
 		add_child(spreader_array[i])
+
+
+func _on_animation_player_animation_finished(StartTransition):
+	$FightTheHorde.stop()
+	$BurnThemAll.play()
+
+
+func _on_burn_them_all_finished():
+	$BurnThemAll.play()  # Loop audio.
