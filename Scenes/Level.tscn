@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=21 format=3 uid="uid://cgr6njwev5ht"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_3dpcc"]
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
@@ -14,9 +14,69 @@
 [ext_resource type="PackedScene" uid="uid://cfnpna6gscfpo" path="res://Scenes/Terrain/Barrel.tscn" id="10_5jt5n"]
 [ext_resource type="PackedScene" uid="uid://bbbn6inbpbnab" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
 [ext_resource type="PackedScene" uid="uid://cqdmp7bb1k3bh" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
+[ext_resource type="AudioStream" uid="uid://cxfy8bqrxo4y6" path="res://Sound/Music/GJBH_14MycoMadnessThemeV1.wav" id="15_v6vo1"]
+[ext_resource type="AudioStream" uid="uid://mhi30s4qhbot" path="res://Sound/Music/GJBH_49FightTheHordeV1.mp3" id="16_4v5xq"]
+[ext_resource type="AudioStream" uid="uid://0adi1lb2orgc" path="res://Sound/Music/GJBH_50BurnThemAllV1.wav" id="17_mjrtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgym"]
 size = Vector2(3416, 1016)
+
+[sub_resource type="Animation" id="Animation_f5882"]
+resource_name = "StartTransition"
+length = 167.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TutorialTheme:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(5, 5),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FightTheHorde:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 5),
+"update": 0,
+"values": [-10.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FightTheHorde:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TutorialTheme:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2djea"]
+_data = {
+"StartTransition": SubResource("Animation_f5882")
+}
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3dpcc")
@@ -69,6 +129,21 @@ position = Vector2(8513.88, 7101.85)
 
 [node name="PlantPrompt" parent="TutorialArea/OxygenPlant" instance=ExtResource("13_5s8f2")]
 position = Vector2(0, -91)
+
+[node name="TutorialTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_v6vo1")
+
+[node name="FightTheHorde" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_4v5xq")
+volume_db = -10.0
+
+[node name="BurnThemAll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_mjrtg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2djea")
+}
 
 [connection signal="body_exited" from="TutorialArea" to="TutorialArea" method="_on_body_exited"]
 [connection signal="on_tutorial_exited" from="TutorialArea" to="Player" method="_on_tutorial_exited"]

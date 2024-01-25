@@ -7,7 +7,10 @@ const num_spreaders = 4
 
 
 func _ready():
-	pass
+	$TutorialTheme.volume_db=0
+	$TutorialTheme.play()
+	$FightTheHorde.stop()
+	$BurnThemAll.stop()
 
 
 func _process(_delta):
@@ -16,6 +19,7 @@ func _process(_delta):
 
 func StartGame():
 	print("Tutorial exited, game starting!")
+	$AnimationPlayer.play("StartTransition")
 	$LandingZone.get_node("TileMap").start_game()  # Start grunt spawning.
 	# Assuming square area for spawning:
 	#print(%LandingZone.get_node("TileMap").tile_size.x)
