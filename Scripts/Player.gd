@@ -62,7 +62,7 @@ func get_input():
 
 func _physics_process(delta):
 #Actions
-	if Input.is_action_just_pressed('flamethrower') && !flamethrowing && flamethrowerAvailable:
+	if inventory["flamethrower"] && Input.is_action_just_pressed('flamethrower') && !flamethrowing && flamethrowerAvailable:
 		$Weapons/Hurtbox/FlamethrowerCone.disabled = false
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
 		$FlamethrowerIgnitionAudio.play()
@@ -102,7 +102,7 @@ func _physics_process(delta):
 		handleLeafblower()
 		blowerInProgress = true
 	
-	if Input.is_action_just_pressed("machete"):
+	if inventory["machete"] && Input.is_action_just_pressed("machete"):
 		$AnimatedSprite2D.animation = "machete"
 		$AnimatedSprite2D.play()
 		$Weapons/Hurtbox/MacheteBox.disabled = false
