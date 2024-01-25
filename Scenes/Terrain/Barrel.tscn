@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfnpna6gscfpo"]
 
 [ext_resource type="Script" path="res://Scenes/Terrain/Barrel.gd" id="1_e78gn"]
-[ext_resource type="Texture2D" uid="uid://cvlc0nulyokao" path="res://Assets/sprites/Derbis01.png" id="1_ebtmq"]
+[ext_resource type="Texture2D" uid="uid://dupl30atv348y" path="res://Assets/sprites/Debris01.png" id="1_ebtmq"]
 [ext_resource type="PackedScene" uid="uid://bcqlnirohunsu" path="res://Scenes/Key Prompts/barrel_prompt.tscn" id="3_n0gtd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vbefu"]
