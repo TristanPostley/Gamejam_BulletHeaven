@@ -7,8 +7,6 @@ var alive = true
 var xdirection = 0
 var ydirection = 0
 
-signal touched_player
-
 
 func _ready():
 	name = "MycoGrunt"
@@ -62,26 +60,25 @@ func _physics_process(_delta):
 				Attack()
 
 
-func Burn():
+func Die():
 	alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$AnimatedSprite2D.stop()
+	if !$Audio_Die.playing:
+		$Audio_Die.play()
+
+
+func Burn():
+	Die()
 	$Burning.visible = true
 	$BurningAudio.play()
-	$CollisionShape2D.set_deferred("disabled", true)
-	$AnimatedSprite2D.stop()
-
 	await get_tree().create_timer(1.5).timeout
-	if !$Audio_Die.playing:
-		$Audio_Die.play()
 	queue_free()
-	
+
+
 func Attack():
-	touched_player.emit()
-	alive = false
-	$CollisionShape2D.set_deferred("disabled", true)
-	$AnimatedSprite2D.stop()
-
-	#await get_tree().create_timer(1.5).timeout
-	if !$Audio_Die.playing:
-		$Audio_Die.play()
-
+	Die()
+	# Had to change, signal doesn't work for child instances because of node structure.
+	get_tree().get_root().get_node("Level").get_node("Player").on_myco_grunt_touched_player()
+	await get_tree().create_timer(0.5).timeout
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=35 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://draqsgkmf1nn5" path="res://Assets/sprites/PlayerCharacter_WalkMid.png" id="11_d0aoe"]
 [ext_resource type="Texture2D" uid="uid://dy2ec23n7fcu6" path="res://Assets/sprites/PlayerCharacter_Attack01.png" id="13_bs7sl"]
 [ext_resource type="Texture2D" uid="uid://dsork2pfksa8t" path="res://Assets/sprites/PlayerCharacter_Attack02.png" id="14_5ow1v"]
+[ext_resource type="Texture2D" uid="uid://dlxn781nrebjb" path="res://Assets/ui/OxygenBar.png" id="20_13vmf"]
+[ext_resource type="Texture2D" uid="uid://cpkrdd7abrvc8" path="res://Assets/ui/oxygen.png" id="21_cya2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
 size = Vector2(66, 182)
@@ -271,6 +273,15 @@ explosiveness = 1.0
 
 [node name="OverheadMarker" type="Marker2D" parent="."]
 position = Vector2(0, -136)
+
+[node name="OxygenBar" type="Sprite2D" parent="."]
+scale = Vector2(2, 12)
+texture = ExtResource("20_13vmf")
+offset = Vector2(-900, 0)
+
+[node name="OxygenIcon" type="Sprite2D" parent="."]
+texture = ExtResource("21_cya2p")
+offset = Vector2(-1800, -900)
 
 [connection signal="body_entered" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_exited"]

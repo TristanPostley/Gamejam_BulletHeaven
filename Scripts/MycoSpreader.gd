@@ -6,10 +6,11 @@ const convert_radius = 3
 
 var walk_duration = 5
 var alive = true
-var xdirection = 0
-var ydirection = 0
+var xdirection = sign(randf_range(-1, 1))
+var ydirection = sign(randf_range(-1, 1))
 var init_delta = 0
 var total_time = 0
+
 
 func _ready():
 	name = "MycoSpreader"
@@ -36,11 +37,11 @@ func _physics_process(_delta):
 	else:
 		# Determine relative direction to player.
 		xdirection = round((playerx - position.x) / abs(playerx - position.x))
-		# print("MycoGrunt X: ", xdirection)
+		#print("MycoGrunt X: ", xdirection)
 		ydirection = round((playery - position.y) / abs(playery - position.y))
-		# print("MycoGrunt Y: ", ydirection)
+		#print("MycoGrunt Y: ", ydirection)
 	
-	print(xdirection, " ", ydirection)
+	#print(xdirection, " ", ydirection)
 	if xdirection:
 		velocity.x = lerp(velocity.x, xdirection * speed * (-1), acceleration)
 	else:

@@ -74,4 +74,3 @@ position = Vector2(0, -91)
 [connection signal="on_tutorial_exited" from="TutorialArea" to="Player" method="_on_tutorial_exited"]
 [connection signal="barrel_body_entered" from="TutorialArea/Barrel" to="Player" method="_on_barrel_body_entered"]
 [connection signal="item_pickup_body_entered" from="TutorialArea/ItemPickup" to="Player" method="_on_item_pickup_body_entered"]
-[connection signal="touched_player" from="TutorialArea/MycoGrunt" to="Player" method="_on_myco_grunt_touched_player"]
