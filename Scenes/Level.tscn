@@ -12,8 +12,8 @@
 [ext_resource type="Script" path="res://Scenes/TutorialArea.gd" id="7_21l4d"]
 [ext_resource type="PackedScene" uid="uid://bubmqkv0q67vn" path="res://Scenes/Pickups/pickup_machete.tscn" id="9_bm8uh"]
 [ext_resource type="PackedScene" uid="uid://cfnpna6gscfpo" path="res://Scenes/Terrain/Barrel.tscn" id="10_5jt5n"]
-[ext_resource type="PackedScene" uid="uid://bbbn6inbpbnab" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
-[ext_resource type="PackedScene" uid="uid://cqdmp7bb1k3bh" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
+[ext_resource type="PackedScene" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
+[ext_resource type="PackedScene" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgym"]
 size = Vector2(3416, 1016)
@@ -26,7 +26,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_h4chg")]
 unique_name_in_owner = true
-position = Vector2(6376, 7088)
+position = Vector2(4097, 7736)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -38,11 +38,12 @@ position = Vector2(6720, 7248)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(6376, 7088)
+position = Vector2(4097, 7736)
 script = ExtResource("5_3o1nj")
 
 [node name="TutorialArea" type="Area2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(-2493, 684)
 script = ExtResource("7_21l4d")
 
 [node name="Barrel" parent="TutorialArea" instance=ExtResource("10_5jt5n")]
