@@ -153,9 +153,6 @@ stream = ExtResource("18_c8x1d")
 [node name="WinCard" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_iusng")
 
-[node name="OxygenPlant" parent="." instance=ExtResource("5_d7b7q")]
-position = Vector2(4160, 8016)
-
 [connection signal="body_exited" from="TutorialArea" to="TutorialArea" method="_on_body_exited"]
 [connection signal="on_tutorial_exited" from="TutorialArea" to="Player" method="_on_tutorial_exited"]
 [connection signal="finished" from="BurnThemAll" to="." method="_on_burn_them_all_finished"]
