@@ -59,7 +59,7 @@ func _physics_process(_delta):
 		$Audio_Move.stop()
 
 	if alive:  #Do stuff
-		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.play("move")
 		var tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
 		var tile: Vector2i = tile_map.get_tile_from_vector(position)
 		for i in range(-convert_radius, convert_radius, 1):
@@ -80,6 +80,7 @@ func Burn():
 	$BurningAudio.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
+	$AnimatedSprite2D.play("death")
 
 	await get_tree().create_timer(1.8).timeout
 	if !$Audio_Die.playing:

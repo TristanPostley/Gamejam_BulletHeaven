@@ -64,6 +64,7 @@ func Die():
 	alive = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
+	$AnimatedSprite2D.play("death")
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
 

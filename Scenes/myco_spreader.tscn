@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dedaeb772pmo5"]
+[gd_scene load_steps=13 format=3 uid="uid://dedaeb772pmo5"]
 
 [ext_resource type="Texture2D" uid="uid://bnwe4wdgemnk4" path="res://Assets/sprites/Spreader_01.png" id="1_ovmct"]
 [ext_resource type="Script" path="res://Scripts/MycoSpreader.gd" id="1_wsadi"]
 [ext_resource type="Texture2D" uid="uid://dfvvoxr7ptwou" path="res://Assets/sprites/Spreader_02.png" id="2_l8d64"]
+[ext_resource type="Texture2D" uid="uid://eufocwgn1wcc" path="res://Assets/sprites/Spreader_Death.png" id="2_q6ojn"]
 [ext_resource type="AudioStream" uid="uid://mbmy4bppgsm8" path="res://Sound/Sound Design/GJBH_17PCFootstep1.wav" id="3_dyo50"]
 [ext_resource type="Texture2D" uid="uid://bhspw3ishwmh6" path="res://Assets/sprites/Fire_01.png" id="4_akvyx"]
 [ext_resource type="Texture2D" uid="uid://xyq4jhpbujm3" path="res://Assets/sprites/Fire_02.png" id="5_pptj8"]
@@ -13,13 +14,21 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_q6ojn")
+}],
+"loop": true,
+"name": &"death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_ovmct")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_l8d64")
 }],
 "loop": true,
-"name": &"default",
+"name": &"move",
 "speed": 2.0
 }]
 
@@ -47,7 +56,7 @@ script = ExtResource("1_wsadi")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_2pxcs")
-frame_progress = 0.874076
+animation = &"death"
 
 [node name="Burning" type="AnimatedSprite2D" parent="."]
 visible = false
