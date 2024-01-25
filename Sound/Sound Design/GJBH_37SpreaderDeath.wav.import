@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://w7rjkfqbw7da"
-path="res://.godot/imported/GJBH_37SpreaderDeath.wav-cb96f022996d6ac45cf9d4c117044503.sample"
+path="res://.godot/imported/GJBH_37SpreaderDeath.wav-8a8f18f9fb4d38fc8e9f9dc4b918c9ec.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/GJBH_37SpreaderDeath.wav"
-dest_files=["res://.godot/imported/GJBH_37SpreaderDeath.wav-cb96f022996d6ac45cf9d4c117044503.sample"]
+source_file="res://Sound/Sound Design/GJBH_37SpreaderDeath.wav"
+dest_files=["res://.godot/imported/GJBH_37SpreaderDeath.wav-8a8f18f9fb4d38fc8e9f9dc4b918c9ec.sample"]
 
 [params]
 

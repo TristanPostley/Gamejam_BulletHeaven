@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c2ug6xamr8vf6"
-path="res://.godot/imported/GJBH_33MushroomAttack.wav-e4bfe5521d92c25fa62b8c4deb865c92.sample"
+path="res://.godot/imported/GJBH_33MushroomAttack.wav-95a30543b78c3057e3674799a96ae78c.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/GJBH_33MushroomAttack.wav"
-dest_files=["res://.godot/imported/GJBH_33MushroomAttack.wav-e4bfe5521d92c25fa62b8c4deb865c92.sample"]
+source_file="res://Sound/Sound Design/GJBH_33MushroomAttack.wav"
+dest_files=["res://.godot/imported/GJBH_33MushroomAttack.wav-95a30543b78c3057e3674799a96ae78c.sample"]
 
 [params]
 

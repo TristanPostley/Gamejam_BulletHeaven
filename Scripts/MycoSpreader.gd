@@ -81,8 +81,7 @@ func Burn():
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
 	$AnimatedSprite2D.play("death")
-
-	await get_tree().create_timer(1.8).timeout
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
+	await get_tree().create_timer(1.8).timeout
 	queue_free()

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dmohy1gtuyxpd"
-path="res://.godot/imported/GJBH_37SpreaderSpread.wav-9c129eefcc4a335e342b0090a0e9b787.sample"
+path="res://.godot/imported/GJBH_37SpreaderSpread.wav-667c1ea9959868c2642f71b52d2ee58f.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/GJBH_37SpreaderSpread.wav"
-dest_files=["res://.godot/imported/GJBH_37SpreaderSpread.wav-9c129eefcc4a335e342b0090a0e9b787.sample"]
+source_file="res://Sound/Sound Design/GJBH_37SpreaderSpread.wav"
+dest_files=["res://.godot/imported/GJBH_37SpreaderSpread.wav-667c1ea9959868c2642f71b52d2ee58f.sample"]
 
 [params]
 

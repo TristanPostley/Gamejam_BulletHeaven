@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Scripts/MycoSpreader.gd" id="1_wsadi"]
 [ext_resource type="Texture2D" uid="uid://dfvvoxr7ptwou" path="res://Assets/sprites/Spreader_02.png" id="2_l8d64"]
 [ext_resource type="Texture2D" uid="uid://eufocwgn1wcc" path="res://Assets/sprites/Spreader_Death.png" id="2_q6ojn"]
-[ext_resource type="AudioStream" uid="uid://mbmy4bppgsm8" path="res://Sound/Sound Design/GJBH_17PCFootstep1.wav" id="3_dyo50"]
 [ext_resource type="Texture2D" uid="uid://bhspw3ishwmh6" path="res://Assets/sprites/Fire_01.png" id="4_akvyx"]
 [ext_resource type="Texture2D" uid="uid://xyq4jhpbujm3" path="res://Assets/sprites/Fire_02.png" id="5_pptj8"]
+[ext_resource type="AudioStream" uid="uid://cxb3avuvb05lm" path="res://Sound/Sound Design/GJBH_34SpreaderFootstepLoop.wav" id="7_3tac0"]
 [ext_resource type="AudioStream" uid="uid://ddkl0kuvpdmee" path="res://Sound/Sound Design/GJBH_36SpreaderDeath(Final).wav" id="7_h5kb4"]
 [ext_resource type="AudioStream" uid="uid://5evc2ctvm6ky" path="res://Sound/Sound Design/GJBH_35SpreaderOnFire.wav" id="8_yfepp"]
 
@@ -66,15 +66,13 @@ sprite_frames = SubResource("SpriteFrames_ot7iy")
 autoplay = "default"
 
 [node name="Audio_Move" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_dyo50")
-volume_db = -5.0
-max_distance = 1000.0
+stream = ExtResource("7_3tac0")
+volume_db = 20.0
 
 [node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_h5kb4")
-volume_db = -20.0
-pitch_scale = 0.6
-max_distance = 1000.0
+volume_db = 10.0
+max_distance = 1500.0
 
 [node name="BurningAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_yfepp")

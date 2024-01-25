@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b3xwr2ffj6k1h"
-path="res://.godot/imported/GJBH_31MushroomOnFire.wav-c950bf9f86f1648afe79e20737f91bf3.sample"
+path="res://.godot/imported/GJBH_31MushroomOnFire.wav-8ed06e32fb51b1a488217dee2572ff97.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/GJBH_31MushroomOnFire.wav"
-dest_files=["res://.godot/imported/GJBH_31MushroomOnFire.wav-c950bf9f86f1648afe79e20737f91bf3.sample"]
+source_file="res://Sound/Sound Design/GJBH_31MushroomOnFire.wav"
+dest_files=["res://.godot/imported/GJBH_31MushroomOnFire.wav-8ed06e32fb51b1a488217dee2572ff97.sample"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dehemcs4ux27p"
-path="res://.godot/imported/GJBH_32MushroomDeath.wav-6022394af30041565c44ef5621b93fa5.sample"
+path="res://.godot/imported/GJBH_32MushroomDeath.wav-db1d25683c22675b50b5de8c000b47d1.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/GJBH_32MushroomDeath.wav"
-dest_files=["res://.godot/imported/GJBH_32MushroomDeath.wav-6022394af30041565c44ef5621b93fa5.sample"]
+source_file="res://Sound/Sound Design/GJBH_32MushroomDeath.wav"
+dest_files=["res://.godot/imported/GJBH_32MushroomDeath.wav-db1d25683c22675b50b5de8c000b47d1.sample"]
 
 [params]
 

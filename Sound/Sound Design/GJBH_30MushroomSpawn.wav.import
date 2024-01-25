@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://5xmqhxwqnvct"
-path="res://.godot/imported/GJBH_30MushroomSpawn.wav-3d17533e0d1210e22b79ae08bedd30cd.sample"
+path="res://.godot/imported/GJBH_30MushroomSpawn.wav-df13064383644dfee76be5b28298e109.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/GJBH_30MushroomSpawn.wav"
-dest_files=["res://.godot/imported/GJBH_30MushroomSpawn.wav-3d17533e0d1210e22b79ae08bedd30cd.sample"]
+source_file="res://Sound/Sound Design/GJBH_30MushroomSpawn.wav"
+dest_files=["res://.godot/imported/GJBH_30MushroomSpawn.wav-df13064383644dfee76be5b28298e109.sample"]
 
 [params]
 

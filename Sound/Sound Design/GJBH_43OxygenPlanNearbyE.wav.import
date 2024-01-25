@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bf2b48kl7f6s5"
-path="res://.godot/imported/GJBH_43OxygenPlanNearbyE.wav-4ba96dd78121d5d4eb376fbe60176381.sample"
+path="res://.godot/imported/GJBH_43OxygenPlanNearbyE.wav-7fdf61399c516572c639324134f793c1.sample"
 
 [deps]
 
-source_file="res://Sound/Placeholders/GJBH_43OxygenPlanNearbyE.wav"
-dest_files=["res://.godot/imported/GJBH_43OxygenPlanNearbyE.wav-4ba96dd78121d5d4eb376fbe60176381.sample"]
+source_file="res://Sound/Sound Design/GJBH_43OxygenPlanNearbyE.wav"
+dest_files=["res://.godot/imported/GJBH_43OxygenPlanNearbyE.wav-7fdf61399c516572c639324134f793c1.sample"]
 
 [params]
 
