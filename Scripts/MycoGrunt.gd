@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-const speed = 100
+const speed = 125
 const acceleration = 0.15
 
 var alive = true
-var xdirection = 0
+var xdirection = -1
 var ydirection = 0
 
 
@@ -45,7 +45,7 @@ func _physics_process(_delta):
 		velocity.y = lerp(velocity.y, ydirection * speed, acceleration)
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
-
+	#print(xdirection, " ", ydirection)
 	if (xdirection or ydirection) and alive:  # If moving and not already playing, start footstep audio.
 		if !$Audio_Move.playing: 
 			$Audio_Move.play()
