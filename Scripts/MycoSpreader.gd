@@ -84,4 +84,5 @@ func Burn():
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
 	await get_tree().create_timer(1.8).timeout
+	get_tree().get_root().get_node("Level").CountDeadSpreader()
 	queue_free()

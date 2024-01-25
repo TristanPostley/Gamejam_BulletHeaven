@@ -204,7 +204,8 @@ func _on_tutorial_exited():
 
 func on_myco_grunt_touched_player():
 	#TODO OXYGEN DAMAGE
-	$OxygenBar.scale.y -= 1
-	$DamageAudio.play()
-	if $OxygenBar.scale.y == 0:  # If dead:
-		pass
+	if $OxygenBar.scale.y > 0:
+		$OxygenBar.scale.y -= 1
+		$DamageAudio.play()
+	if $OxygenBar.scale.y == 0:  # Die:
+		get_tree().get_root().get_node("Level").GameLost()

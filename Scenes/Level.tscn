@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=23 format=3 uid="uid://cgr6njwev5ht"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_3dpcc"]
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://cxfy8bqrxo4y6" path="res://Sound/Music/GJBH_14MycoMadnessThemeV1.wav" id="15_v6vo1"]
 [ext_resource type="AudioStream" uid="uid://mhi30s4qhbot" path="res://Sound/Music/GJBH_49FightTheHordeV1.mp3" id="16_4v5xq"]
 [ext_resource type="AudioStream" uid="uid://0adi1lb2orgc" path="res://Sound/Music/GJBH_50BurnThemAllV1.wav" id="17_mjrtg"]
+[ext_resource type="AudioStream" uid="uid://dmudj834pq03m" path="res://Sound/Music/GJBH_45FailCard.wav" id="18_c8x1d"]
+[ext_resource type="AudioStream" uid="uid://dpn3i4ybwgvum" path="res://Sound/Music/GJBH_46WinCard.wav" id="19_iusng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgym"]
 size = Vector2(3416, 1016)
@@ -144,6 +146,12 @@ stream = ExtResource("17_mjrtg")
 libraries = {
 "": SubResource("AnimationLibrary_2djea")
 }
+
+[node name="FailCard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_c8x1d")
+
+[node name="WinCard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_iusng")
 
 [connection signal="body_exited" from="TutorialArea" to="TutorialArea" method="_on_body_exited"]
 [connection signal="on_tutorial_exited" from="TutorialArea" to="Player" method="_on_tutorial_exited"]

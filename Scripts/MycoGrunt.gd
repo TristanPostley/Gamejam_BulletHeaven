@@ -74,6 +74,7 @@ func Burn():
 	$Burning.visible = true
 	$BurningAudio.play()
 	await get_tree().create_timer(1.5).timeout
+	get_tree().get_root().get_node("Level").CountDeadGrunt()
 	queue_free()
 
 

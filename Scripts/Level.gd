@@ -1,9 +1,12 @@
 extends Node2D
 
+const num_spreaders = 4
+
 var grunt_scene = load("res://Scenes/myco_grunt.tscn")
 var spreader_scene = load("res://Scenes/myco_spreader.tscn")
-
-const num_spreaders = 4
+var spreader_array = []
+var dead_spreaders = 0
+var dead_grunts = 0
 
 
 func _ready():
@@ -14,6 +17,7 @@ func _ready():
 
 
 func _process(_delta):
+	# print(spreader_array)
 	pass
 
 
@@ -33,8 +37,7 @@ func StartGame():
 	var ybase = randf_range(r_pixels*0.95, r_pixels)
 	var degbase = randf_range(PI/6, PI/3)
 	#print(r_pixels, " ", xbase, " ", ybase, " ", degbase, " ", degbase*180/PI)
-	
-	var spreader_array = []
+
 	for i in range(num_spreaders):  # Spawn n spreaders when player starts game
 		spreader_array.append(spreader_scene.instantiate())
 		spreader_array[i].position.x = (xbase * cos(degbase + PI/2 * i)) + r_pixels
@@ -53,3 +56,27 @@ func _on_animation_player_animation_finished(StartTransition):
 
 func _on_burn_them_all_finished():
 	$BurnThemAll.play()  # Loop audio.
+
+
+func CountDeadSpreader():
+	dead_spreaders += 1
+	if dead_spreaders == num_spreaders:
+		GameWon()
+
+func CountDeadGrunt():
+	dead_grunts += 1
+
+
+func GameWon():
+	$TutorialTheme.stop()
+	$FightTheHorde.stop()
+	$BurnThemAll.stop()
+	$WinCard.play()
+
+
+func GameLost():
+	$TutorialTheme.stop()
+	$FightTheHorde.stop()
+	$BurnThemAll.stop()
+	$FailCard.play()
+
