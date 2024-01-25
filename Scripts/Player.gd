@@ -76,7 +76,7 @@ func _physics_process(delta):
 			if point.visible == true:
 				#var tile: Vector2i = tile_map.get_tile_from_vector(point.global_position)
 				#tile_map.convert_tile_to_charred(tile)
-				$"../FlameController".start_flame(point.global_position)
+				$"../FlameController".start_flame(tile_map.get_tile_from_vector(point.global_position))
 		if !$FlamethrowerAudio.playing:
 			$FlamethrowerAudio.play()
 			
