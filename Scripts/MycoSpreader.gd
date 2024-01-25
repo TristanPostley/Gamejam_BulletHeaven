@@ -1,15 +1,18 @@
 extends CharacterBody2D
 
-const speed = 25
+const speed = 50
 const acceleration = 0.1
-const convert_radius = 2
+const convert_radius = 3
 
+var walk_duration = 5
 var alive = true
-
+var xdirection = 0
+var ydirection = 0
+var init_delta = 0
+var total_time = 0
 
 func _ready():
-	# Function for spawning instances at game start goes here, unless handled as a signal.
-	pass
+	name = "MycoSpreader"
 
 
 func _process(_delta):
@@ -21,17 +24,28 @@ func _physics_process(_delta):
 	var Player = get_tree().get_root().get_node("Level").get_node("Player")
 	var playerx = Player.position.x
 	var playery = Player.position.y
-
-	# Determine relative direction to player and move.
-	var xdirection = round((playerx - position.x) / abs(playerx - position.x))
-	# print("MycoGrunt X: ", xdirection)
+	var dist = position.distance_to(Player.position)
+	total_time += _delta
+	if dist > 1000:
+		if total_time > init_delta + walk_duration:
+			xdirection = sign(randf_range(-1, 1))
+			ydirection = sign(randf_range(-1, 1))
+			init_delta = total_time
+		else:
+			pass
+	else:
+		# Determine relative direction to player.
+		xdirection = round((playerx - position.x) / abs(playerx - position.x))
+		# print("MycoGrunt X: ", xdirection)
+		ydirection = round((playery - position.y) / abs(playery - position.y))
+		# print("MycoGrunt Y: ", ydirection)
+	
+	print(xdirection, " ", ydirection)
 	if xdirection:
 		velocity.x = lerp(velocity.x, xdirection * speed * (-1), acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	var ydirection = round((playery - position.y) / abs(playery - position.y))
-	# print("MycoGrunt Y: ", ydirection)
 	if ydirection:
 		velocity.y = lerp(velocity.y, ydirection * speed * (-1), acceleration)
 	else:

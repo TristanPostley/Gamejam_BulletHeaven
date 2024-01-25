@@ -2,13 +2,16 @@ extends CharacterBody2D
 
 const speed = 100
 const acceleration = 0.15
+
 var alive = true
+var xdirection = 0
+var ydirection = 0
 
 signal touched_player
 
+
 func _ready():
 	name = "MycoGrunt"
-	pass
 
 
 func _process(_delta):
@@ -31,14 +34,14 @@ func _physics_process(_delta):
 	var playery = Player.position.y
 
 	# Determine relative direction to player and move.
-	var xdirection = round((playerx - position.x) / abs(playerx - position.x))
+	xdirection = round((playerx - position.x) / abs(playerx - position.x))
 	# print("MycoGrunt X: ", xdirection)
 	if xdirection:
 		velocity.x = lerp(velocity.x, xdirection * speed, acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	var ydirection = round((playery - position.y) / abs(playery - position.y))
+	ydirection = round((playery - position.y) / abs(playery - position.y))
 	# print("MycoGrunt Y: ", ydirection)
 	if ydirection:
 		velocity.y = lerp(velocity.y, ydirection * speed, acceleration)
