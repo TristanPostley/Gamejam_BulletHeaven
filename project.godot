@@ -13,7 +13,7 @@ config_version=5
 config/name="Mycological Madness"
 run/main_scene="res://Scenes/Level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://Assets/sprites/PlayerCharacter_Static.png"
+config/icon="res://Assets/ui/GameIcon.png"
 
 [dotnet]
 
