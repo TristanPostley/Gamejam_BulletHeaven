@@ -14,7 +14,7 @@ func _ready():
 	#get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
 	#hide()
 	#remove_child($StartMenu)
-	$TutorialTheme.volume_db=0
+	$TutorialTheme.volume_db=-20
 	$TutorialTheme.play()
 	$FightTheHorde.stop()
 	$BurnThemAll.stop()

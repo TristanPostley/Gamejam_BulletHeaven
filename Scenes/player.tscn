@@ -1,12 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=33 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
-[ext_resource type="AudioStream" uid="uid://mbmy4bppgsm8" path="res://Sound/Sound Design/GJBH_17PCFootstep1.wav" id="3_8n1pj"]
 [ext_resource type="AudioStream" uid="uid://2cwe3n37jnwl" path="res://Sound/Sound Design/GJBH_FlameThrowerIgnite.mp3" id="3_iidfu"]
-[ext_resource type="AudioStream" uid="uid://g2n4khjrt3kc" path="res://Sound/Sound Design/GJBH_17PCFootstep2 .wav" id="4_3ny1b"]
 [ext_resource type="Script" path="res://Scenes/Weapons.gd" id="4_avuct"]
 [ext_resource type="AudioStream" uid="uid://du6soeb8ax3yr" path="res://Sound/Sound Design/GJBH_FlameThrowerThrowing.mp3" id="4_k8tc8"]
+[ext_resource type="AudioStream" uid="uid://bciyji8l3qrtc" path="res://Sound/Sound Design/GJBH_29MushroomFootstepLoop.wav" id="4_ojpj3"]
 [ext_resource type="AudioStream" uid="uid://d1wsywcg1v3gd" path="res://Sound/Sound Design/GJBH_18PlayerDamageC.wav" id="4_tmqik"]
 [ext_resource type="Texture2D" uid="uid://chiadfyc282o0" path="res://Assets/sprites/Fire_Projectile_Particle_V2.png" id="5_7e8l4"]
 [ext_resource type="Script" path="res://Scripts/Hurtbox.gd" id="5_jvdss"]
@@ -149,11 +148,8 @@ flamethrowerAvailable = true
 position = Vector2(-8, 0)
 shape = SubResource("RectangleShape2D_f7n5g")
 
-[node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_8n1pj")
-
-[node name="FootstepsAudio2" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_3ny1b")
+[node name="FootstepsLoopAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ojpj3")
 
 [node name="DamageAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_tmqik")

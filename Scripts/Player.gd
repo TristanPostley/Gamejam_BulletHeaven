@@ -122,16 +122,14 @@ func _physics_process(delta):
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		$AnimatedSprite2D.play()
-		if !shouldPlayFootsteps:
-			shouldPlayFootsteps = true
-			handleFootsteps()
+		if !$FootstepsLoopAudio.is_playing():
+			$FootstepsLoopAudio.play()
 	else:
 		shouldPlayFootsteps = false
 		velocity = velocity.lerp(Vector2.ZERO, friction)
-		#$AnimatedSprite2D.stop()
+		$FootstepsLoopAudio.stop()
 		if !$AnimatedSprite2D.animation == "machete":
 			$AnimatedSprite2D.animation = "default"		
-		#$FootstepsAudio.stop()
 	move_and_slide()
 
 func enableFlamePoints():
@@ -158,17 +156,6 @@ func handleLeafblower():
 		$Weapons/Hurtbox/LeafBlowerCone.disabled = true
 		blowing = false
 		blowerInProgress = false
-
-func handleFootsteps():
-	if shouldPlayFootsteps:
-		$FootstepsAudio.pitch_scale = randf_range(.8, 1.2)
-		$FootstepsAudio.play()
-		await get_tree().create_timer(.3).timeout
-		$FootstepsAudio2.pitch_scale = randf_range(.8, 1.2)
-		$FootstepsAudio2.play()
-		await get_tree().create_timer(.3).timeout		
-		handleFootsteps()
-
 
 #Intro signals
 func remove_intro_prompts():
