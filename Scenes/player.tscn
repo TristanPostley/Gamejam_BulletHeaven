@@ -1,8 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=34 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
-[ext_resource type="AudioStream" uid="uid://0adi1lb2orgc" path="res://Sound/Music/GJBH_50BurnThemAllV1.wav" id="2_ksfew"]
 [ext_resource type="AudioStream" uid="uid://mbmy4bppgsm8" path="res://Sound/Sound Design/GJBH_17PCFootstep1.wav" id="3_8n1pj"]
 [ext_resource type="AudioStream" uid="uid://2cwe3n37jnwl" path="res://Sound/Sound Design/GJBH_FlameThrowerIgnite.mp3" id="3_iidfu"]
 [ext_resource type="AudioStream" uid="uid://g2n4khjrt3kc" path="res://Sound/Sound Design/GJBH_17PCFootstep2 .wav" id="4_3ny1b"]
@@ -149,11 +148,6 @@ flamethrowerAvailable = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8, 0)
 shape = SubResource("RectangleShape2D_f7n5g")
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_ksfew")
-volume_db = -25.618
-autoplay = true
 
 [node name="FootstepsAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_8n1pj")
