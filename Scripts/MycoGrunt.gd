@@ -94,6 +94,7 @@ func Die():
 	$AnimatedSprite2D.play("death")
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
+	get_tree().get_root().get_node("Level").CountDeadGrunt()
 
 
 func Burn():
@@ -103,7 +104,6 @@ func Burn():
 	await get_tree().create_timer(1.5).timeout
 	$BurningAudio.stop()
 	$Burning.visible = false
-	get_tree().get_root().get_node("Level").CountDeadGrunt()
 	#queue_free()
 
 

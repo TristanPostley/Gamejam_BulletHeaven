@@ -5,6 +5,7 @@ const num_spreaders = 4
 var grunt_scene = load("res://Scenes/myco_grunt.tscn")
 var spreader_scene = load("res://Scenes/myco_spreader.tscn")
 var spreader_array = []
+var total_grunts = 1
 var dead_spreaders = 0
 var dead_grunts = 0
 
@@ -54,8 +55,7 @@ func StartGame():
 	var ybase = randf_range(r_pixels*0.95, r_pixels)
 	var degbase = randf_range(PI/6, PI/3)
 	#print(r_pixels, " ", xbase, " ", ybase, " ", degbase, " ", degbase*180/PI)
-	
-	$SpreaderCount.UpdateText(0, num_spreaders+1, 0)
+
 	for i in range(num_spreaders):  # Spawn n spreaders when player starts game
 		spreader_array.append(spreader_scene.instantiate())
 		spreader_array[i].position.x = (xbase * cos(degbase + PI/2 * i)) + r_pixels
@@ -76,15 +76,22 @@ func _on_burn_them_all_finished():
 	$BurnThemAll.play()  # Loop audio.
 
 
+func CountGruntSpawn():
+	total_grunts += 1
+	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1, dead_grunts, total_grunts)
+
+
 func CountDeadSpreader():
 	dead_spreaders += 1
-	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1, dead_grunts)
+	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1, dead_grunts, total_grunts)
 	if dead_spreaders == num_spreaders+1:
 		GameWon()
 
+
 func CountDeadGrunt():
+	total_grunts -= 1
 	dead_grunts += 1
-	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1, dead_grunts)
+	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1, dead_grunts, total_grunts)
 
 
 func GameWon():

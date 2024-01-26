@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const speed = 50
+const speed = 75
 const acceleration = 0.1
 const convert_radius = 3
 

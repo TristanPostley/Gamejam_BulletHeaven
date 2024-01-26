@@ -9,7 +9,7 @@ var camera
 func _ready():
 	camera = get_tree().get_root().get_node("Level").get_node("Camera2D")
 	var initial_spreaders = get_tree().get_root().get_node("Level").get_spreaders()
-	text = "Spreaders eradicated: 0/" + str(initial_spreaders) + "\nGrunts incinerated: 0"
+	text = "Spreaders eradicated: 0/" + str(initial_spreaders) + "\nGrunts incinerated: 0" + "\nGrunts festering: 1"
 
 
 func _process(_delta):
@@ -23,6 +23,6 @@ func _process(_delta):
 	scale = Vector2(1/zoom_level, 1/zoom_level)
 
 
-func UpdateText(dead_spreaders, num_spreaders, dead_grunts):
-	text = "Spreaders eradicated: " + str(dead_spreaders) + "/" + str(num_spreaders) + "\nGrunts incinerated: " + str(dead_grunts)
+func UpdateText(dead_spreaders, num_spreaders, dead_grunts, total_grunts):
+	text = "Spreaders eradicated: " + str(dead_spreaders) + "/" + str(num_spreaders) + "\nGrunts incinerated: " + str(dead_grunts) + "\nGrunts festering: " + str(total_grunts)
 

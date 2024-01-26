@@ -28,6 +28,7 @@ func _process(_delta):
 						var new_grunt = grunt_scene.instantiate()
 						new_grunt.position = tile_pos * tile_size
 						get_tree().get_root().get_node("Level").add_child(new_grunt)
+						get_tree().get_root().get_node("Level").CountGruntSpawn()
 						# print("New grunt spawned: ", tile_pos, " ", new_grunt.position)
 
 func start_game():
