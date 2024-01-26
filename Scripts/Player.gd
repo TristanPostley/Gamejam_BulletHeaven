@@ -91,7 +91,7 @@ func _physics_process(delta):
 		$Weapons/FlamePoint3.visible = false
 		$Weapons/FlamePoint4.visible = false
 		
-	if Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
+	if inventory["leafblower"] && Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
 		$Weapons/Hurtbox/LeafBlowerCone.disabled = false
 		$Weapons/Hurtbox/LeafBlowerParticles.restart()
 		$LeafblowerAudio.play()
@@ -186,6 +186,7 @@ func _on_item_pickup_body_entered(pickup_name: String):
 		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
 	elif pickup_name == "flamethrower":
 		inventory["flamethrower"] = true
+		inventory["leafblower"] = true
 		remove_intro_prompts()
 		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
 	#elif pickup_name == "leafblower":

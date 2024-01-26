@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://de38tjp6qyx1y" path="res://Assets/sprites/GroundTile_Charred.png" id="1_5x1vf"]
 [ext_resource type="Texture2D" uid="uid://cdffxefhjfded" path="res://Assets/sprites/GroundTile_Default.png" id="2_nw0jk"]
 [ext_resource type="Texture2D" uid="uid://qatxlencwcra" path="res://Assets/sprites/GroundTile_Mycelium.png" id="3_4qaea"]
-[ext_resource type="PackedScene" uid="uid://nvb84iw8ykw2" path="res://Scenes/ship.tscn" id="5_3dt2u"]
+[ext_resource type="PackedScene" path="res://Scenes/ship.tscn" id="5_3dt2u"]
 [ext_resource type="Script" path="res://Scenes/TileMap.gd" id="5_i2teg"]
 [ext_resource type="Texture2D" uid="uid://8t7u0a7fsnf7" path="res://Assets/sprites/Invisible_Wall.png" id="7_evn5k"]
 
@@ -71,7 +71,7 @@ layer_2/tile_data = PackedInt32Array()
 script = ExtResource("5_i2teg")
 
 [node name="Ship" parent="." instance=ExtResource("5_3dt2u")]
-position = Vector2(4272, 4152)
+position = Vector2(4467, 4427)
 
 [node name="WorldBoundary" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_v0mxg")

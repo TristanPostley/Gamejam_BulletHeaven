@@ -12,14 +12,14 @@
 [ext_resource type="Script" path="res://Scenes/TutorialArea.gd" id="7_21l4d"]
 [ext_resource type="PackedScene" uid="uid://bubmqkv0q67vn" path="res://Scenes/Pickups/pickup_machete.tscn" id="9_bm8uh"]
 [ext_resource type="PackedScene" uid="uid://cfnpna6gscfpo" path="res://Scenes/Terrain/Barrel.tscn" id="10_5jt5n"]
-[ext_resource type="PackedScene" uid="uid://bbbn6inbpbnab" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
-[ext_resource type="PackedScene" uid="uid://cqdmp7bb1k3bh" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
+[ext_resource type="PackedScene" path="res://Scenes/Key Prompts/grunt_prompt.tscn" id="11_3esom"]
+[ext_resource type="PackedScene" path="res://Scenes/Key Prompts/plant_prompt.tscn" id="13_5s8f2"]
 [ext_resource type="AudioStream" uid="uid://cxfy8bqrxo4y6" path="res://Sound/Music/GJBH_14MycoMadnessThemeV1.wav" id="15_v6vo1"]
 [ext_resource type="AudioStream" uid="uid://mhi30s4qhbot" path="res://Sound/Music/GJBH_49FightTheHordeV1.mp3" id="16_4v5xq"]
 [ext_resource type="AudioStream" uid="uid://0adi1lb2orgc" path="res://Sound/Music/GJBH_50BurnThemAllV1.wav" id="17_mjrtg"]
 [ext_resource type="AudioStream" uid="uid://dmudj834pq03m" path="res://Sound/Music/GJBH_45FailCard.wav" id="18_c8x1d"]
 [ext_resource type="AudioStream" uid="uid://dpn3i4ybwgvum" path="res://Sound/Music/GJBH_46WinCard.wav" id="19_iusng"]
-[ext_resource type="PackedScene" uid="uid://doe1d6a3tpymf" path="res://Scenes/start_menu.tscn" id="20_l4gdn"]
+[ext_resource type="PackedScene" path="res://Scenes/start_menu.tscn" id="20_l4gdn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgym"]
 size = Vector2(3416, 1016)
@@ -136,6 +136,7 @@ position = Vector2(0, -91)
 
 [node name="TutorialTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_v6vo1")
+volume_db = -0.0256
 
 [node name="FightTheHorde" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_4v5xq")

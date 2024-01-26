@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjy288x5x4lpw"]
+[gd_scene load_steps=2 format=3 uid="uid://crvxee1mdlq7c"]
 
 [ext_resource type="Script" path="res://Scenes/Pickups/ItemSpawner.gd" id="1_6f4dk"]
 
