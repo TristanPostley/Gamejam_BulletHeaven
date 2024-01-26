@@ -33,6 +33,8 @@ var prompt
 var shouldReduceOxygen = false
 var oxygenAtHit
 @export var oxygenConsumption = .001
+var shouldIncreaseOxygen = false
+var oxygenAtPickup
 
 func _ready():
 	overhead_marker = $OverheadMarker
@@ -138,12 +140,20 @@ func _physics_process(delta):
 	
 	#Smoothly reducing oxygen bar after hit
 	if shouldReduceOxygen:
-		#var one:float = 1
 		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtHit - .025, delta * 1)
 		if $OxygenBar/OxygenAmount.scale.x <= oxygenAtHit - .02:
 			shouldReduceOxygen = false
 	#Reducing oxygen constantly for breathing
 	$OxygenBar/OxygenAmount.scale.x -= delta * oxygenConsumption
+	#Increase oxygen from pickup
+	if shouldIncreaseOxygen:
+		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtPickup + .025, delta * 1)
+		if $OxygenBar/OxygenAmount.scale.x >= oxygenAtPickup + .025:
+			shouldIncreaseOxygen = false
+	
+	#Player ran out of oxygen
+	if $OxygenBar/OxygenAmount.scale.x <= 0:
+		end_game()
 	
 
 func enableFlamePoints():
@@ -190,12 +200,14 @@ func _on_item_pickup_body_entered(pickup_name: String):
 		inventory["leafblower"] = true
 		remove_intro_prompts()
 		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
-	#elif pickup_name == "leafblower":
-		#inventory["leafblower"] = true
+	elif pickup_name == "oxygen":
+		oxygenAtPickup = $OxygenBar/OxygenAmount.scale.x
+		shouldIncreaseOxygen = true
 
 func _on_tutorial_exited():
 	remove_intro_prompts()
 	%Camera2D.zoom(%Camera2D.zoom_levels[3])
+	$OxygenBar.scale *= 3
 	get_tree().get_root().get_node("Level").StartGame()
 
 
@@ -208,4 +220,9 @@ func on_myco_grunt_touched_player():
 		shouldReduceOxygen = true
 		$DamageAudio.play()
 	if oxygenAtHit <= 0:  # Die:
-		get_tree().get_root().get_node("Level").GameLost()
+		end_game()
+		
+func end_game():
+	get_tree().get_root().get_node("Level").GameLost()
+	
+	
