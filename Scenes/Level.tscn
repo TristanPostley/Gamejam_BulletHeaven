@@ -186,14 +186,15 @@ z_index = 11
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Credits:
-Artist
+Kyle Spencer - Artist
 Sound
-Programming
+Sam Cantrell (QuantumSkink) - Programming
 Programming
 Programming
 
-5 nerds who had never
-made a game before."
+5 nerds who had never made a game before.
+
+Made for Pirate Software Game Jam 14."
 
 [node name="OxygenPlant4" parent="." instance=ExtResource("5_d7b7q")]
 position = Vector2(1904, 7856)
