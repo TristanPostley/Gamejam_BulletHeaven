@@ -30,6 +30,6 @@ func get_random_item() -> PackedScene:
 func _on_body_entered(body):
 	if body.name != "Player":
 		return
-	
+
 	body._on_item_pickup_body_entered(item.pickup_name)
 	queue_free()

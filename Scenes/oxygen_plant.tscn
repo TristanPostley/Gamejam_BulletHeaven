@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="4_c5x63"]
 [ext_resource type="AudioStream" uid="uid://cmtkakvd1m4rh" path="res://Sound/Sound Design/GJBH_41FireBurning.wav" id="7_584ia"]
 [ext_resource type="Texture2D" uid="uid://pqxmhx6c6hoo" path="res://Assets/sprites/OxygenDome.png" id="8_mfe8t"]
-[ext_resource type="PackedScene" uid="uid://cjy288x5x4lpw" path="res://Scenes/Pickups/ItemSpawner.tscn" id="10_1d8rs"]
+[ext_resource type="PackedScene" uid="uid://crvxee1mdlq7c" path="res://Scenes/Pickups/ItemSpawner.tscn" id="10_1d8rs"]
 [ext_resource type="PackedScene" uid="uid://jsymwigc4qls" path="res://Scenes/Pickups/pickup_oxygen.tscn" id="11_32t4e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1bgim"]

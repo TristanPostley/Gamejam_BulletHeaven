@@ -50,7 +50,8 @@ func StartGame():
 	var ybase = randf_range(r_pixels*0.95, r_pixels)
 	var degbase = randf_range(PI/6, PI/3)
 	#print(r_pixels, " ", xbase, " ", ybase, " ", degbase, " ", degbase*180/PI)
-
+	
+	$SpreaderCount.UpdateText(0, num_spreaders+1)
 	for i in range(num_spreaders):  # Spawn n spreaders when player starts game
 		spreader_array.append(spreader_scene.instantiate())
 		spreader_array[i].position.x = (xbase * cos(degbase + PI/2 * i)) + r_pixels
@@ -73,7 +74,8 @@ func _on_burn_them_all_finished():
 
 func CountDeadSpreader():
 	dead_spreaders += 1
-	if dead_spreaders == num_spreaders:
+	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1)
+	if dead_spreaders == num_spreaders+1:
 		GameWon()
 
 func CountDeadGrunt():
@@ -84,12 +86,20 @@ func GameWon():
 	$TutorialTheme.stop()
 	$FightTheHorde.stop()
 	$BurnThemAll.stop()
-	$WinCard.play()
+	$WinCard_Audio.play()
+	Pause()
+	$WinCard.WinGame()
 
 
 func GameLost():
 	$TutorialTheme.stop()
 	$FightTheHorde.stop()
 	$BurnThemAll.stop()
-	$FailCard.play()
+	$FailCard_Audio.play()
+	Pause()
+	$FailCard.LoseGame()
 
+
+func Restart():
+	print("Restarting game!")
+	get_tree().reload_current_scene()

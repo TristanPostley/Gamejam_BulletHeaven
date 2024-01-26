@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh1xtwecyveey"]
+
+[ext_resource type="Script" path="res://Scripts/FailCard.gd" id="1_sk4vy"]
+[ext_resource type="Texture2D" uid="uid://voo8l8bj6jsw" path="res://Assets/menu/Death.png" id="2_qkko2"]
+[ext_resource type="Texture2D" uid="uid://rerqau6mqssi" path="res://Assets/menu/PlayButton.png" id="3_efh2h"]
+
+[node name="FailCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_sk4vy")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_qkko2")
+
+[node name="Button" type="Button" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("3_efh2h")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
