@@ -10,25 +10,27 @@ func _physics_process(delta):
 	else:
 		$Audio_Idle.stop()
 
-
 func Die():
 	alive = false
 	$OxygenBubble.visible = false
+	$Audio_Die.play()
+	$AnimatedSprite2D.animation = "dead"
 
 func Burn():
 	if !alive:
 		return
-	Die()
+	alive = false
+	$OxygenBubble.visible = false
 	$Burning.visible = true
 	$BurningAudio.play()
 	$AnimatedSprite2D.stop()
 
+	# Player has chance to put out the fire
 	await get_tree().create_timer(1.8).timeout
 	
 	if $Burning.visible == true:
-		$Audio_Die.play()
 		$Burning.visible = false
-		$AnimatedSprite2D.animation = "dead"
+		Die()
 	
 	#queue_free()
 	
