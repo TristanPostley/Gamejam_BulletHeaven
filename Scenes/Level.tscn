@@ -197,12 +197,13 @@ Tristan Postley - Programming
 Alex Wells - Programming
 Sam Cantrell (QuantumSkink) - Programming
 
+5 nerds who had never made a game before.
+
 Pixel keys from Dream Mix:
 https://itch.io/profile/dreammix
 
-5 nerds who had never made a game before.
-
-Made for Pirate Software Game Jam 14."
+Made for Pirate Software Game Jam 14.
+"
 
 [node name="OxygenPlant4" parent="." instance=ExtResource("5_d7b7q")]
 position = Vector2(1904, 7856)

@@ -1,10 +1,11 @@
 extends Control
 
-var origin
+var active = false
 var viewportWidth = 0
 var viewportHeight = 0
 var newScale = 0
 var zoom_level = 1
+var origin
 var camera
 var credits
 
@@ -16,7 +17,10 @@ func _ready():
 
 
 func _process(delta):
-	pass
+	if active:
+		if Input.is_action_pressed("machete"):
+			active = false
+			get_tree().get_root().get_node("Level").Restart()
 
 
 func WinGame():
@@ -36,10 +40,12 @@ func WinGame():
 	$Button.position.y += viewportWidth/2/zoom_level - $Button.get_size().y/2*0.5 - 50
 
 	show()
-	credits.position =  origin + Vector2((viewportWidth/2/zoom_level)+1000, 10/zoom_level)
+	credits.position =  origin + Vector2((viewportWidth/2/zoom_level)+800, 10/zoom_level)
 	credits.scale = Vector2(1/zoom_level/1.2, 1/zoom_level/1.2)
 	credits.show()
+	active = true
 
 func _on_button_pressed():
+	active = false
 	get_tree().get_root().get_node("Level").Restart()
 
