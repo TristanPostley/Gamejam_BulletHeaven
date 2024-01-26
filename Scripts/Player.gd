@@ -205,8 +205,9 @@ func on_myco_grunt_touched_player():
 	#TODO OXYGEN DAMAGE
 #	Max oxygen = $OxygenBar/OxygenAmount.scale.x = .11
 	oxygenAtHit = $OxygenBar/OxygenAmount.scale.x
+	print(oxygenAtHit)
 	if oxygenAtHit > 0:
 		shouldReduceOxygen = true
 		$DamageAudio.play()
-	if oxygenAtHit == 0:  # Die:
+	if oxygenAtHit <= 0:  # Die:
 		get_tree().get_root().get_node("Level").GameLost()

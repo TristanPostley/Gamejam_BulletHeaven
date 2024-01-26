@@ -4,7 +4,6 @@ var origin
 var viewportWidth = 0
 var viewportHeight = 0
 var newScale = 0
-var newScaleY = 0
 
 
 func _ready():

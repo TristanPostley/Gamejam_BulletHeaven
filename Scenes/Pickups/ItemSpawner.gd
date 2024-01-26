@@ -19,7 +19,7 @@ func spawn_resource(direction = null):
 			randf_range(-1.0, 1.0),
 			randf_range(-1.0, 1.0)
 		).normalized()
-	
+
 	pickup_instance.launch(_direction * launch_speed, launch_duration)
 
 func spawn_items():
