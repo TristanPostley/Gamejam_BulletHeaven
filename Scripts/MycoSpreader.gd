@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const speed = 75
 const acceleration = 0.1
-const convert_radius = 3
+const convert_radius = 4
 
 var walk_duration = 5
 var alive = false

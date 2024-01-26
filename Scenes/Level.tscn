@@ -100,14 +100,14 @@ position = Vector2(4310, 4944)
 remote_path = NodePath("../../Camera2D")
 
 [node name="MycoGrunt" parent="." instance=ExtResource("3_7hffj")]
-position = Vector2(5721.26, 4997.02)
+position = Vector2(6000, 4800)
 speed = 0
 
 [node name="GruntPrompt" parent="MycoGrunt" instance=ExtResource("11_3esom")]
 position = Vector2(0, -72)
 
 [node name="MycoSpreader" parent="." instance=ExtResource("4_qt4jg")]
-position = Vector2(6127, 4982)
+position = Vector2(6050, 5200)
 
 [node name="FlameController" parent="." instance=ExtResource("5_dgh06")]
 position = Vector2(213, -2792)

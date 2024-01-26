@@ -40,8 +40,8 @@ func WinGame():
 	$Button.position.y += viewportWidth/2/zoom_level - $Button.get_size().y/2*0.5 - 50
 
 	show()
-	credits.position =  origin + Vector2((viewportWidth/2/zoom_level)+800, 10/zoom_level)
-	credits.scale = Vector2(1/zoom_level/1.2, 1/zoom_level/1.2)
+	credits.position =  origin + Vector2((viewportWidth/2/zoom_level)+980, 10/zoom_level)
+	credits.scale = Vector2(1/zoom_level/1.25, 1/zoom_level/1.25)
 	credits.show()
 	active = true
 
