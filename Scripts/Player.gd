@@ -180,8 +180,6 @@ func _on_wasd_prompts_completed():
 
 #Inventory
 func _on_item_pickup_body_entered(pickup_name: String):
-	print("Picked up item: " + pickup_name + "!")
-	
 	if pickup_name == "machete":
 		inventory["machete"] = true
 		remove_intro_prompts()

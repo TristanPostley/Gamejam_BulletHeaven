@@ -12,9 +12,6 @@ var active_flames : Dictionary = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tile_map = landing_zone.get_node('TileMap')
-	
-	# todo Spawn a flame for testing. Remove in production.
-	start_flame(Vector2i(45, 51))
 
 func start_flame(coords: Vector2i):
 	if is_burnable_tile(coords) != true:
