@@ -18,7 +18,8 @@ func _process(_delta):
 	zoom_level = camera.get_canvas_transform().x[0]
 	origin = camera.get_canvas_transform().origin * (-1) / zoom_level
 	position = origin
-	position.x += 10
+	position.x += 15/zoom_level
+	position.y += 10/zoom_level
 	scale = Vector2(1/zoom_level, 1/zoom_level)
 
 

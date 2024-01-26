@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/OxygenPlant.gd" id="1_juftn"]
 [ext_resource type="Texture2D" uid="uid://jgwt52anioho" path="res://Assets/sprites/OxygenPlant.png" id="2_kpfhb"]
 [ext_resource type="Texture2D" uid="uid://bfbudgvmxycmo" path="res://Assets/sprites/OxygenPlant_Dead.png" id="2_vrqd5"]
-[ext_resource type="AudioStream" uid="uid://dtfy7mlk5c7hy" path="res://Sound/Placeholders/OxygenPlant_Temp-skyrim_nirnroot.wav" id="3_m88bk"]
 [ext_resource type="Texture2D" uid="uid://bhspw3ishwmh6" path="res://Assets/sprites/Fire_01.png" id="3_xq2qo"]
 [ext_resource type="Texture2D" uid="uid://xyq4jhpbujm3" path="res://Assets/sprites/Fire_02.png" id="4_7flsd"]
-[ext_resource type="AudioStream" uid="uid://c1oef2fqsad3r" path="res://Sound/Placeholders/Unit_Death_Temp.wav" id="4_c5x63"]
+[ext_resource type="AudioStream" uid="uid://bf2b48kl7f6s5" path="res://Sound/Sound Design/GJBH_43OxygenPlanNearbyE.wav" id="6_unsmj"]
 [ext_resource type="AudioStream" uid="uid://cmtkakvd1m4rh" path="res://Sound/Sound Design/GJBH_41FireBurning.wav" id="7_584ia"]
+[ext_resource type="AudioStream" uid="uid://u0kq5dn2pbl" path="res://Sound/Sound Design/GJBH_44OxygenBurning.wav" id="7_xgjdc"]
 [ext_resource type="Texture2D" uid="uid://pqxmhx6c6hoo" path="res://Assets/sprites/OxygenDome.png" id="8_mfe8t"]
 [ext_resource type="PackedScene" uid="uid://crvxee1mdlq7c" path="res://Scenes/Pickups/ItemSpawner.tscn" id="10_1d8rs"]
 [ext_resource type="PackedScene" uid="uid://jsymwigc4qls" path="res://Scenes/Pickups/pickup_oxygen.tscn" id="11_32t4e"]
@@ -66,12 +66,12 @@ sprite_frames = SubResource("SpriteFrames_esvnb")
 autoplay = "default"
 
 [node name="Audio_Idle" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_m88bk")
-volume_db = -25.0
+stream = ExtResource("6_unsmj")
+volume_db = -10.0
 
 [node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_c5x63")
-volume_db = -20.0
+stream = ExtResource("7_xgjdc")
+volume_db = -5.0
 pitch_scale = 1.4
 max_distance = 1000.0
 

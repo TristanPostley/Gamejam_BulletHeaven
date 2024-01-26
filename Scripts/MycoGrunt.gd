@@ -13,8 +13,10 @@ var playery = 0
 var pushedPosition
 var pushing = false
 
+
 func _ready():
 	Player = get_tree().get_root().get_node("Level").get_node("Player")
+	$AnimatedSprite2D.play("spawn")
 	name = "MycoGrunt"
 
 
@@ -71,7 +73,7 @@ func _physics_process(_delta):
 		$Audio_Move.stop()
 
 	if alive:  # If dead, stop moving and let animation/sound play.
-		$AnimatedSprite2D.play("move")
+		#print($AnimatedSprite2D.animation)
 		move_and_slide()
 		if get_last_slide_collision():
 			if get_slide_collision(0).get_collider().name == "Player":
@@ -90,7 +92,6 @@ func Die():
 	$AnimatedSprite2D.play("death")
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
-		
 
 
 func Burn():
@@ -110,7 +111,8 @@ func Attack():
 	get_tree().get_root().get_node("Level").get_node("Player").on_myco_grunt_touched_player()
 	#await get_tree().create_timer(0.5).timeout
 	#queue_free()
-	
+
+
 func Push(playerPosition):
 	#print("Implement pushing")
 	#print("angle ",playerPosition, " theta: ", position, playerPosition.angle_to_point(position), " r: ", playerPosition.distance_to(position))
@@ -118,3 +120,9 @@ func Push(playerPosition):
 	var theta = playerPosition.angle_to_point(position)
 	pushedPosition = Vector2(position.x + (1.001 * r * cos(theta)), position.y + (1.001 * r * sin(theta)))
 	pushing = true
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if $AnimatedSprite2D.animation == "spawn":
+		$AnimatedSprite2D.play("move")
+

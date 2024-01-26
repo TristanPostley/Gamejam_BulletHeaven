@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://rerqau6mqssi" path="res://Assets/menu/PlayButton.png" id="3_efh2h"]
 
 [node name="FailCard" type="Control"]
+z_index = 5
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
