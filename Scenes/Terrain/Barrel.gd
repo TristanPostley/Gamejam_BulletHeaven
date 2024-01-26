@@ -2,6 +2,9 @@ extends StaticBody2D
 
 var destroyed = false
 
+func _ready():
+	%ItemSpawner.launch_speed = 400
+
 func _on_barrel_hurt_box_area_entered(area):
 	if destroyed:
 		return
