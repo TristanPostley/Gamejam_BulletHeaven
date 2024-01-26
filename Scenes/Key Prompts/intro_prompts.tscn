@@ -88,7 +88,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 5.0
 }]
 
 [sub_resource type="Animation" id="Animation_auf48"]
