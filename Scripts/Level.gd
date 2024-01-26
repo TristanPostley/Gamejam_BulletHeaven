@@ -10,15 +10,28 @@ var dead_grunts = 0
 
 
 func _ready():
+	Pause()
+	#get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
+	#hide()
+	#remove_child($StartMenu)
 	$TutorialTheme.volume_db=0
 	$TutorialTheme.play()
 	$FightTheHorde.stop()
 	$BurnThemAll.stop()
+	#show()
 
 
 func _process(_delta):
-	# print(spreader_array)
+	#print(spreader_array)
 	pass
+
+
+func Pause():
+	get_tree().paused = true
+
+
+func UnPause():
+	get_tree().paused = false
 
 
 func StartGame():
