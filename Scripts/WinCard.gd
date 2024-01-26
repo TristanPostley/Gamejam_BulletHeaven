@@ -37,7 +37,7 @@ func WinGame():
 
 	show()
 	credits.position =  origin + Vector2((viewportWidth/2/zoom_level)+1000, 10/zoom_level)
-	credits.scale = Vector2(1/zoom_level, 1/zoom_level)
+	credits.scale = Vector2(1/zoom_level/1.2, 1/zoom_level/1.2)
 	credits.show()
 
 func _on_button_pressed():
