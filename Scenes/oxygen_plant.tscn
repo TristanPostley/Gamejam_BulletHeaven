@@ -46,11 +46,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocn7v"]
-size = Vector2(90, 73)
+size = Vector2(90, 60.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fpu8"]
 
 [node name="OxygenPlant" type="CharacterBody2D"]
+z_index = -1
 script = ExtResource("1_juftn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -82,7 +83,7 @@ pitch_scale = 1.4
 max_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -27)
+position = Vector2(0, -39.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_ocn7v")
 

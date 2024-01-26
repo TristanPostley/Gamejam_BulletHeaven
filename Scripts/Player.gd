@@ -141,14 +141,12 @@ func _physics_process(delta):
 	
 	#Smoothly reducing oxygen bar after hit
 	if shouldReduceOxygen:
-		print($OxygenBar/OxygenAmount.scale.x, oxygenAtHit - .025)
 		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtHit - .025, delta * 1)
 		if $OxygenBar/OxygenAmount.scale.x <= oxygenAtHit - .02:
 			shouldReduceOxygen = false
 	#Reducing oxygen constantly for breathing
 	$OxygenBar/OxygenAmount.scale.x -= delta * oxygenConsumption
 	#Increase oxygen from pickup
-	print(shouldIncreaseOxygen)
 	if shouldIncreaseOxygen && $OxygenBar/OxygenAmount.scale.x < .11:
 		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtPickup + .025, delta * 1)
 		if $OxygenBar/OxygenAmount.scale.x >= oxygenAtPickup + .02 || $OxygenBar/OxygenAmount.scale.x >= .11:
