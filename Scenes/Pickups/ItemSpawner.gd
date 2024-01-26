@@ -8,7 +8,7 @@ extends Node2D
 func spawn_resource(direction = null):
 	var pickup_instance: BasePickup = pickup.instantiate()
 	pickup_instance.position = position
-	add_child(pickup_instance)
+	call_deferred("add_child", pickup_instance)
 	
 	# The direction is random by default, but is overridden by param
 	var _direction: Vector2

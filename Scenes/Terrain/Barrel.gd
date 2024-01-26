@@ -10,7 +10,7 @@ func _on_barrel_hurt_box_area_entered(area):
 		return
 	
 	# todo Should use signals/classes instead of looking for the hitbox with get_node
-	var machete_box = area.get_node("MacheteBox")
+	var machete_box = area.get_node_or_null("MacheteBox")
 	if !machete_box:
 		return
 	
