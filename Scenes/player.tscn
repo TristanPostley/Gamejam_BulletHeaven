@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://t4ev1rrmiidy"]
+[gd_scene load_steps=34 format=3 uid="uid://t4ev1rrmiidy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh0g5"]
 [ext_resource type="Texture2D" uid="uid://cqqi1smcwn02o" path="res://Assets/sprites/PlayerCharacter_Static.png" id="2_d1koi"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dy2ec23n7fcu6" path="res://Assets/sprites/PlayerCharacter_Attack01.png" id="13_bs7sl"]
 [ext_resource type="Texture2D" uid="uid://dsork2pfksa8t" path="res://Assets/sprites/PlayerCharacter_Attack02.png" id="14_5ow1v"]
 [ext_resource type="Texture2D" uid="uid://dlxn781nrebjb" path="res://Assets/ui/OxygenBar.png" id="20_13vmf"]
+[ext_resource type="Texture2D" uid="uid://da5c2dpvtqukq" path="res://Assets/ui/BarBackground.png" id="20_wl8sh"]
 [ext_resource type="Texture2D" uid="uid://cpkrdd7abrvc8" path="res://Assets/ui/oxygen.png" id="21_cya2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5g"]
@@ -264,13 +265,22 @@ explosiveness = 1.0
 position = Vector2(0, -136)
 
 [node name="OxygenBar" type="Sprite2D" parent="."]
-scale = Vector2(2, 12)
+position = Vector2(-45, -25)
+scale = Vector2(0.175, 1.05)
 texture = ExtResource("20_13vmf")
-offset = Vector2(-900, 0)
+offset = Vector2(-100, 0)
 
-[node name="OxygenIcon" type="Sprite2D" parent="."]
+[node name="OxygenIcon" type="Sprite2D" parent="OxygenBar"]
+position = Vector2(-102.857, -79.32)
+scale = Vector2(1.13, 0.188)
 texture = ExtResource("21_cya2p")
-offset = Vector2(-1800, -900)
+
+[node name="OxygenAmount" type="Sprite2D" parent="OxygenBar"]
+position = Vector2(-114.286, 63.8095)
+rotation = -1.5708
+scale = Vector2(0.11, 0.057)
+texture = ExtResource("20_wl8sh")
+centered = false
 
 [connection signal="body_entered" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_exited"]

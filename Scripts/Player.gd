@@ -30,6 +30,11 @@ var prompt
 
 @onready var tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
 
+var shouldReduceOxygen = false
+var oxygenAtHit
+@export var oxygenConsumption = .001
+@export var enemyDamagePercent:float = 20
+
 func _ready():
 	overhead_marker = $OverheadMarker
 	prompt = INTRO_PROMPTS.instantiate()
@@ -131,6 +136,17 @@ func _physics_process(delta):
 		if !$AnimatedSprite2D.animation == "machete":
 			$AnimatedSprite2D.animation = "default"		
 	move_and_slide()
+	
+	#Smoothly reducing oxygen bar after hit
+	if shouldReduceOxygen:
+		#var one:float = 1
+		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtHit * .78, delta * 1)
+		if $OxygenBar/OxygenAmount.scale.x <= oxygenAtHit * (1 - (enemyDamagePercent/100)):
+			print(1 - (enemyDamagePercent/100))
+			shouldReduceOxygen = false
+	#Reducing oxygen constantly for breathing
+	$OxygenBar/OxygenAmount.scale.x -= delta * oxygenConsumption
+	
 
 func enableFlamePoints():
 	$Weapons/FlamePoint1.visible = true
@@ -187,8 +203,10 @@ func _on_tutorial_exited():
 
 func on_myco_grunt_touched_player():
 	#TODO OXYGEN DAMAGE
-	if $OxygenBar.scale.y > 0:
-		$OxygenBar.scale.y -= 1
+#	Max oxygen = $OxygenBar/OxygenAmount.scale.x = .11
+	oxygenAtHit = $OxygenBar/OxygenAmount.scale.x
+	if oxygenAtHit > 0:
+		shouldReduceOxygen = true
 		$DamageAudio.play()
-	if $OxygenBar.scale.y == 0:  # Die:
+	if oxygenAtHit == 0:  # Die:
 		get_tree().get_root().get_node("Level").GameLost()
