@@ -26,6 +26,10 @@ func _process(_delta):
 	pass
 
 
+func get_spreaders():
+	return num_spreaders+1
+
+
 func Pause():
 	get_tree().paused = true
 
@@ -51,7 +55,7 @@ func StartGame():
 	var degbase = randf_range(PI/6, PI/3)
 	#print(r_pixels, " ", xbase, " ", ybase, " ", degbase, " ", degbase*180/PI)
 	
-	$SpreaderCount.UpdateText(0, num_spreaders+1)
+	$SpreaderCount.UpdateText(0, num_spreaders+1, 0)
 	for i in range(num_spreaders):  # Spawn n spreaders when player starts game
 		spreader_array.append(spreader_scene.instantiate())
 		spreader_array[i].position.x = (xbase * cos(degbase + PI/2 * i)) + r_pixels
@@ -74,12 +78,13 @@ func _on_burn_them_all_finished():
 
 func CountDeadSpreader():
 	dead_spreaders += 1
-	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1)
+	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1, dead_grunts)
 	if dead_spreaders == num_spreaders+1:
 		GameWon()
 
 func CountDeadGrunt():
 	dead_grunts += 1
+	$SpreaderCount.UpdateText(dead_spreaders, num_spreaders+1, dead_grunts)
 
 
 func GameWon():

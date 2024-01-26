@@ -6,9 +6,12 @@ const acceleration = 0.15
 var alive = true
 var xdirection = -1
 var ydirection = 0
-
+var Player
+var playerx = 0
+var playery = 0
 
 func _ready():
+	Player = get_tree().get_root().get_node("Level").get_node("Player")
 	name = "MycoGrunt"
 
 
@@ -27,25 +30,37 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	# Fetch player position.
-	var Player = get_tree().get_root().get_node("Level").get_node("Player")
-	var playerx = Player.position.x
-	var playery = Player.position.y
+	playerx = Player.position.x
+	playery = Player.position.y
 
 	# Determine relative direction to player and move.
-	xdirection = round((playerx - position.x) / abs(playerx - position.x))
-	# print("MycoGrunt X: ", xdirection)
+	if position.x > playerx:
+		xdirection = -1
+	elif position.x < playerx:
+		xdirection = 1
+	else:
+		xdirection = 0
+
+	if position.y > playery:
+		ydirection = -1
+	elif position.y < playery:
+		ydirection = 1
+	else:
+		ydirection = 0
+	#print("MycoGrunt X: ", xdirection, " ", "MycoGrunt Y: ", ydirection)
+
+	#Resolve movement from direction.
 	if xdirection:
-		velocity.x = lerp(velocity.x, xdirection * speed, acceleration)
+		velocity.x = lerp(velocity.x, float(xdirection) * speed, acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	ydirection = round((playery - position.y) / abs(playery - position.y))
-	# print("MycoGrunt Y: ", ydirection)
 	if ydirection:
-		velocity.y = lerp(velocity.y, ydirection * speed, acceleration)
+		velocity.y = lerp(velocity.y, float(ydirection) * speed, acceleration)
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	#print(xdirection, " ", ydirection)
+
 	if (xdirection or ydirection) and alive:  # If moving and not already playing, start footstep audio.
 		if !$Audio_Move.playing: 
 			$Audio_Move.play()

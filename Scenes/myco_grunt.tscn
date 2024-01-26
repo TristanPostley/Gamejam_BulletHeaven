@@ -60,12 +60,11 @@ animation = &"death"
 
 [node name="Audio_Move" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ypfwh")
-volume_db = 20.0
+volume_db = 10.0
 max_distance = 1000.0
 
 [node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_ipvr2")
-volume_db = 5.0
 max_distance = 750.0
 
 [node name="BurningAudio" type="AudioStreamPlayer2D" parent="."]

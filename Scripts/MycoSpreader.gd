@@ -35,20 +35,28 @@ func _physics_process(_delta):
 		else:
 			pass
 	else:
-		# Determine relative direction to player.
-		xdirection = round((playerx - position.x) / abs(playerx - position.x))
-		#print("MycoGrunt X: ", xdirection)
-		ydirection = round((playery - position.y) / abs(playery - position.y))
-		#print("MycoGrunt Y: ", ydirection)
+		if position.x > playerx:
+			xdirection = -1
+		elif position.x < playerx:
+			xdirection = 1
+		else:
+			xdirection = 0
+
+		if position.y > playery:
+			ydirection = -1
+		elif position.y < playery:
+			ydirection = 1
+		else:
+			ydirection = 0
 	
 	#print(xdirection, " ", ydirection)
 	if xdirection:
-		velocity.x = lerp(velocity.x, xdirection * speed * (-1), acceleration)
+		velocity.x = lerp(velocity.x, float(xdirection) * speed * (-1), acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	if ydirection:
-		velocity.y = lerp(velocity.y, ydirection * speed * (-1), acceleration)
+		velocity.y = lerp(velocity.y, float(ydirection) * speed * (-1), acceleration)
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 
