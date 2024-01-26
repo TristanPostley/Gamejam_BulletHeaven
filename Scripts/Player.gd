@@ -141,17 +141,19 @@ func _physics_process(delta):
 	
 	#Smoothly reducing oxygen bar after hit
 	if shouldReduceOxygen:
+		print($OxygenBar/OxygenAmount.scale.x, oxygenAtHit - .025)
 		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtHit - .025, delta * 1)
 		if $OxygenBar/OxygenAmount.scale.x <= oxygenAtHit - .02:
 			shouldReduceOxygen = false
 	#Reducing oxygen constantly for breathing
 	$OxygenBar/OxygenAmount.scale.x -= delta * oxygenConsumption
 	#Increase oxygen from pickup
+	print(shouldIncreaseOxygen)
 	if shouldIncreaseOxygen && $OxygenBar/OxygenAmount.scale.x < .11:
 		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtPickup + .025, delta * 1)
-		if $OxygenBar/OxygenAmount.scale.x >= oxygenAtPickup + .02:
+		if $OxygenBar/OxygenAmount.scale.x >= oxygenAtPickup + .02 || $OxygenBar/OxygenAmount.scale.x >= .11:
 			shouldIncreaseOxygen = false
-	
+			
 	#Player ran out of oxygen
 	if $OxygenBar/OxygenAmount.scale.x <= 0:
 		end_game()
@@ -216,7 +218,7 @@ func on_myco_grunt_touched_player():
 	#TODO OXYGEN DAMAGE
 #	Max oxygen = $OxygenBar/OxygenAmount.scale.x = .11
 	oxygenAtHit = $OxygenBar/OxygenAmount.scale.x
-	print(oxygenAtHit)
+	#print(oxygenAtHit)
 	if oxygenAtHit > 0:
 		shouldReduceOxygen = true
 		$DamageAudio.play()
