@@ -3,7 +3,8 @@ extends Node2D
 @onready var landing_zone = %LandingZone
 var tile_map: TileMapResource
 
-@export var random_spread_delay = .75
+@export var random_spread_delay: float = .75
+@export var random_spread_chance: int = 75
 
 const GROUND_FLAMES = preload("res://Scenes/Flames/ground_flames.tscn")
 
@@ -47,6 +48,11 @@ func _on_flame_spread_attempted(tile: Vector2i):
 	for surrounding_tile in surrounding_tiles:
 		# Callback after the timer completes
 		var spread_to_tile = func(): start_flame(surrounding_tile)
+		
+		# Randomized chance at spreading
+		var coin_flip = randi_range(1,100)
+		if coin_flip > random_spread_chance: 
+			return
 		
 		# Async timer that will emit a signal on callback
 		get_tree().create_timer(randf_range(0, random_spread_delay)).timeout.connect(spread_to_tile)
