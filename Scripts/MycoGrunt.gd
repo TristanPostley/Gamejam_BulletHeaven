@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 125
+@export var speed = 12500
 const acceleration = 0.15
 
 var alive = false

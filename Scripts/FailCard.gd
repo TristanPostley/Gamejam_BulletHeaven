@@ -6,10 +6,11 @@ var viewportHeight = 0
 var newScale = 0
 var zoom_level = 1
 var camera
-
+var credits
 
 func _ready():
 	camera = get_tree().get_root().get_node("Level").get_node("Camera2D")
+	credits = get_tree().get_root().get_node("Level").get_node("Credits") 
 	hide()
 
 
@@ -32,9 +33,11 @@ func LoseGame():
 	$Button.position = origin
 	$Button.position.x += viewportWidth/2/zoom_level - $Button.get_size().x/2*0.5
 	$Button.position.y += viewportWidth/2/zoom_level - $Button.get_size().y/2*0.5 - 50
-
+	
 	show()
-
+	credits.position =  origin + Vector2((viewportWidth/2/zoom_level)+1000, 10/zoom_level)
+	credits.scale = Vector2(1/zoom_level, 1/zoom_level)
+	credits.show()
 
 func _on_button_pressed():
 	get_tree().get_root().get_node("Level").Restart()

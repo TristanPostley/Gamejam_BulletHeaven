@@ -39,5 +39,7 @@ func _process(delta):
 func _on_button_pressed():
 	print("Starting tutorial!")
 	#get_tree().change_scene_to_node("res://Scenes/Level.tscn")
+	#set_modulate(lerp(get_modulate(), Color(1,1,1,0), 0.5))
+	#await get_tree().create_timer(1).timeout
 	hide()
 	get_tree().get_root().get_node("Level").UnPause()

@@ -164,16 +164,36 @@ stream = ExtResource("18_c8x1d")
 stream = ExtResource("19_iusng")
 
 [node name="StartMenu" parent="." instance=ExtResource("20_l4gdn")]
+process_mode = 3
+z_index = 7
 
 [node name="FailCard" parent="." instance=ExtResource("21_wijnb")]
+process_mode = 3
 
 [node name="WinCard" parent="." instance=ExtResource("23_toygp")]
+process_mode = 3
 
 [node name="SpreaderCount" type="Label" parent="."]
+process_mode = 3
 z_index = 6
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("23_31vgi")
+
+[node name="Credits" type="Label" parent="."]
+visible = false
+z_index = 11
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Credits:
+Artist
+Sound
+Programming
+Programming
+Programming
+
+5 nerds who had never
+made a game before."
 
 [node name="OxygenPlant4" parent="." instance=ExtResource("5_d7b7q")]
 position = Vector2(1904, 7856)
