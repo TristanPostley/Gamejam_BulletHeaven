@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed = 125
 const acceleration = 0.15
 
-var alive = true
+var alive = false
 var xdirection = -1
 var ydirection = 0
 var Player
@@ -33,7 +33,7 @@ func _process(_delta):
 	pass
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	# Fetch player position.
 	playerx = Player.position.x
 	playery = Player.position.y
@@ -80,9 +80,11 @@ func _physics_process(_delta):
 				Attack()
 				
 	if pushing:
-		position = position.lerp(pushedPosition, .4)
-		if position == pushedPosition:
+		alive = false
+		position = position.lerp(pushedPosition, delta * 5)
+		if position.is_equal_approx(pushedPosition):
 			pushing = false
+			alive = true
 
 
 func Die():
@@ -114,8 +116,8 @@ func Attack():
 
 
 func Push(playerPosition):
-	#print("Implement pushing")
-	#print("angle ",playerPosition, " theta: ", position, playerPosition.angle_to_point(position), " r: ", playerPosition.distance_to(position))
+	if pushing:
+		return
 	var r = playerPosition.distance_to(position)
 	var theta = playerPosition.angle_to_point(position)
 	pushedPosition = Vector2(position.x + (1.001 * r * cos(theta)), position.y + (1.001 * r * sin(theta)))
@@ -125,4 +127,5 @@ func Push(playerPosition):
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "spawn":
 		$AnimatedSprite2D.play("move")
+		alive = true
 

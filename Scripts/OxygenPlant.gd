@@ -31,7 +31,6 @@ func Burn():
 	#queue_free()
 	
 func Extinguish():
-	print('test')
 	$Burning.visible = false
 	alive = true
 	$OxygenBubble.visible = true

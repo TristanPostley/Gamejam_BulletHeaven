@@ -27,7 +27,7 @@ func _on_body_entered(body):
 		if activeWeapon == "flamethrower":
 			body.Burn()
 		elif activeWeapon == "leafblower":
-			body.Push()
+			body.Push(global_position)
 		else:
 			body.Die()
 	elif body.name.begins_with("OxygenPlant"):

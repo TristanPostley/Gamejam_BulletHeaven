@@ -11,6 +11,8 @@ var ydirection = sign(randf_range(-1, 1))
 var init_delta = 0
 var total_time = 0
 
+var pushedPosition
+var pushing = false
 
 func _ready():
 	name = "MycoSpreader"
@@ -20,13 +22,13 @@ func _process(_delta):
 	pass
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	# Fetch player position.
 	var Player = get_tree().get_root().get_node("Level").get_node("Player")
 	var playerx = Player.position.x
 	var playery = Player.position.y
 	var dist = position.distance_to(Player.position)
-	total_time += _delta
+	total_time += delta
 	if dist > 1000:
 		if total_time > init_delta + walk_duration:
 			xdirection = sign(randf_range(-1, 1))
@@ -65,6 +67,13 @@ func _physics_process(_delta):
 			$Audio_Move.play()
 	else:
 		$Audio_Move.stop()
+		
+	if pushing:
+		alive = false
+		position = position.lerp(pushedPosition, delta * 5)
+		if position.is_equal_approx(pushedPosition):
+			pushing = false
+			alive = true
 
 	if alive:  #Do stuff
 		$AnimatedSprite2D.play("move")
@@ -105,6 +114,10 @@ func Burn():
 	get_tree().get_root().get_node("Level").CountDeadSpreader()
 	#queue_free()
 
-func Push():
-	print("Implement pushing")
-	pass
+func Push(playerPosition):
+	if pushing:
+		return
+	var r = playerPosition.distance_to(position)
+	var theta = playerPosition.angle_to_point(position)
+	pushedPosition = Vector2(position.x + (1.0001 * r * cos(theta)), position.y + (1.0001 * r * sin(theta)))
+	pushing = true
