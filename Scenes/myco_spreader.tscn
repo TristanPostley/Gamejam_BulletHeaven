@@ -47,10 +47,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11yr4"]
-size = Vector2(120, 100)
+size = Vector2(120, 96.5)
 
 [node name="MycoSpreader" type="CharacterBody2D"]
 z_index = -1
+position = Vector2(0, -106)
+scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_wsadi")
 
@@ -81,5 +83,5 @@ pitch_scale = 0.6
 max_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 20)
+position = Vector2(-0.5, 11.25)
 shape = SubResource("RectangleShape2D_11yr4")

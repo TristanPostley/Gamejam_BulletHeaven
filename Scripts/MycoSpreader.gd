@@ -105,10 +105,13 @@ func Die():
 	
 	var dead_spreader = Sprite2D.new()
 	dead_spreader.texture = death_sprite.texture
-	dead_spreader.scale = death_sprite.scale
+	dead_spreader.scale = death_sprite.scale * 2
 	dead_spreader.z_index = death_sprite.z_index
 	dead_spreader.position = position
+	
+	await get_tree().create_timer(1.8).timeout
 	get_tree().get_root().get_node("Level").add_child.call_deferred(dead_spreader)
+	queue_free()
 
 
 func Burn():

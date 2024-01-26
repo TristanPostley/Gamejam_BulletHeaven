@@ -9,4 +9,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	look_at(get_global_mouse_position())
-	pass
+	if Input.get_joy_axis(0, JOY_AXIS_RIGHT_X) > .1 || Input.get_joy_axis(0 ,JOY_AXIS_RIGHT_Y) > .1 || Input.get_joy_axis(0, JOY_AXIS_RIGHT_X) < -.1 || Input.get_joy_axis(0 ,JOY_AXIS_RIGHT_Y) < -.1:
+		rotation = Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0 ,JOY_AXIS_RIGHT_Y)).angle()
+		

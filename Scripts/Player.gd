@@ -43,6 +43,7 @@ func _ready():
 	prompt.position = overhead_marker.position
 	prompt.wasd_prompts_completed.connect(_on_wasd_prompts_completed)
 	add_child(prompt)
+
 	
 
 func get_input():
@@ -216,6 +217,7 @@ func on_myco_grunt_touched_player():
 		shouldReduceOxygen = true
 		oxygenTarget = oxygenAtHit - .025
 		$DamageAudio.play()
+		Input.start_joy_vibration(0,1,1,.25)
 	if oxygenAtHit <= 0:  # Die:
 		end_game()
 		

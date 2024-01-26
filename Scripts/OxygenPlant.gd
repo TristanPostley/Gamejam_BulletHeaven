@@ -2,6 +2,14 @@ extends CharacterBody2D
 
 var alive = true
 
+@export var startBurning = false
+
+func _ready():
+	if startBurning:
+		$Burning.visible = true
+		alive = false
+		$OxygenBubble.visible = false
+
 func _physics_process(delta):
 	if alive:  # If dead, stop moving and let animation/sound play.
 		$AnimatedSprite2D.play("idle")
@@ -35,9 +43,13 @@ func Burn():
 	#queue_free()
 	
 func Extinguish():
-	$Burning.visible = false
-	alive = true
-	$OxygenBubble.visible = true
+	if $Burning.visible:
+		$Burning.visible = false
+		alive = true
+		$OxygenBubble.visible = true
+		for child in get_children():
+			if child.name == "PlantPrompt":
+				child.visible = false
 	
 
 func _on_oxygen_timer_timeout():

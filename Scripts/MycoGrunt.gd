@@ -103,6 +103,9 @@ func Die():
 	dead_grunt.z_index = death_sprite.z_index
 	dead_grunt.position = position
 	get_tree().get_root().get_node("Level").add_child.call_deferred(dead_grunt)
+	
+	await get_tree().create_timer(1.5).timeout	
+	queue_free()	
 
 
 func Burn():

@@ -61,8 +61,8 @@ animation = &"idle"
 
 [node name="Burning" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(-0.5, 0)
-scale = Vector2(0.695313, 0.765625)
+position = Vector2(7.99998, 26)
+scale = Vector2(0.828125, 1.17188)
 sprite_frames = SubResource("SpriteFrames_esvnb")
 autoplay = "default"
 

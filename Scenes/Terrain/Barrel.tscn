@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cfnpna6gscfpo"]
 
 [ext_resource type="Script" path="res://Scenes/Terrain/Barrel.gd" id="1_e78gn"]
-[ext_resource type="Texture2D" uid="uid://bbdb4j1kgbrm1" path="res://Assets/sprites/Debris02.png" id="2_5uc04"]
-[ext_resource type="PackedScene" uid="uid://bcqlnirohunsu" path="res://Scenes/Key Prompts/barrel_prompt.tscn" id="3_n0gtd"]
+[ext_resource type="Texture2D" uid="uid://cj66rnc8hejwo" path="res://Assets/sprites/Debris02.png" id="2_5uc04"]
+[ext_resource type="PackedScene" path="res://Scenes/Key Prompts/barrel_prompt.tscn" id="3_n0gtd"]
 [ext_resource type="PackedScene" uid="uid://crvxee1mdlq7c" path="res://Scenes/Pickups/ItemSpawner.tscn" id="4_ngbib"]
 [ext_resource type="PackedScene" uid="uid://q4m8o6kfry5q" path="res://Scenes/Pickups/pickup_flamethrower.tscn" id="5_yrvsm"]
 
