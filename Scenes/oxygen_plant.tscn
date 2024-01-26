@@ -103,7 +103,7 @@ pickup = ExtResource("11_32t4e")
 drop_count = 20
 
 [node name="OxygenTimer" type="Timer" parent="ItemSpawner"]
-wait_time = 20.0
+wait_time = 3.0
 autostart = true
 
 [connection signal="timeout" from="ItemSpawner/OxygenTimer" to="." method="_on_oxygen_timer_timeout"]
