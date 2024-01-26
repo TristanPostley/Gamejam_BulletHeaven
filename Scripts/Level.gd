@@ -65,7 +65,7 @@ func StartGame():
 		spreader_array[i].set_name("MycoSpreader"+str(i))
 		spreader_array[i].Spawn()
 		#print(spreader_array[i].name)
-		add_child(spreader_array[i])
+		add_child.call_deferred(spreader_array[i])
 
 
 func _on_animation_player_animation_finished(StartTransition):

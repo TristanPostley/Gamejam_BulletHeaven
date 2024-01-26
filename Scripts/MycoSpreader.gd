@@ -108,7 +108,7 @@ func Die():
 	dead_spreader.scale = death_sprite.scale
 	dead_spreader.z_index = death_sprite.z_index
 	dead_spreader.position = position
-	get_tree().get_root().get_node("Level").add_child(dead_spreader)
+	get_tree().get_root().get_node("Level").add_child.call_deferred(dead_spreader)
 
 
 func Burn():

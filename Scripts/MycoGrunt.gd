@@ -102,7 +102,7 @@ func Die():
 	dead_grunt.scale = death_sprite.scale
 	dead_grunt.z_index = death_sprite.z_index
 	dead_grunt.position = position
-	get_tree().get_root().get_node("Level").add_child(dead_grunt)
+	get_tree().get_root().get_node("Level").add_child.call_deferred(dead_grunt)
 
 
 func Burn():
