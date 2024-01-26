@@ -3,12 +3,11 @@ extends Area2D
 signal on_tutorial_exited()
 var game_started = false
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
@@ -20,3 +19,4 @@ func _on_body_exited(body):
 	elif !game_started:
 		game_started = true
 		on_tutorial_exited.emit()
+

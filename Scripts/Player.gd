@@ -17,7 +17,7 @@ var blowerInProgress = false
 @onready var flamepoints = [$Weapons/FlamePoint1, $Weapons/FlamePoint2, $Weapons/FlamePoint3, $Weapons/FlamePoint4, $Weapons/FlamePoint9, $Weapons/FlamePoint5, $Weapons/FlamePoint6, $Weapons/FlamePoint7, $Weapons/FlamePoint8, $Weapons/FlamePoint10, $Weapons/FlamePoint11]
 
 # Intro signals
-@onready var start_area = $"../StartArea"
+#@onready var start_area = $"../StartArea"
 
 # Key Prompts
 var overhead_marker
