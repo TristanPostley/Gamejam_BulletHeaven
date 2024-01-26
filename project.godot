@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Mycological Madness"
+config/name="Myco Madness"
 run/main_scene="res://Scenes/Level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Assets/ui/GameIcon.png"
