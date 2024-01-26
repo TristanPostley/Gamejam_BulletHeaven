@@ -12,10 +12,11 @@ var playery = 0
 
 var pushedPosition
 var pushing = false
-
+var death_sprite
 
 func _ready():
 	Player = get_tree().get_root().get_node("Level").get_node("Player")
+	death_sprite = get_tree().get_root().get_node("Level").get_node("DeadMycoGrunt")
 	$AnimatedSprite2D.play("spawn")
 	name = "MycoGrunt"
 
@@ -96,6 +97,13 @@ func Die():
 		$Audio_Die.play()
 	get_tree().get_root().get_node("Level").CountDeadGrunt()
 
+	var dead_grunt = Sprite2D.new()
+	dead_grunt.texture = death_sprite.texture
+	dead_grunt.scale = death_sprite.scale
+	dead_grunt.z_index = death_sprite.z_index
+	dead_grunt.position = position
+	get_tree().get_root().get_node("Level").add_child(dead_grunt)
+
 
 func Burn():
 	Die()
@@ -104,7 +112,7 @@ func Burn():
 	await get_tree().create_timer(1.5).timeout
 	$BurningAudio.stop()
 	$Burning.visible = false
-	#queue_free()
+	queue_free()
 
 
 func Attack():

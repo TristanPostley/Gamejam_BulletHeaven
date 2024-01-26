@@ -47,14 +47,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11yr4"]
-size = Vector2(100, 80)
+size = Vector2(120, 100)
 
 [node name="MycoSpreader" type="CharacterBody2D"]
+z_index = -1
 motion_mode = 1
 script = ExtResource("1_wsadi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_2pxcs")
 animation = &"move"
 

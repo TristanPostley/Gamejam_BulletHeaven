@@ -13,8 +13,10 @@ var total_time = 0
 
 var pushedPosition
 var pushing = false
+var death_sprite
 
 func _ready():
+	death_sprite = get_tree().get_root().get_node("Level").get_node("DeadMycoSpreader")
 	$AnimatedSprite2D.play("move")
 	name = "MycoSpreader"
 
@@ -91,6 +93,7 @@ func _physics_process(delta):
 	else: # If dead, stop moving and let animation/sound play in Burn()
 		pass
 
+
 func Die():
 	alive = false
 	$CollisionShape2D.set_deferred("disabled", true)
@@ -98,22 +101,23 @@ func Die():
 	$AnimatedSprite2D.play("death")
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
-	#await get_tree().create_timer(1.8).timeout
 	get_tree().get_root().get_node("Level").CountDeadSpreader()
-	#queue_free()
+	
+	var dead_spreader = Sprite2D.new()
+	dead_spreader.texture = death_sprite.texture
+	dead_spreader.scale = death_sprite.scale
+	dead_spreader.z_index = death_sprite.z_index
+	dead_spreader.position = position
+	get_tree().get_root().get_node("Level").add_child(dead_spreader)
+
 
 func Burn():
-	alive = false
+	Die()
 	$Burning.visible = true
 	$BurningAudio.play()
-	$CollisionShape2D.set_deferred("disabled", true)
-	$AnimatedSprite2D.stop()
-	$AnimatedSprite2D.play("death")
-	if !$Audio_Die.playing:
-		$Audio_Die.play()
-	#await get_tree().create_timer(1.8).timeout
-	get_tree().get_root().get_node("Level").CountDeadSpreader()
-	#queue_free()
+	await get_tree().create_timer(1.8).timeout
+	queue_free()
+
 
 func Push(playerPosition):
 	if pushing:
@@ -126,3 +130,4 @@ func Push(playerPosition):
 
 func Spawn():
 	alive = true
+

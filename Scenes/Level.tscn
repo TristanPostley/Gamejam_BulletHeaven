@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cgr6njwev5ht"]
+[gd_scene load_steps=29 format=3 uid="uid://cgr6njwev5ht"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_3dpcc"]
 [ext_resource type="PackedScene" uid="uid://w5ig0f0sykc8" path="res://Scenes/LandingZone.tscn" id="1_772jo"]
@@ -23,6 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://bh1xtwecyveey" path="res://Scenes/fail_card.tscn" id="21_wijnb"]
 [ext_resource type="Script" path="res://Scripts/SpreaderCount.gd" id="23_31vgi"]
 [ext_resource type="PackedScene" uid="uid://bqkbhbwinf00p" path="res://Scenes/win_card.tscn" id="23_toygp"]
+[ext_resource type="Texture2D" uid="uid://bqlghl6gur1jv" path="res://Assets/sprites/Grunt_Death.png" id="24_m0dca"]
+[ext_resource type="Texture2D" uid="uid://eufocwgn1wcc" path="res://Assets/sprites/Spreader_Death.png" id="25_3ougf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jgym"]
 size = Vector2(3416, 1016)
@@ -187,6 +189,18 @@ position = Vector2(7256, 1672)
 
 [node name="OxygenPlant14" parent="." instance=ExtResource("5_d7b7q")]
 position = Vector2(1632, 1736)
+
+[node name="DeadMycoGrunt" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-1000, -1000)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("24_m0dca")
+
+[node name="DeadMycoSpreader" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-1100, -1100)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("25_3ougf")
 
 [connection signal="body_exited" from="TutorialArea" to="TutorialArea" method="_on_body_exited"]
 [connection signal="on_tutorial_exited" from="TutorialArea" to="Player" method="_on_tutorial_exited"]
