@@ -172,6 +172,21 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("23_31vgi")
 
+[node name="OxygenPlant4" parent="." instance=ExtResource("5_d7b7q")]
+position = Vector2(1904, 7856)
+
+[node name="OxygenPlant6" parent="." instance=ExtResource("5_d7b7q")]
+position = Vector2(7280, 7648)
+
+[node name="OxygenPlant7" parent="." instance=ExtResource("5_d7b7q")]
+position = Vector2(1816, 4616)
+
+[node name="OxygenPlant12" parent="." instance=ExtResource("5_d7b7q")]
+position = Vector2(7256, 1672)
+
+[node name="OxygenPlant14" parent="." instance=ExtResource("5_d7b7q")]
+position = Vector2(1632, 1736)
+
 [connection signal="body_exited" from="TutorialArea" to="TutorialArea" method="_on_body_exited"]
 [connection signal="on_tutorial_exited" from="TutorialArea" to="Player" method="_on_tutorial_exited"]
 [connection signal="finished" from="BurnThemAll" to="." method="_on_burn_them_all_finished"]
