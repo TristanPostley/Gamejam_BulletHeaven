@@ -22,6 +22,7 @@ func _ready():
 
 
 func _process(_delta):
+	#print(get_canvas_transform())
 	pass
 
 

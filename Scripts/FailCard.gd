@@ -4,9 +4,12 @@ var origin
 var viewportWidth = 0
 var viewportHeight = 0
 var newScale = 0
+var zoom_level = 1
+var camera
 
 
 func _ready():
+	camera = get_tree().get_root().get_node("Level").get_node("Camera2D")
 	hide()
 
 
@@ -17,12 +20,11 @@ func _process(delta):
 func LoseGame():
 	viewportWidth = get_viewport().size.x
 	viewportHeight = get_viewport().size.y
-	var zoom_level = get_tree().get_root().get_node("Level").get_node("Camera2D").get_zoom().x
-	origin = get_tree().get_root().get_node("Level").get_node("Camera2D").position
-	origin = origin - Vector2(viewportWidth/2, viewportHeight/2)/zoom_level
-	newScale = viewportHeight / $TextureRect.texture.get_size().y
-	newScale = newScale / zoom_level
-	
+	zoom_level = camera.get_canvas_transform().x[0]
+	origin = camera.get_canvas_transform().origin * (-1) / zoom_level
+	#origin = origin - Vector2(viewportWidth/2, viewportHeight/2)/zoom_level
+	newScale = viewportHeight / $TextureRect.texture.get_size().y / zoom_level
+
 	$TextureRect.set_scale(Vector2(newScale, newScale))
 	$TextureRect.position = origin
 
