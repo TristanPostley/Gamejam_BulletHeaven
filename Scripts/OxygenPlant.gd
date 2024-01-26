@@ -11,12 +11,14 @@ func _physics_process(delta):
 		$Audio_Idle.stop()
 
 
+func Die():
+	alive = false
+	$OxygenBubble.visible = false
+
 func Burn():
 	if !alive:
 		return
-	
-	alive = false
-	$OxygenBubble.visible = false
+	Die()
 	$Burning.visible = true
 	$BurningAudio.play()
 	$AnimatedSprite2D.stop()

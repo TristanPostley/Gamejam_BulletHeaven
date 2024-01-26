@@ -22,7 +22,9 @@ func _on_barrel_hurt_box_area_entered(area):
 
 	# Drop the flamethrower
 	%ItemSpawner.spawn_resource(Vector2(1, 0))
-	
+	$CollisionShape2D.set_deferred("disabled", true)
+
 	# Change the look of the barrel
 	%BarrelPrompt.queue_free()
 	%Sprite2D.self_modulate = Color("323232")
+
