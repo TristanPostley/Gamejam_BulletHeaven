@@ -217,7 +217,7 @@ func on_myco_grunt_touched_player():
 		shouldReduceOxygen = true
 		oxygenTarget = oxygenAtHit - .025
 		$DamageAudio.play()
-		Input.start_joy_vibration(0,1,1,.25)
+		Input.start_joy_vibration(0,0.01,0.05,.25)
 	if oxygenAtHit <= 0:  # Die:
 		end_game()
 		
