@@ -81,6 +81,16 @@ func _physics_process(_delta):
 	else: # If dead, stop moving and let animation/sound play in Burn()
 		pass
 
+func Die():
+	alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$AnimatedSprite2D.stop()
+	$AnimatedSprite2D.play("death")
+	if !$Audio_Die.playing:
+		$Audio_Die.play()
+	#await get_tree().create_timer(1.8).timeout
+	get_tree().get_root().get_node("Level").CountDeadSpreader()
+	#queue_free()
 
 func Burn():
 	alive = false
@@ -91,6 +101,10 @@ func Burn():
 	$AnimatedSprite2D.play("death")
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
-	await get_tree().create_timer(1.8).timeout
+	#await get_tree().create_timer(1.8).timeout
 	get_tree().get_root().get_node("Level").CountDeadSpreader()
-	queue_free()
+	#queue_free()
+
+func Push():
+	print("Implement pushing")
+	pass

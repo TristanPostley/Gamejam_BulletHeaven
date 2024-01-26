@@ -74,6 +74,7 @@ func _physics_process(delta):
 		$FlamethrowerIgnitionAudio.play()
 		flamethrowing = true
 		enableFlamePoints()
+		$Weapons/Hurtbox.activeWeapon = "flamethrower"
 		
 			
 	if(flamethrowing):
@@ -92,16 +93,15 @@ func _physics_process(delta):
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
 		$Weapons/Hurtbox/FlamethrowerCone.scale = Vector2.ZERO
 		$Weapons/Hurtbox/FlamethrowerCone.disabled = true
-		$Weapons/FlamePoint1.visible = false
-		$Weapons/FlamePoint2.visible = false
-		$Weapons/FlamePoint3.visible = false
-		$Weapons/FlamePoint4.visible = false
+		for point in flamepoints:
+			point.visible = false
 		
 	if inventory["leafblower"] && Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
 		$Weapons/Hurtbox/LeafBlowerCone.disabled = false
 		$Weapons/Hurtbox/LeafBlowerParticles.restart()
 		$LeafblowerAudio.play()
 		blowing = true
+		$Weapons/Hurtbox.activeWeapon = "leafblower"		
 			
 	if(blowing):
 		$Weapons/Hurtbox/LeafBlowerCone.scale = $Weapons/Hurtbox/LeafBlowerCone.scale.lerp(Vector2(1, 1), delta * blowerSpeed)
@@ -113,6 +113,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play()
 		$Weapons/Hurtbox/MacheteBox.disabled = false
 		$MacheteAudio.play()
+		$Weapons/Hurtbox.activeWeapon = "machete"		
 		await get_tree().create_timer(.25).timeout
 		$Weapons/Hurtbox/MacheteBox.disabled = true
 		$AnimatedSprite2D.animation = "default"
@@ -146,7 +147,7 @@ func _physics_process(delta):
 	#Reducing oxygen constantly for breathing
 	$OxygenBar/OxygenAmount.scale.x -= delta * oxygenConsumption
 	#Increase oxygen from pickup
-	if shouldIncreaseOxygen:
+	if shouldIncreaseOxygen && $OxygenBar/OxygenAmount.scale.x < .11:
 		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtPickup + .025, delta * 1)
 		if $OxygenBar/OxygenAmount.scale.x >= oxygenAtPickup + .025:
 			shouldIncreaseOxygen = false

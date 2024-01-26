@@ -10,6 +10,9 @@ var Player
 var playerx = 0
 var playery = 0
 
+var pushedPosition
+var pushing = false
+
 func _ready():
 	Player = get_tree().get_root().get_node("Level").get_node("Player")
 	name = "MycoGrunt"
@@ -73,6 +76,11 @@ func _physics_process(_delta):
 		if get_last_slide_collision():
 			if get_slide_collision(0).get_collider().name == "Player":
 				Attack()
+				
+	if pushing:
+		position = position.lerp(pushedPosition, .4)
+		if position == pushedPosition:
+			pushing = false
 
 
 func Die():
@@ -82,6 +90,7 @@ func Die():
 	$AnimatedSprite2D.play("death")
 	if !$Audio_Die.playing:
 		$Audio_Die.play()
+		
 
 
 func Burn():
@@ -89,13 +98,23 @@ func Burn():
 	$Burning.visible = true
 	$BurningAudio.play()
 	await get_tree().create_timer(1.5).timeout
+	$BurningAudio.stop()
+	$Burning.visible = false
 	get_tree().get_root().get_node("Level").CountDeadGrunt()
-	queue_free()
+	#queue_free()
 
 
 func Attack():
 	Die()
 	# Had to change, signal doesn't work for child instances because of node structure.
 	get_tree().get_root().get_node("Level").get_node("Player").on_myco_grunt_touched_player()
-	await get_tree().create_timer(0.5).timeout
-	queue_free()
+	#await get_tree().create_timer(0.5).timeout
+	#queue_free()
+	
+func Push(playerPosition):
+	#print("Implement pushing")
+	#print("angle ",playerPosition, " theta: ", position, playerPosition.angle_to_point(position), " r: ", playerPosition.distance_to(position))
+	var r = playerPosition.distance_to(position)
+	var theta = playerPosition.angle_to_point(position)
+	pushedPosition = Vector2(position.x + (1.001 * r * cos(theta)), position.y + (1.001 * r * sin(theta)))
+	pushing = true

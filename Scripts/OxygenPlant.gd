@@ -30,7 +30,13 @@ func Burn():
 		$AnimatedSprite2D.animation = "dead"
 	
 	#queue_free()
+	
+func Extinguish():
+	$Burning.visible = false
+	alive = true
+	
 
 func _on_oxygen_timer_timeout():
 	# Periodically spawn new items
-	%ItemSpawner.spawn_items()
+	if alive:
+		%ItemSpawner.spawn_items()

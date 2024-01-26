@@ -46,7 +46,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocn7v"]
-size = Vector2(90, 100)
+size = Vector2(90, 73)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5fpu8"]
 
@@ -56,7 +56,7 @@ script = ExtResource("1_juftn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_1bgim")
-animation = &"dead"
+animation = &"idle"
 
 [node name="Burning" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -82,6 +82,7 @@ pitch_scale = 1.4
 max_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -27)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_ocn7v")
 
