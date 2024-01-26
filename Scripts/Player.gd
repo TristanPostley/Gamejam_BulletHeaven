@@ -33,7 +33,6 @@ var prompt
 var shouldReduceOxygen = false
 var oxygenAtHit
 @export var oxygenConsumption = .001
-@export var enemyDamagePercent:float = 20
 
 func _ready():
 	overhead_marker = $OverheadMarker
@@ -140,9 +139,8 @@ func _physics_process(delta):
 	#Smoothly reducing oxygen bar after hit
 	if shouldReduceOxygen:
 		#var one:float = 1
-		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtHit * .78, delta * 1)
-		if $OxygenBar/OxygenAmount.scale.x <= oxygenAtHit * (1 - (enemyDamagePercent/100)):
-			print(1 - (enemyDamagePercent/100))
+		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtHit - .025, delta * 1)
+		if $OxygenBar/OxygenAmount.scale.x <= oxygenAtHit - .02:
 			shouldReduceOxygen = false
 	#Reducing oxygen constantly for breathing
 	$OxygenBar/OxygenAmount.scale.x -= delta * oxygenConsumption
