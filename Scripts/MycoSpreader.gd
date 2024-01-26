@@ -5,7 +5,7 @@ const acceleration = 0.1
 const convert_radius = 3
 
 var walk_duration = 5
-var alive = true
+var alive = false
 var xdirection = sign(randf_range(-1, 1))
 var ydirection = sign(randf_range(-1, 1))
 var init_delta = 0
@@ -15,6 +15,7 @@ var pushedPosition
 var pushing = false
 
 func _ready():
+	$AnimatedSprite2D.play("move")
 	name = "MycoSpreader"
 
 
@@ -121,3 +122,7 @@ func Push(playerPosition):
 	var theta = playerPosition.angle_to_point(position)
 	pushedPosition = Vector2(position.x + (1.0001 * r * cos(theta)), position.y + (1.0001 * r * sin(theta)))
 	pushing = true
+
+
+func Spawn():
+	alive = true

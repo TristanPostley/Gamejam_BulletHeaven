@@ -70,10 +70,11 @@ script = ExtResource("1_vtdms")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_fjedd")
-animation = &"spawn"
+animation = &"move"
 
 [node name="Audio_Move" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ypfwh")
+volume_db = -5.0
 max_distance = 1000.0
 
 [node name="Audio_Die" type="AudioStreamPlayer2D" parent="."]

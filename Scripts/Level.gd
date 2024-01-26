@@ -63,6 +63,7 @@ func StartGame():
 		#print(i, " ", spreader_array[i].position.x, " ", spreader_array[i].position.y)
 		# Have to give unique name, or gets randomly assigned and then collision doesn't work.
 		spreader_array[i].set_name("MycoSpreader"+str(i))
+		spreader_array[i].Spawn()
 		#print(spreader_array[i].name)
 		add_child(spreader_array[i])
 

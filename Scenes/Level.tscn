@@ -105,7 +105,7 @@ speed = 0
 position = Vector2(0, -72)
 
 [node name="MycoSpreader" parent="." instance=ExtResource("4_qt4jg")]
-position = Vector2(6933, 4456)
+position = Vector2(6127, 4982)
 
 [node name="FlameController" parent="." instance=ExtResource("5_dgh06")]
 position = Vector2(213, -2792)
