@@ -19,7 +19,6 @@ func Burn():
 	$OxygenBubble.visible = false
 	$Burning.visible = true
 	$BurningAudio.play()
-	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.stop()
 
 	await get_tree().create_timer(1.8).timeout
@@ -32,8 +31,10 @@ func Burn():
 	#queue_free()
 	
 func Extinguish():
+	print('test')
 	$Burning.visible = false
 	alive = true
+	$OxygenBubble.visible = true
 	
 
 func _on_oxygen_timer_timeout():
