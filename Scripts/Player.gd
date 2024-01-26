@@ -149,7 +149,7 @@ func _physics_process(delta):
 	#Increase oxygen from pickup
 	if shouldIncreaseOxygen && $OxygenBar/OxygenAmount.scale.x < .11:
 		$OxygenBar/OxygenAmount.scale.x = lerp($OxygenBar/OxygenAmount.scale.x, oxygenAtPickup + .025, delta * 1)
-		if $OxygenBar/OxygenAmount.scale.x >= oxygenAtPickup + .025:
+		if $OxygenBar/OxygenAmount.scale.x >= oxygenAtPickup + .02:
 			shouldIncreaseOxygen = false
 	
 	#Player ran out of oxygen
