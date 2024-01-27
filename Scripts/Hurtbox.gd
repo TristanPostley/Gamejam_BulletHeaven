@@ -16,6 +16,7 @@ func _process(_delta):
 
 func _on_body_entered(body):
 #Damage touched enemy
+	#print(body)
 	if body.name.begins_with("MycoGrunt"):
 		if activeWeapon == "flamethrower":
 			body.Burn()
@@ -42,7 +43,7 @@ func _on_body_entered(body):
 
 
 #func _on_body_exited(body):
-	##print(body.name, "Exit")
+	#print(body.name, "Exit")
 	#if body.name.begins_with("MycoGrunt"):
 		#body.Burn()
 	#elif body.name.begins_with("MycoSpreader"):

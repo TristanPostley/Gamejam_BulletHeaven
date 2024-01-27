@@ -169,6 +169,7 @@ func enableFlamePoints():
 	$Weapons/FlamePoint9.visible = true
 		
 
+
 func handleLeafblower():
 	if !blowerInProgress:
 		await get_tree().create_timer(.7).timeout
@@ -177,30 +178,34 @@ func handleLeafblower():
 		blowing = false
 		blowerInProgress = false
 
+
 #Intro signals
 func remove_intro_prompts():
 	for node in get_tree().get_nodes_in_group("Intro_Prompts"):
-		#node.queue_free()
 		node.visible = false
+		node.queue_free()
+
 
 func _on_wasd_prompts_completed():
 	%Camera2D.zoom(%Camera2D.zoom_levels[1])
+
 
 #Inventory
 func _on_item_pickup_body_entered(pickup_name: String):
 	if pickup_name == "machete":
 		inventory["machete"] = true
-		remove_intro_prompts()
+		#remove_intro_prompts()
 		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
 	elif pickup_name == "flamethrower":
 		inventory["flamethrower"] = true
 		inventory["leafblower"] = true
-		remove_intro_prompts()
+		#remove_intro_prompts()
 		if %Camera2D.get_zoom().x == %Camera2D.zoom_levels[0]: %Camera2D.zoom(%Camera2D.zoom_levels[1])
 	elif pickup_name == "oxygen":
 		oxygenAtPickup = $OxygenBar/OxygenAmount.scale.x
 		shouldIncreaseOxygen = true
 		oxygenTarget = oxygenAtPickup + .025
+
 
 func _on_tutorial_exited():
 	remove_intro_prompts()
@@ -221,9 +226,12 @@ func on_myco_grunt_touched_player():
 		Input.start_joy_vibration(0,0.01,0.05,.25)
 	if oxygenAtHit <= 0:  # Die:
 		end_game()
-		
+
+
 func end_game():
 	get_tree().get_root().get_node("Level").GameLost()
-	
+
+
 func _on_start_menu_use_controller():
 	prompt.use_controller()
+
