@@ -4,8 +4,8 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.2
 
-@export var flamethrowerAvailable = false
-@export var leafblowerAvailable = true
+#@export var flamethrowerAvailable = false
+#@export var leafblowerAvailable = true
 
 var shouldPlayFootsteps = false
 var flamethrowing = false
@@ -45,7 +45,6 @@ func _ready():
 	add_child(prompt)
 	#print($Weapons/Hurtbox/FlamethrowerCone.scale, " ", $Weapons/Hurtbox/LeafBlowerCone.scale)
 
-	
 
 func get_input():
 	var input = Vector2()
@@ -71,7 +70,7 @@ func get_input():
 
 func _physics_process(delta):
 #Actions
-	if inventory["flamethrower"] && Input.is_action_just_pressed('flamethrower') && !flamethrowing && flamethrowerAvailable:
+	if inventory["flamethrower"] && Input.is_action_just_pressed('flamethrower') && !flamethrowing:# && flamethrowerAvailable:
 		$Weapons/Hurtbox/FlamethrowerCone.set_deferred("disabled", false)
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
 		if !$FlamethrowerIgnitionAudio.playing:
@@ -90,7 +89,7 @@ func _physics_process(delta):
 		if !$FlamethrowerAudio.playing:
 			$FlamethrowerAudio.play()
 
-	if(!flamethrowerAvailable || flamethrowing && !Input.is_action_pressed('flamethrower')):
+	if(flamethrowing && !Input.is_action_pressed('flamethrower')):
 		flamethrowing = false
 		$FlamethrowerAudio.stop()
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
@@ -99,7 +98,7 @@ func _physics_process(delta):
 		for point in flamepoints:
 			point.visible = false
 
-	if inventory["leafblower"] && Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
+	if inventory["leafblower"] && Input.is_action_just_pressed('leafblower') && !blowing:# && leafblowerAvailable:
 		$Weapons/Hurtbox/LeafBlowerCone.set_deferred("disabled", false)
 		$Weapons/Hurtbox/LeafBlowerParticles.restart()
 		if !$LeafblowerAudio.playing:
@@ -169,7 +168,6 @@ func enableFlamePoints():
 	$Weapons/FlamePoint5.visible = true
 	$Weapons/FlamePoint6.visible = true
 	$Weapons/FlamePoint9.visible = true
-		
 
 
 func handleLeafblower():
