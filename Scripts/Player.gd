@@ -180,7 +180,8 @@ func handleLeafblower():
 #Intro signals
 func remove_intro_prompts():
 	for node in get_tree().get_nodes_in_group("Intro_Prompts"):
-		node.queue_free()
+		#node.queue_free()
+		node.visible = false
 
 func _on_wasd_prompts_completed():
 	%Camera2D.zoom(%Camera2D.zoom_levels[1])
@@ -224,4 +225,5 @@ func on_myco_grunt_touched_player():
 func end_game():
 	get_tree().get_root().get_node("Level").GameLost()
 	
-	
+func _on_start_menu_use_controller():
+	prompt.use_controller()

@@ -1,8 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://doe1d6a3tpymf"]
+[gd_scene load_steps=12 format=3 uid="uid://dtq8vtb78oobg"]
 
 [ext_resource type="Texture2D" uid="uid://c6akhjrrs8ix7" path="res://Assets/menu/Title.png" id="1_r1dt7"]
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_trkq0"]
 [ext_resource type="Texture2D" uid="uid://rerqau6mqssi" path="res://Assets/menu/PlayButton.png" id="3_av340"]
+[ext_resource type="Texture2D" uid="uid://cdvgbatnup8bw" path="res://Assets/keys/Key_Prompts_1.png" id="4_4i6k0"]
+[ext_resource type="Texture2D" uid="uid://dpejwb7yegsrl" path="res://Assets/keys/tilemap.png" id="5_qmfml"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojh4f"]
+atlas = ExtResource("4_4i6k0")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfx2g"]
+atlas = ExtResource("4_4i6k0")
+region = Rect2(64, 96, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q6sgl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojh4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfx2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nas1w"]
+atlas = ExtResource("5_qmfml")
+region = Rect2(68, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6fe7"]
+atlas = ExtResource("5_qmfml")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q3g7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nas1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6fe7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="StartMenu" type="Control"]
 z_index = 5
@@ -30,5 +76,17 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 icon = ExtResource("3_av340")
+
+[node name="Space" type="AnimatedSprite2D" parent="Button"]
+position = Vector2(283, 1112)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_q6sgl")
+autoplay = "default"
+
+[node name="A" type="AnimatedSprite2D" parent="Button"]
+position = Vector2(702, 1112)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_0q3g7")
+autoplay = "default"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

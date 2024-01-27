@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://6tqbex4cj4tu"]
+[gd_scene load_steps=19 format=3 uid="uid://6tqbex4cj4tu"]
 
 [ext_resource type="Script" path="res://Scenes/Key Prompts/intro_prompts.gd" id="1_8q322"]
 [ext_resource type="Texture2D" uid="uid://dfeeyhmhmrpsw" path="res://Assets/keys/Key_Prompts_2.png" id="2_wqr4x"]
+[ext_resource type="Texture2D" uid="uid://dpejwb7yegsrl" path="res://Assets/keys/tilemap.png" id="3_h20rn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yy1p6"]
 atlas = ExtResource("2_wqr4x")
@@ -91,81 +92,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_auf48"]
-resource_name = "a_press"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("W_sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 5]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tj7e"]
+atlas = ExtResource("3_h20rn")
+region = Rect2(255, 102, 16, 17)
 
-[sub_resource type="Animation" id="Animation_w06n4"]
-resource_name = "d_press"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("W_sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 7]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fmyt"]
+atlas = ExtResource("3_h20rn")
+region = Rect2(255, 119, 16, 17)
 
-[sub_resource type="Animation" id="Animation_fe1nr"]
-resource_name = "s_press"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("W_sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [3, 6]
-}
-
-[sub_resource type="Animation" id="Animation_qerfi"]
-resource_name = "w_press"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("W_sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p4wul"]
-_data = {
-"a_press": SubResource("Animation_auf48"),
-"d_press": SubResource("Animation_w06n4"),
-"s_press": SubResource("Animation_fe1nr"),
-"w_press": SubResource("Animation_qerfi")
-}
+[sub_resource type="SpriteFrames" id="SpriteFrames_u48cf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tj7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fmyt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="IntroPrompts" type="Node2D" groups=["Intro_Prompts"]]
 script = ExtResource("1_8q322")
@@ -178,31 +125,29 @@ sprite_frames = SubResource("SpriteFrames_s8r53")
 autoplay = "default"
 frame = 1
 
-[node name="A_sprite" type="AnimatedSprite2D" parent="."]
+[node name="A_sprite" type="AnimatedSprite2D" parent="W_sprite"]
 texture_filter = 1
-position = Vector2(-59, 13)
-scale = Vector2(4, 4)
+position = Vector2(-15, 15.25)
 sprite_frames = SubResource("SpriteFrames_2seg6")
 autoplay = "default"
 
-[node name="S_sprite" type="AnimatedSprite2D" parent="."]
+[node name="S_sprite" type="AnimatedSprite2D" parent="W_sprite"]
 texture_filter = 1
-position = Vector2(1, 13)
-scale = Vector2(4, 4)
+position = Vector2(0, 15.25)
 sprite_frames = SubResource("SpriteFrames_05tp4")
 autoplay = "default"
 
-[node name="D_sprite" type="AnimatedSprite2D" parent="."]
+[node name="D_sprite" type="AnimatedSprite2D" parent="W_sprite"]
 texture_filter = 1
-position = Vector2(58, 13)
-scale = Vector2(4, 4)
+position = Vector2(14.25, 15.25)
 sprite_frames = SubResource("SpriteFrames_ilv7s")
 autoplay = "default"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-active = false
-libraries = {
-"": SubResource("AnimationLibrary_p4wul")
-}
-autoplay = "w_press"
+[node name="Left_Stick" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_u48cf")
+autoplay = "default"
+frame = 1
+frame_progress = 0.792628

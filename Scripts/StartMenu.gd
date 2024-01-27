@@ -6,6 +6,7 @@ var viewportHeight = 0
 var newScale = 0
 var camera
 
+signal use_controller
 
 func _ready():
 	camera = get_tree().get_root().get_node("Level").get_node("Camera2D")
@@ -32,9 +33,13 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#print("aaaaa")
-	pass
+func _process(_delta):
+	if Input.is_key_pressed(KEY_SPACE):
+		_on_button_pressed()
+		
+	if Input.is_joy_button_pressed(0, JOY_BUTTON_A):
+		use_controller.emit()
+		_on_button_pressed()
 
 func _on_button_pressed():
 	print("Starting tutorial!")

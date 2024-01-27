@@ -16,7 +16,7 @@ func _ready():
 	hide()
 
 
-func _process(delta):
+func _process(_delta):
 	if active:
 		if Input.is_action_pressed("machete"):
 			active = false

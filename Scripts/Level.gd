@@ -68,7 +68,7 @@ func StartGame():
 		add_child.call_deferred(spreader_array[i])
 
 
-func _on_animation_player_animation_finished(StartTransition):
+func _on_animation_player_animation_finished(_StartTransition):
 	$FightTheHorde.stop()
 	$BurnThemAll.play()
 

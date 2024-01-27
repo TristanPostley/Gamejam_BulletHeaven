@@ -28,3 +28,8 @@ func _on_barrel_hurt_box_area_entered(area):
 	%BarrelPrompt.queue_free()
 	%Sprite2D.self_modulate = Color("323232")
 
+
+
+func _on_start_menu_use_controller():
+	$BarrelPrompt.get_child(0).visible = false
+	$BarrelPrompt.get_child(1).visible = true

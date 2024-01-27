@@ -10,7 +10,7 @@ func _ready():
 		alive = false
 		$OxygenBubble.visible = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if alive:  # If dead, stop moving and let animation/sound play.
 		$AnimatedSprite2D.play("idle")
 		if !$Audio_Idle.playing: 

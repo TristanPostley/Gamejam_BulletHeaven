@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcqlnirohunsu"]
+[gd_scene load_steps=9 format=3 uid="uid://cgr3rxomk611o"]
 
+[ext_resource type="Texture2D" uid="uid://dpejwb7yegsrl" path="res://Assets/keys/tilemap.png" id="2_2j1h7"]
 [ext_resource type="Texture2D" uid="uid://cdvgbatnup8bw" path="res://Assets/keys/Key_Prompts_1.png" id="2_xu41r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivayi"]
@@ -21,40 +22,40 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }]
 
-[sub_resource type="Animation" id="Animation_76i00"]
-resource_name = "space_press"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqudx"]
+atlas = ExtResource("2_2j1h7")
+region = Rect2(153, 272, 16, 16)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7k24p"]
-_data = {
-"space_press": SubResource("Animation_76i00")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a6cw"]
+atlas = ExtResource("2_2j1h7")
+region = Rect2(153, 288, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tetqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqudx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a6cw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="BarrelPrompt" type="Node2D"]
 texture_filter = 1
 scale = Vector2(4, 4)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Space" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mq7ab")
+autoplay = "default"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7k24p")
-}
-autoplay = "space_press"
+[node name="Right_Button" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_tetqg")
+autoplay = "default"
