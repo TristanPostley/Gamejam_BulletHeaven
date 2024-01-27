@@ -7,7 +7,6 @@ extends CharacterBody2D
 #@export var flamethrowerAvailable = false
 #@export var leafblowerAvailable = true
 
-var shouldPlayFootsteps = false
 var flamethrowing = false
 var blowing = false
 var blowerInProgress = false
@@ -44,29 +43,6 @@ func _ready():
 	prompt.wasd_prompts_completed.connect(_on_wasd_prompts_completed)
 	add_child(prompt)
 	#print($Weapons/Hurtbox/FlamethrowerCone.scale, " ", $Weapons/Hurtbox/LeafBlowerCone.scale)
-
-
-func get_input():
-	var input = Vector2()
-	if Input.is_action_pressed('right'):
-		input.x += 1
-		if $AnimatedSprite2D.animation != "machete":
-			$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_h = false
-	if Input.is_action_pressed('left'):
-		input.x -= 1
-		if $AnimatedSprite2D.animation != "machete":
-			$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_h = true
-	if Input.is_action_pressed('down'):
-		input.y += 1
-		if $AnimatedSprite2D.animation != "machete":
-			$AnimatedSprite2D.animation = "walk"
-	if Input.is_action_pressed('up'):
-		input.y -= 1
-		if $AnimatedSprite2D.animation != "machete":
-			$AnimatedSprite2D.animation = "walk"
-	return input
 
 func _physics_process(delta):
 #Actions
@@ -121,27 +97,34 @@ func _physics_process(delta):
 		$Weapons/Hurtbox/MacheteBox.set_deferred("disabled", true)
 		$AnimatedSprite2D.animation = "default"
 
-#Facing (for sprite, weapon aiming handled in Weapons Node)
-	if(get_global_mouse_position().x < get_global_transform()[2].x):
-		$AnimatedSprite2D.flip_h = true
-	else:
-		$AnimatedSprite2D.flip_h = false
-
 #Movement
-	var direction = get_input()
+	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction.length() > 0:
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
-		$AnimatedSprite2D.play()
+		if $AnimatedSprite2D.animation != "machete":
+				$AnimatedSprite2D.animation = "walk"
 		if !$FootstepsLoopAudio.is_playing():
 			$FootstepsLoopAudio.play()
 	else:
-		shouldPlayFootsteps = false
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 		$FootstepsLoopAudio.stop()
 		if !$AnimatedSprite2D.animation == "machete":
-			$AnimatedSprite2D.animation = "default"		
+			$AnimatedSprite2D.animation = "default"
+	
+	$AnimatedSprite2D.play()
 	move_and_slide()
 
+#Facing (for sprite, weapon aiming handled in Weapons Node)
+	# Player is walking left
+	if direction.x < 0 || (
+		# Mouse is on left of player, and player is not walking right
+		get_global_mouse_position().x < global_position.x && direction.x <= 0
+	):
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
+	
+# Oxygen
 	oxygenTarget -= delta * oxygenConsumption
 	if oxygenTarget >= .11:
 		oxygenTarget = .11

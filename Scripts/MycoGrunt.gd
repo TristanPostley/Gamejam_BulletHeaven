@@ -4,19 +4,13 @@ extends CharacterBody2D
 const acceleration = 0.15
 
 var alive = false
-var xdirection = -1
-var ydirection = 0
-var Player
-var playerx = 0
-var playery = 0
+@onready var Player = get_tree().get_root().get_node("Level").get_node("Player")
 
 var pushedPosition
 var pushing = false
-var death_sprite
+@onready var death_sprite = get_tree().get_root().get_node("Level").get_node("DeadMycoGrunt")
 
 func _ready():
-	Player = get_tree().get_root().get_node("Level").get_node("Player")
-	death_sprite = get_tree().get_root().get_node("Level").get_node("DeadMycoGrunt")
 	$AnimatedSprite2D.play("spawn")
 	name = "MycoGrunt"
 
@@ -35,46 +29,16 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	# Fetch player position.
-	playerx = Player.position.x
-	playery = Player.position.y
-
-	# Determine relative direction to player and move.
-	if position.x > playerx:
-		xdirection = -1
-	elif position.x < playerx:
-		xdirection = 1
-	else:
-		xdirection = 0
-
-	if position.y > playery:
-		ydirection = -1
-	elif position.y < playery:
-		ydirection = 1
-	else:
-		ydirection = 0
-	#print("MycoGrunt X: ", xdirection, " ", "MycoGrunt Y: ", ydirection)
-
-	#Resolve movement from direction.
-	if xdirection:
-		velocity.x = lerp(velocity.x, float(xdirection) * speed, acceleration)
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-
-	if ydirection:
-		velocity.y = lerp(velocity.y, float(ydirection) * speed, acceleration)
-	else:
-		velocity.y = move_toward(velocity.y, 0, speed)
-	#print(xdirection, " ", ydirection)
-
-	if (xdirection or ydirection) and alive:  # If moving and not already playing, start footstep audio.
+	var direction = global_position.direction_to(Player.global_position)
+	velocity = velocity.lerp(direction * speed, acceleration)
+	
+	if velocity and alive:  # If moving and not already playing, start footstep audio.
 		if !$Audio_Move.playing: 
 			$Audio_Move.play()
 	else:
 		$Audio_Move.stop()
-
-	if alive:  # If dead, stop moving and let animation/sound play.
-		#print($AnimatedSprite2D.animation)
+	
+	if alive:
 		move_and_slide()
 		if get_last_slide_collision():
 			if get_slide_collision(0).get_collider().name == "Player":
