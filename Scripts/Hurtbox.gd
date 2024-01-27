@@ -1,7 +1,7 @@
 extends Area2D
 
-var selectedWeapon
-var activeWeapon
+var selectedWeapon = ""
+var activeWeapon = ""
 
 
 # Called when the node enters the scene tree for the first time.

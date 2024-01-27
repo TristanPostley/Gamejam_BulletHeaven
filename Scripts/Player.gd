@@ -4,11 +4,10 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.2
 
-var shouldPlayFootsteps
-
 @export var flamethrowerAvailable = false
 @export var leafblowerAvailable = true
 
+var shouldPlayFootsteps = false
 var flamethrowing = false
 var blowing = false
 var blowerInProgress = false
@@ -28,7 +27,7 @@ var inventory : Dictionary = { "beam": false, "flamethrower": false, "leafblower
 const INTRO_PROMPTS = preload("res://Scenes/Key Prompts/intro_prompts.tscn")
 var prompt
 
-@onready var tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
+var tile_map
 
 var shouldReduceOxygen = false
 var oxygenAtHit
@@ -38,11 +37,13 @@ var oxygenAtPickup
 var oxygenTarget = .11
 
 func _ready():
+	tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
 	overhead_marker = $OverheadMarker
 	prompt = INTRO_PROMPTS.instantiate()
 	prompt.position = overhead_marker.position
 	prompt.wasd_prompts_completed.connect(_on_wasd_prompts_completed)
 	add_child(prompt)
+	#print($Weapons/Hurtbox/FlamethrowerCone.scale, " ", $Weapons/Hurtbox/LeafBlowerCone.scale)
 
 	
 
@@ -71,14 +72,14 @@ func get_input():
 func _physics_process(delta):
 #Actions
 	if inventory["flamethrower"] && Input.is_action_just_pressed('flamethrower') && !flamethrowing && flamethrowerAvailable:
-		$Weapons/Hurtbox/FlamethrowerCone.disabled = false
+		$Weapons/Hurtbox/FlamethrowerCone.set_deferred("disabled", false)
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
-		$FlamethrowerIgnitionAudio.play()
+		if !$FlamethrowerIgnitionAudio.playing:
+			$FlamethrowerIgnitionAudio.play()
 		flamethrowing = true
 		enableFlamePoints()
 		$Weapons/Hurtbox.activeWeapon = "flamethrower"
-		
-			
+
 	if(flamethrowing):
 		$Weapons/Hurtbox/FlamethrowerCone.scale = $Weapons/Hurtbox/FlamethrowerCone.scale.lerp(Vector2(1,1), delta * flameSpeed)
 		for point in flamepoints:
@@ -88,36 +89,37 @@ func _physics_process(delta):
 				$"../FlameController".start_flame(tile_map.get_tile_from_vector(point.global_position))
 		if !$FlamethrowerAudio.playing:
 			$FlamethrowerAudio.play()
-			
+
 	if(!flamethrowerAvailable || flamethrowing && !Input.is_action_pressed('flamethrower')):
 		flamethrowing = false
 		$FlamethrowerAudio.stop()
 		$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
 		$Weapons/Hurtbox/FlamethrowerCone.scale = Vector2.ZERO
-		$Weapons/Hurtbox/FlamethrowerCone.disabled = true
+		$Weapons/Hurtbox/FlamethrowerCone.set_deferred("disabled", true)
 		for point in flamepoints:
 			point.visible = false
-		
+
 	if inventory["leafblower"] && Input.is_action_just_pressed('leafblower') && !blowing && leafblowerAvailable:
-		$Weapons/Hurtbox/LeafBlowerCone.disabled = false
+		$Weapons/Hurtbox/LeafBlowerCone.set_deferred("disabled", false)
 		$Weapons/Hurtbox/LeafBlowerParticles.restart()
-		$LeafblowerAudio.play()
+		if !$LeafblowerAudio.playing:
+			$LeafblowerAudio.play()
 		blowing = true
 		$Weapons/Hurtbox.activeWeapon = "leafblower"		
-			
+
 	if(blowing):
 		$Weapons/Hurtbox/LeafBlowerCone.scale = $Weapons/Hurtbox/LeafBlowerCone.scale.lerp(Vector2(1, 1), delta * blowerSpeed)
 		handleLeafblower()
 		blowerInProgress = true
-	
+
 	if inventory["machete"] && Input.is_action_just_pressed("machete"):
 		$AnimatedSprite2D.animation = "machete"
 		$AnimatedSprite2D.play()
-		$Weapons/Hurtbox/MacheteBox.disabled = false
+		$Weapons/Hurtbox/MacheteBox.set_deferred("disabled", false)
 		$MacheteAudio.play()
 		$Weapons/Hurtbox.activeWeapon = "machete"		
 		await get_tree().create_timer(.25).timeout
-		$Weapons/Hurtbox/MacheteBox.disabled = true
+		$Weapons/Hurtbox/MacheteBox.set_deferred("disabled", true)
 		$AnimatedSprite2D.animation = "default"
 
 #Facing (for sprite, weapon aiming handled in Weapons Node)
@@ -125,7 +127,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = true
 	else:
 		$AnimatedSprite2D.flip_h = false
-	
+
 #Movement
 	var direction = get_input()
 	if direction.length() > 0:
@@ -140,7 +142,7 @@ func _physics_process(delta):
 		if !$AnimatedSprite2D.animation == "machete":
 			$AnimatedSprite2D.animation = "default"		
 	move_and_slide()
-	
+
 	oxygenTarget -= delta * oxygenConsumption
 	if oxygenTarget >= .11:
 		oxygenTarget = .11
@@ -150,7 +152,7 @@ func _physics_process(delta):
 	#Player ran out of oxygen
 	if $OxygenBar/OxygenAmount.scale.x <= 0:
 		end_game()
-	
+
 
 func enableFlamePoints():
 	$Weapons/FlamePoint1.visible = true
@@ -174,7 +176,7 @@ func handleLeafblower():
 	if !blowerInProgress:
 		await get_tree().create_timer(.7).timeout
 		$Weapons/Hurtbox/LeafBlowerCone.scale = Vector2.ZERO
-		$Weapons/Hurtbox/LeafBlowerCone.disabled = true
+		$Weapons/Hurtbox/LeafBlowerCone.set_deferred("disabled", true)
 		blowing = false
 		blowerInProgress = false
 
