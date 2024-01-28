@@ -36,13 +36,15 @@ var oxygenAtPickup
 var oxygenTarget = .11
 
 func _ready():
+	# TODO preloading particles as a hack to fix Firefox lag on first particle emit
+	preload_particles()
+	
 	tile_map = get_tree().get_root().get_node("Level").get_node("LandingZone").get_node("TileMap")
 	overhead_marker = $OverheadMarker
 	prompt = INTRO_PROMPTS.instantiate()
 	prompt.position = overhead_marker.position
 	prompt.wasd_prompts_completed.connect(_on_wasd_prompts_completed)
 	add_child(prompt)
-	#print($Weapons/Hurtbox/FlamethrowerCone.scale, " ", $Weapons/Hurtbox/LeafBlowerCone.scale)
 
 func _physics_process(delta):
 #Actions
@@ -161,6 +163,17 @@ func handleLeafblower():
 		blowing = false
 		blowerInProgress = false
 
+func preload_particles():
+	# Emit invisible particles, effectively preloading them
+	$Weapons/Hurtbox/FlamethrowerParticles.set_modulate(Color(1,1,1,0))
+	$Weapons/Hurtbox/FlamethrowerParticles.emitting = true
+	# After an async wait, stop emitting and make particles visible again
+	get_tree().create_timer(2).timeout.connect(particle_callback)
+
+func particle_callback():
+	# Make particles visible and stop emitting
+	$Weapons/Hurtbox/FlamethrowerParticles.emitting = false
+	$Weapons/Hurtbox/FlamethrowerParticles.set_modulate(Color(1,1,1,1))
 
 #Intro signals
 func remove_intro_prompts():
@@ -201,7 +214,6 @@ func on_myco_grunt_touched_player():
 	#TODO OXYGEN DAMAGE
 #	Max oxygen = $OxygenBar/OxygenAmount.scale.x = .11
 	oxygenAtHit = $OxygenBar/OxygenAmount.scale.x
-	#print(oxygenAtHit)
 	if oxygenAtHit > 0:
 		shouldReduceOxygen = true
 		oxygenTarget = oxygenAtHit - .025
