@@ -4,9 +4,6 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.2
 
-#@export var flamethrowerAvailable = false
-#@export var leafblowerAvailable = true
-
 var flamethrowing = false
 var blowing = false
 var blowerInProgress = false
@@ -14,14 +11,11 @@ var blowerInProgress = false
 @export var blowerSpeed = 4
 @onready var flamepoints = [$Weapons/FlamePoint1, $Weapons/FlamePoint2, $Weapons/FlamePoint3, $Weapons/FlamePoint4, $Weapons/FlamePoint9, $Weapons/FlamePoint5, $Weapons/FlamePoint6, $Weapons/FlamePoint7, $Weapons/FlamePoint8, $Weapons/FlamePoint10, $Weapons/FlamePoint11]
 
-# Intro signals
-#@onready var start_area = $"../StartArea"
-
 # Key Prompts
 var overhead_marker
 
 # Inventory
-var inventory : Dictionary = { "beam": false, "flamethrower": false, "leafblower": false, "machete": false }
+var inventory : Dictionary = { "flamethrower": false, "leafblower": false, "machete": false }
 
 const INTRO_PROMPTS = preload("res://Scenes/Key Prompts/intro_prompts.tscn")
 var prompt
@@ -187,7 +181,7 @@ func _on_wasd_prompts_completed():
 
 
 #Inventory
-func _on_item_pickup_body_entered(pickup_name: String):
+func pickup_item(pickup_name: String):
 	if pickup_name == "machete":
 		inventory["machete"] = true
 		#remove_intro_prompts()

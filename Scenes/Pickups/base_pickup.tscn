@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk4fyplp3htmr"]
+
+[ext_resource type="Script" path="res://Scenes/Pickups/base_pickup.gd" id="1_dvbot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbqhl"]
+resource_local_to_scene = true
+size = Vector2(128, 128)
+
+[node name="BasePickup" type="Area2D"]
+script = ExtResource("1_dvbot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_tbqhl")
+
+[node name="ExpirationTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]

@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bubmqkv0q67vn"]
+[gd_scene load_steps=4 format=3 uid="uid://cvbqe2qov6jy4"]
 
 [ext_resource type="Texture2D" uid="uid://dujuj3a5xx04p" path="res://Assets/ui/machete.png" id="1_5bj2c"]
-[ext_resource type="Script" path="res://Scenes/Pickups/pickup_machete.gd" id="1_e4vh8"]
+[ext_resource type="PackedScene" uid="uid://dk4fyplp3htmr" path="res://Scenes/Pickups/base_pickup.tscn" id="1_g05dt"]
 
-[node name="PickupMachete" type="Node2D"]
-script = ExtResource("1_e4vh8")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf3kt"]
+resource_local_to_scene = true
+size = Vector2(128, 128)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PickupMachete" instance=ExtResource("1_g05dt")]
+pickup_name = "machete"
+
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_5bj2c")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_wf3kt")

@@ -1,21 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://q4m8o6kfry5q"]
+[gd_scene load_steps=4 format=3 uid="uid://c362b5ivsfx4x"]
 
-[ext_resource type="Script" path="res://Scenes/Pickups/pickup_flamethrower.gd" id="1_20m3m"]
-[ext_resource type="Texture2D" uid="uid://qrx75ougo01b" path="res://Assets/ui/flamethrower.png" id="1_y816x"]
+[ext_resource type="Texture2D" uid="uid://qrx75ougo01b" path="res://Assets/ui/flamethrower.png" id="2_df2ch"]
+[ext_resource type="PackedScene" uid="uid://dk4fyplp3htmr" path="res://Scenes/Pickups/base_pickup.tscn" id="3_sv8iv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a1j8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1431l"]
+resource_local_to_scene = true
 size = Vector2(128, 128)
 
-[node name="PickupFlamethrower" type="Node2D"]
-script = ExtResource("1_20m3m")
+[node name="PickupFlamethrower" instance=ExtResource("3_sv8iv")]
+pickup_name = "flamethrower"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_y816x")
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_df2ch")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_3a1j8")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_1431l")
