@@ -281,5 +281,8 @@ scale = Vector2(0.11, 0.057)
 texture = ExtResource("20_wl8sh")
 centered = false
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
 [connection signal="body_entered" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Weapons/Hurtbox" to="Weapons/Hurtbox" method="_on_body_exited"]

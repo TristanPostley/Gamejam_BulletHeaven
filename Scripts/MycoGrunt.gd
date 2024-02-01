@@ -4,53 +4,51 @@ extends CharacterBody2D
 const acceleration = 0.15
 
 var alive = false
-@onready var Player = get_tree().get_root().get_node("Level").get_node("Player")
-
+@onready var player := get_tree().get_root().get_node("Level/Player")
+@onready var death_sprite := get_tree().get_root().get_node("Level/DeadMycoGrunt")
 var pushedPosition
-var pushing = false
-@onready var death_sprite = get_tree().get_root().get_node("Level").get_node("DeadMycoGrunt")
+var pushing := false
+var move_sound_max_distance := 700.0
 
 func _ready():
 	$AnimatedSprite2D.play("spawn")
 	name = "MycoGrunt"
-
-
-func _process(_delta):
-	# Roll for a chance to spawn every tick.
-	# Mainly testing spawning new enemies here. Keep commented out as it causes issues.
-	"""
-	if randf() > 0.99:
-		print("Spawning additional MycoGrunt!")
-		var NewMycoGrunt = get_parent().get_node("MycoGrunt").duplicate()
-		NewMycoGrunt.position = position
-		get_parent().add_child(NewMycoGrunt)
-	"""
-	pass
-
+	
+	# Reduces lag. Only play move sound if within this distance of player
+	$Audio_Move.max_distance = move_sound_max_distance
 
 func _physics_process(delta):
-	var direction = global_position.direction_to(Player.global_position)
-	velocity = velocity.lerp(direction * speed, acceleration)
-	
-	if velocity and alive:  # If moving and not already playing, start footstep audio.
-		if !$Audio_Move.playing: 
-			$Audio_Move.play()
-	else:
-		$Audio_Move.stop()
-	
 	if alive:
+		handle_movement()
+		check_collision_with_player()
+
+	handle_pushing(delta)
+
+func handle_movement():
+	var direction := global_position.direction_to(player.global_position)
+	velocity = velocity.lerp(direction * speed, acceleration)
+	var distance_to_player = global_position.distance_to(player.global_position)
+	if velocity.length() > 0:
 		move_and_slide()
-		if get_last_slide_collision():
-			if get_slide_collision(0).get_collider().name == "Player":
-				Attack()
-				
+		
+		if distance_to_player <= move_sound_max_distance and not $Audio_Move.playing:
+			$Audio_Move.play()
+	
+	if distance_to_player > move_sound_max_distance:
+		$Audio_Move.stop()
+
+func check_collision_with_player():
+	if get_last_slide_collision():
+		if get_slide_collision(0).get_collider().name == "Player":
+			Attack()
+
+func handle_pushing(delta):
 	if pushing:
 		alive = false
 		position = position.lerp(pushedPosition, delta * 5)
 		if position.is_equal_approx(pushedPosition):
 			pushing = false
 			alive = true
-
 
 func Die():
 	alive = false
@@ -68,8 +66,8 @@ func Die():
 	dead_grunt.position = position
 	get_tree().get_root().get_node("Level").add_child.call_deferred(dead_grunt)
 	
-	await get_tree().create_timer(1.5).timeout	
-	queue_free()	
+	await get_tree().create_timer(1.5).timeout
+	queue_free()
 
 
 func Burn():
@@ -89,7 +87,7 @@ func Attack():
 	#await get_tree().create_timer(0.5).timeout
 	#queue_free()
 
-
+# Pushed by the leaf blower
 func Push(playerPosition):
 	if pushing:
 		return
